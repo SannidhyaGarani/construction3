@@ -74,11 +74,11 @@ const Preloader = () => {
                             className="relative mb-16 md:mb-24 flex flex-col items-center"
                         >
                             <span className="text-4xl md:text-5xl font-serif font-bold tracking-tighter text-white">
-                                UrbanNest <span className="text-[#D4AF37] italic font-light">  Studio</span>
+                                Naksha <span className="text-[#D4AF37] italic font-light"> Dynamic</span>
                             </span>
                             <div className="flex items-center gap-3 mt-4">
                                 <div className="h-px w-8 bg-white/20" />
-                                <span className="text-[9px] text-white/50 tracking-[0.6em] uppercase font-bold">Architectural Studio</span>
+                                <span className="text-[9px] text-white/50 tracking-[0.6em] uppercase font-bold">Naksha Dynamic</span>
                                 <div className="h-px w-8 bg-white/20" />
                             </div>
                         </motion.div>

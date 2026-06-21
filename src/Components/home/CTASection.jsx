@@ -36,13 +36,13 @@ const ContactSection = () => {
               <div>
                 <span className="block text-[8px] font-mono uppercase tracking-[0.3em] text-[#D4AF37] mb-4">/ Channels</span>
                 <div className="space-y-4">
-                  <a href="mailto:studio@audenkhan.com" className="group flex items-center gap-3">
+                  <a href="mailto:info@nakshadynamic.com" className="group flex items-center gap-3">
                     <div className="w-8 h-8 border border-neutral-100 flex items-center justify-center bg-neutral-50 group-hover:border-[#D4AF37] transition-colors">
                       <Mail size={12} className="text-neutral-400 group-hover:text-[#0A192F]" />
                     </div>
                     <div>
                       <span className="block text-[9px] text-neutral-400 uppercase tracking-wider font-medium">Email</span>
-                      <span className="block text-[13px] font-medium text-[#0A192F]">studio@audenkhan.com</span>
+                      <span className="block text-[13px] font-medium text-[#0A192F]">info@nakshadynamic.com</span>
                     </div>
                   </a>
                   <a href="tel:+911244567890" className="group flex items-center gap-3">
@@ -143,7 +143,7 @@ const ContactSection = () => {
 
         {/* --- SYSTEM METADATA FOOTER ACCENT --- */}
         <div className="mt-16 pt-6 border-t border-neutral-200/60 flex justify-center text-center">
-          <span className="text-[8px] font-mono text-neutral-300 uppercase tracking-[0.8em]">Auden & Khān // Blueprinting Matrix V2.06</span>
+          <span className="text-[8px] font-mono text-neutral-300 uppercase tracking-[0.8em]">Naksha Dynamic // Blueprinting Matrix V2.06</span>
         </div>
 
       </div>

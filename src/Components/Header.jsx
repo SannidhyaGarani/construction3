@@ -43,12 +43,12 @@ const Header = () => {
               <span className={`text-2xl md:text-3xl font-serif font-bold tracking-tighter transition-all duration-700 ${
                 isScrolled ? 'text-[#0A192F]' : 'text-white'
               }`}>
-                Urban<span className="text-[#D4AF37] italic font-light">Nest</span>
+                Naksha<span className="text-[#D4AF37] italic font-light">Dynamic</span>
               </span>
               <span className={`text-[7px] uppercase tracking-[0.8em] font-bold transition-all duration-700 -mt-0.5 ${
                 isScrolled ? 'text-[#0A192F]/50' : 'text-white/60'
               }`}>
-                Architectural Studio
+                Design & Construction
               </span>
             </div>
           </Link>
@@ -179,8 +179,8 @@ const Header = () => {
               <div className="flex flex-col md:flex-row justify-between items-end gap-8 border-t border-neutral-100 pt-12">
                 <div>
                   <p className="text-[9px] uppercase tracking-[0.5em] text-neutral-400 mb-2">Direct Inquiry</p>
-                  <a href="mailto:hello@urbannest.design" className="text-lg font-serif text-[#0A192F] hover:text-[#D4AF37] transition-colors">
-                    hello@urbannest.design
+                  <a href="mailto:info@nakshadynamic.com" className="text-lg font-serif text-[#0A192F] hover:text-[#D4AF37] transition-colors">
+                    info@nakshadynamic.com
                   </a>
                 </div>
                 <div className="flex gap-8">

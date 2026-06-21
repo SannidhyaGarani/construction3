@@ -168,8 +168,8 @@ const ProjectDetail = () => {
                 )}
                 
                 <div className="flex justify-between items-center text-neutral-400">
-                  <span className="text-[9px] uppercase tracking-widest italic">High-Fidelity Architectural Assets</span>
-                  <span className="text-[9px] uppercase tracking-widest">© Architectural Studio 2024</span>
+                  <span className="text-[9px] uppercase tracking-widest italic">High-Resolution Exterior Render</span>
+                  <span className="text-[9px] uppercase tracking-widest">© Naksha Dynamic 2024</span>
                 </div>
               </div>
             </Reveal>

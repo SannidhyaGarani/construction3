@@ -52,7 +52,7 @@ const Footer = () => {
             <div>
               <Link to="/" className="inline-block mb-5 group">
                 <span className="text-2xl font-serif font-bold tracking-tight">
-                  Urban<span className="text-[#D4AF37] italic font-light group-hover:opacity-80 transition-opacity">Nest</span>
+                  Naksha<span className="text-[#D4AF37] italic font-light group-hover:opacity-80 transition-opacity">Dynamic</span>
                 </span>
               </Link>
               <p className="text-neutral-400 text-[13px] leading-relaxed font-light max-w-sm">
@@ -119,10 +119,10 @@ const Footer = () => {
                   HR 122009
                 </p>
                 <a 
-                  href="mailto:hello@urbannest.design" 
+                  href="mailto:info@nakshadynamic.com" 
                   className="inline-block text-[#D4AF37] hover:text-white transition-colors duration-300 border-b border-[#D4AF37]/20 hover:border-white pb-0.5"
                 >
-                  hello@urbannest.design
+                  info@nakshadynamic.com
                 </a>
               </div>
             </div>
@@ -133,7 +133,7 @@ const Footer = () => {
         {/* --- BOTTOM LEGAL & SCROLL SECTION --- */}
         <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row justify-between items-center gap-6">
           <div className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 font-light text-center sm:text-left">
-            © {currentYear} UrbanNest Architectural Studio <span className="mx-2 text-neutral-700">•</span> All Rights Reserved
+            © {currentYear} Naksha Dynamic Architectural Studio <span className="mx-2 text-neutral-700">•</span> All Rights Reserved
           </div>
           
           <button 

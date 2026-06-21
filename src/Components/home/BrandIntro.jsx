@@ -39,7 +39,7 @@ const BrandIntro = () => {
               <div className="md:col-span-6">
                 <Reveal delay={0.2}>
                   <p className="text-[15px] text-neutral-700 font-light leading-relaxed">
-                    Operating at the absolute convergence of tectonic structural discipline and artistic symmetry, <span className="text-black font-normal">Auden & Khān</span> forms spaces that remain relevant for generations.
+                    Operating at the absolute convergence of tectonic structural discipline and artistic symmetry, <span className="text-black font-normal">Naksha Dynamic</span> forms spaces that remain relevant for generations.
                   </p>
                 </Reveal>
               </div>
@@ -67,8 +67,8 @@ const BrandIntro = () => {
               <div className="absolute inset-x-6 bottom-6 z-20 flex justify-between items-end">
                 <div>
                   <span className="block text-[9px] uppercase tracking-[0.4em] text-[#D4AF37] font-semibold mb-1">Principal / Founder</span>
-                  <h3 className="text-2xl font-serif text-white tracking-wide">Zayn Auden Khān</h3>
-                </div>
+                  <h3 className="text-2xl font-serif text-white tracking-wide">Naksha Dynamic</h3>
+                  </div>
 
                 <div className="flex flex-col items-end text-right border-l border-white/10 pl-4">
                   <span className="font-serif text-3xl text-[#D4AF37] leading-none mb-0.5">15+</span>
