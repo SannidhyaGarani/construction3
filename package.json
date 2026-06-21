@@ -1,9 +1,9 @@
 {
-  "name": "manoj-builders",
+  "name": "ss-builders",
   "private": true,
   "version": "1.0.0",
-  "description": "Ambi Vineyards - Premium Wines from Central India",
-  "author": "Ambi Vineyards",
+  "description": "SS Builders",
+  "author": "SS Builders",
   "type": "module",
   "scripts": {
     "dev": "vite",
