@@ -1,0 +1,543 @@
+// Real wine data for all categories
+export const WINE_LIST = [
+  // --- RED WINES ---
+  {
+    id: 1,
+    name: "Apsara New Gold Red Wine",
+    category: "red",
+    shortDescription:
+      "A smooth and approachable red wine crafted for everyday enjoyment, offering balanced fruit notes and a gentle finish.",
+    features: [
+      "Smooth and easy-drinking red wine",
+      "Balanced fruit-forward profile",
+      "Soft tannins with mild sweetness",
+      "Ideal for casual occasions and celebrations"
+    ],
+    foodPairing: [
+      "Grilled vegetables",
+      "Paneer tikka",
+      "Pasta with red sauce",
+      "Light Indian snacks"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r3.jpeg"
+  },
+
+  {
+    id: 2,
+    name: "Shiraz Dry",
+    category: "red",
+    shortDescription:
+      "A dry Shiraz with bold character, showcasing dark fruit aromas and subtle spice with a clean, structured finish.",
+    features: [
+      "Dry red wine made from Shiraz grapes",
+      "Notes of dark berries and spice",
+      "Medium-bodied with firm structure",
+      "Smooth and balanced finish"
+    ],
+    foodPairing: [
+      "Grilled meats",
+      "Seekh kebab",
+      "Spicy Indian curries",
+      "Cheese platters"
+    ],
+    abv: "12.1%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r4.jpeg"
+  },
+
+  {
+    id: 3,
+    name: "New Puzzle Red Wine",
+    category: "red",
+    shortDescription:
+      "A vibrant red wine designed for modern palates, combining fruit richness with a smooth and enjoyable texture.",
+    features: [
+      "Fruit-forward red wine",
+      "Smooth mouthfeel",
+      "Balanced acidity",
+      "Contemporary style wine"
+    ],
+    foodPairing: [
+      "Pizza",
+      "Burgers",
+      "Grilled chicken",
+      "Indian starters"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r5.jpeg"
+  },
+
+  {
+    id: 4,
+    name: "Shiraz Cabernet",
+    category: "red",
+    shortDescription:
+      "A harmonious blend of Shiraz and Cabernet, offering depth, richness, and a smooth yet structured palate.",
+    features: [
+      "Blend of Shiraz and Cabernet grapes",
+      "Rich fruit aromas",
+      "Medium to full-bodied texture",
+      "Well-rounded finish"
+    ],
+    foodPairing: [
+      "Roasted meats",
+      "Paneer dishes",
+      "Barbecue",
+      "Mushroom-based recipes"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r6.jpeg"
+  },
+
+  {
+    id: 5,
+    name: "Cabernet Sauvignon Dry",
+    category: "red",
+    shortDescription:
+      "A classic dry Cabernet Sauvignon with deep color, firm tannins, and expressive dark fruit flavors.",
+    features: [
+      "Dry Cabernet Sauvignon red wine",
+      "Notes of blackcurrant and dark cherry",
+      "Firm tannin structure",
+      "Elegant and lasting finish"
+    ],
+    foodPairing: [
+      "Red meat",
+      "Grilled lamb",
+      "Hard cheeses",
+      "Spicy Indian food"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r7.jpeg"
+  },
+
+  {
+    id: 6,
+    name: "Cab Shiraz",
+    category: "red",
+    shortDescription:
+      "A well-balanced Cab Shiraz combining the strength of Cabernet with the spice of Shiraz.",
+    features: [
+      "Cabernet and Shiraz blend",
+      "Smooth and rich texture",
+      "Balanced fruit and spice notes",
+      "Easy yet refined drinking experience"
+    ],
+    foodPairing: [
+      "Grilled meats",
+      "Indian curries",
+      "Pasta",
+      "Cheese platters"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r8.jpeg"
+  },
+
+  {
+    id: 7,
+    name: "Apsara Premium Red Wine",
+    category: "red",
+    shortDescription:
+      "A premium red wine with refined character, offering smooth texture and elegant fruit expression.",
+    features: [
+      "Premium quality red wine",
+      "Smooth and refined mouthfeel",
+      "Balanced acidity",
+      "Ideal for special occasions"
+    ],
+    foodPairing: [
+      "Fine dining dishes",
+      "Grilled meats",
+      "Cheese boards",
+      "Continental cuisine"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r9.jpeg"
+  },
+
+  {
+    id: 8,
+    name: "Apsara New Classic Red Wine",
+    category: "red",
+    shortDescription:
+      "A bold and expressive classic red wine designed for strong flavors and a confident finish.",
+    features: [
+      "Classic style red wine",
+      "Bold flavor profile",
+      "Smooth tannins",
+      "Strong and satisfying finish"
+    ],
+    foodPairing: [
+      "Barbecue",
+      "Spicy Indian dishes",
+      "Grilled meats",
+      "Street-style food"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r2.jpeg"
+  },
+  // {
+  //   id: 9,
+  //   name: "Love Drink Rosé Wine",
+  //   category: "rose",
+  //   shortDescription:
+  //     "A light and refreshing rosé wine with soft fruit notes, crafted for easy sipping and relaxed moments.",
+  //   features: [
+  //     "Fresh and light rosé wine",
+  //     "Smooth and easy-drinking profile",
+  //     "Delicate fruity character",
+  //     "Best served chilled"
+  //   ],
+  //   foodPairing: [
+  //     "Light snacks",
+  //     "Salads",
+  //     "Pasta",
+  //     "Indian starters"
+  //   ],
+  //   abv: "Approx. 12%",
+  //   sizes: ["750ml"],
+  //   origin: "Product of India",
+  //   price: "Ask for Price",
+  //   image: "../img/bottle/ro1.jpeg"
+  // },
+
+  {
+    id: 10,
+    name: "Love Drink Rosé Wine (Studio Bottle)",
+    category: "rose",
+    shortDescription:
+      "A vibrant rosé wine with a balanced and refreshing taste, ideal for casual gatherings and celebrations.",
+    features: [
+      "Rosé wine with bright appearance",
+      "Balanced acidity",
+      "Smooth finish",
+      "Refreshing character"
+    ],
+    foodPairing: [
+      "Cheese platters",
+      "Finger foods",
+      "Grilled vegetables",
+      "Light Indian cuisine"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/ro2.jpeg"
+  },
+
+  {
+    id: 11,
+    name: "45 Spritzer Wine",
+    category: "spritzer",
+    shortDescription:
+      "A crisp and refreshing wine spritzer designed for a light and bubbly drinking experience.",
+    features: [
+      "Low-alcohol wine spritzer",
+      "Light and refreshing taste",
+      "Crisp mouthfeel",
+      "Perfect for warm weather"
+    ],
+    foodPairing: [
+      "Snacks",
+      "Salads",
+      "Fried appetizers",
+      "Street food"
+    ],
+    abv: "Approx. 4.5%",
+    sizes: ["330ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/s1.jpeg"
+  },
+
+  {
+    id: 12,
+    name: "CB Chenin Blanc Premium White",
+    category: "white",
+    shortDescription:
+      "A premium white wine offering fresh aromas and a crisp palate with a clean and elegant finish.",
+    features: [
+      "Premium Chenin Blanc white wine",
+      "Fresh and aromatic profile",
+      "Crisp acidity",
+      "Smooth and clean finish"
+    ],
+    foodPairing: [
+      "Seafood",
+      "Salads",
+      "Grilled vegetables",
+      "Light continental dishes"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/w1.jpeg"
+  },
+
+  {
+    id: 13,
+    name: "Malwi White Wine",
+    category: "white",
+    shortDescription:
+      "A refreshing white wine with a light body and smooth texture, suitable for everyday enjoyment.",
+    features: [
+      "Light-bodied white wine",
+      "Smooth and refreshing taste",
+      "Easy-drinking style",
+      "Best served chilled"
+    ],
+    foodPairing: [
+      "Indian snacks",
+      "Vegetable dishes",
+      "Salads",
+      "Light meals"
+    ],
+    abv: "Approx. 14.8%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/w2.jpeg"
+  },
+
+  {
+    id: 14,
+    name: "CB Chenin Blanc ",
+    category: "white",
+    shortDescription:
+      "A hand-picked premium Chenin Blanc showcasing purity, freshness, and a refined white wine character.",
+    features: [
+      "Hand-picked Chenin Blanc grapes",
+      "Premium white wine",
+      "Balanced acidity",
+      "Elegant and refined taste"
+    ],
+    foodPairing: [
+      "Seafood",
+      "Cheese boards",
+      "Light pasta",
+      "Continental cuisine"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/w3.jpeg"
+  },
+   {
+    id: 15,
+    name: "Nritya White Wine",
+    category: "white",
+    shortDescription:
+      "A fresh and easy-drinking white wine with a smooth profile, crafted for light, refreshing enjoyment.",
+    features: [
+      "Light-bodied white wine",
+      "Smooth and refreshing taste",
+      "Easy-drinking style",
+      "Best served chilled"
+    ],
+    foodPairing: [
+      "Salads",
+      "Vegetable dishes",
+      "Light Indian cuisine",
+      "Snacks"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/w4.png"
+  },
+
+  {
+    id: 16,
+    name: "Nritya Red Wine",
+    category: "red",
+    shortDescription:
+      "A smooth and balanced red wine offering gentle fruit notes and a pleasant, easy finish.",
+    features: [
+      "Smooth red wine",
+      "Balanced fruit-forward profile",
+      "Soft tannins",
+      "Approachable and versatile style"
+    ],
+    foodPairing: [
+      "Grilled vegetables",
+      "Paneer dishes",
+      "Indian snacks",
+      "Light non-veg starters"
+    ],
+    abv: "Approx. 12%",
+    sizes: ["750ml"],
+    origin: "Product of India",
+    price: "Ask for Price",
+    image: "../img/bottle/r1.png"
+  }
+];
+
+// Category metadata for hero sections
+export const CATEGORY_INFO = {
+  red: {
+    title: "Red Wines",
+    subtitle: "Robust & Earthy Selection",
+    description: "Our red wine collection showcases the depth and complexity of carefully selected varietals, each expressing the unique character of our terroir through patient aging and traditional winemaking techniques.",
+    heroImage: "https://images.unsplash.com/photo-1510850402719-e4c78a483946?auto=format&fit=crop&q=80&w=2070"
+  },
+  white: {
+    title: "White Wines",
+    subtitle: "Crisp & Mineral Selection",
+    description: "From bright, citrus-driven expressions to rich, barrel-fermented styles, our white wines capture the freshness and elegance of carefully tended vineyards.",
+    heroImage: "https://images.unsplash.com/photo-1559158068-9ad6a7c717cf?auto=format&fit=crop&q=80&w=2070"
+  },
+  rose: {
+    title: "Rosé Wines",
+    subtitle: "Fresh & Floral Selection",
+    description: "Delicate and refreshing, our rosé collection offers the perfect balance of fruit and acidity, crafted for moments of effortless elegance.",
+    heroImage: "https://images.unsplash.com/photo-1558001373-7b93ee48ffa0?auto=format&fit=crop&q=80&w=2070"
+  },
+  beer: {
+    title: "Spritzers & Beers",
+    subtitle: "Fruity & Refreshing",
+    description: "Vibrant and playful, our collection brings together fresh fruit flavors and sparkling zest for the perfect low-alcohol refreshment.",
+    heroImage: "https://images.unsplash.com/photo-1535958636474-b021ee887b13?auto=format&fit=crop&q=80&w=2070"
+  }
+};
+
+
+
+
+
+//  { id: 1, city: "Gwalior", name: "Retail Outlet", address: "Shop No 01, University Triangle, Govindpuri, Gwalior", type: "Dealer", manager: "Amit Nigam", phone: "9826014171" },
+//   { id: 2, city: "Gwalior", name: "Retail Outlet", address: "Shop No. 68, Bajariya Race Course Road, Railway Station, Gwalior", type: "Dealer", manager: "Amit Nigam", phone: "9826014171" },
+
+//   { id: 3, city: "Bhopal", name: "Retail Outlet", address: "Shop No. 03, Rajpur Bazar, Prem Kesar Spring Valley, Near Katara Hills, Bhopal", type: "Dealer", manager: "Amit Nigam", phone: "9826014171" },
+//   { id: 4, city: "Bhopal", name: "Retail Outlet", address: "Shop No. 01, Vinit Kunj, Opp. CI Heights, Kolar Road, Bhopal", type: "Dealer", manager: "Amit Nigam", phone: "9826014171" },
+//   { id: 5, city: "Bhopal", name: "Retail Outlet", address: "Shop No. 5, Ground Floor, Sage Golden Spring Mall, Karond Road, Bhopal", type: "Dealer", manager: "Amit Nigam", phone: "9826014171" },
+
+  // { id: 6, city: "Bhopal", name: "Retail Outlet", address: "Shop No 4, C-Sector, Opp BHEL Gate, Indrapuri, Bhopal", type: "Dealer", manager: "Rama Sharma", phone: "9406577588" },
+  // { id: 7, city: "Bhopal", name: "Retail Outlet", address: "Shop No. 2, Ranthambhor Complex, MP Nagar Zone 2, Bhopal", type: "Dealer", manager: "Rama Sharma", phone: "9406577588" },
+  // { id: 8, city: "Bhopal", name: "Retail Outlet", address: "7 No Stop, BDA Complex, Near Sagar Gaire, Shivaji Nagar, Bhopal", type: "Dealer", manager: "Rama Sharma", phone: "9406577588" },
+  // { id: 9, city: "Bhopal", name: "Retail Outlet", address: "Shop No. E/8, Silver Bills Building, Gulmohar, Bhopal", type: "Dealer", manager: "Rama Sharma", phone: "9406577588" },
+
+  // { id: 10, city: "Bhopal", name: "Retail Outlet", address: "Shop No 5, Varkhedi Kalan, Near Nayara Petrol Pump, Nilbad Road, Bhopal", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+  // { id: 11, city: "Bhopal", name: "Retail Outlet", address: "Shop No 04, Nirupam Shopping Mall, Hoshangabad Road, Bhopal", type: "Dealer", manager: "Ashish Sharma", phone: "9826331351" },
+
+  // { id: 12, city: "Indore", name: "Company Outlet", address: "Shop UG 01, Royal Glory Building, Sayaji Square, Vijay Nagar, Indore", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+  // { id: 13, city: "Indore", name: "Retail Outlet", address: "Shop No.192/A, Greater Brijeshwari Colony, Pipliyahana, Indore", type: "Dealer", manager: "Nikhil Yadav", phone: "9993177761" },
+  // { id: 14, city: "Indore", name: "Retail Outlet", address: "Plot 3-4, Scheme No.97, AB Road, Rajendra Nagar, Indore", type: "Dealer", manager: "Nikhil Yadav", phone: "9993177761" },
+  // { id: 15, city: "Indore", name: "Retail Outlet", address: "Shop No 3, Shri Harigopal Complex, Bhanwarkua Road, Indore", type: "Dealer", manager: "Nikhil Yadav", phone: "9993177761" },
+
+  // { id: 16, city: "Indore", name: "Retail Outlet", address: "Shop No. 3, 58/1, Nemawar Road, Palda, Indore", type: "Dealer", manager: "Nilesh Parmar", phone: "8103284644" },
+  // { id: 17, city: "Indore", name: "Retail Outlet", address: "Shop No. WA 11, Satyagya Bhawan, Scheme No. 94, Ring Road, Indore", type: "Dealer", manager: "Rakhi Parmar", phone: "9425061024" },
+  // { id: 18, city: "Indore", name: "Retail Outlet", address: "Shop No LG-6/7, Royal Gold Building, YN Road, Indore", type: "Dealer", manager: "Rakhi Parmar", phone: "9425061024" },
+  // { id: 19, city: "Indore", name: "Retail Outlet", address: "Shop No 05, Near JCB Showroom, Talawali Chanda, AB Road, Indore", type: "Dealer", manager: "Prem Parmar", phone: "9425061024" },
+
+  // { id: 20, city: "Indore", name: "Retail Outlet", address: "Shop UG 05, Amar Darshan Building, Saket Square, Indore", type: "Dealer", manager: "Vikas Patidar", phone: "9827570060" },
+
+  // { id: 21, city: "Dhar", name: "Retail Outlet", address: "Shop No. 01, Near Geo Motors, Indore Ahmedabad Road, Dhar", type: "Dealer", manager: "Kamlesh Patidar", phone: "9826363597" },
+
+  // { id: 22, city: "Jabalpur", name: "Retail Outlet", address: "Shop No. A/3, Shubhanar Complex, Wright Town, Jabalpur", type: "Dealer", manager: "Mahima Keralkar", phone: "9301829128" },
+
+  // { id: 23, city: "Seoni", name: "Retail Outlet", address: "Shop No.1, Gram Turia, Pench Kurai, Seoni", type: "Dealer", manager: "Dinesh Sanodiya", phone: "9111066669" },
+
+  // { id: 24, city: "Ratlam", name: "Company Outlet", address: "Shop No 191/1, Datar Kripa, Sailana Road, Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+  // { id: 25, city: "Ratlam", name: "Company Outlet", address: "Shop No 06, RIAN MFC Building, Station Road, Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+  // { id: 26, city: "Ratlam", name: "Winery Outlet", address: "Winery Premises, Gate No 02, Village Titari, Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+  // { id: 27, city: "Jabalpur", name: "Retail Outlet", address: "Shop No 116, MR Road 4, Near BSNL Exchange, Vijay Nagar, Jabalpur", type: "Dealer", manager: "Navle Shakya", phone: "7000942104" },
+  // { id: 28, city: "Jabalpur", name: "Retail Outlet", address: "Shop No. 21/2, Samdadiya Apartment, South Civil Lines, Jabalpur", type: "Dealer", manager: "Pramod Shakya", phone: "8770751347" },
+  // { id: 29, city: "Jabalpur", name: "Retail Outlet", address: "Shop No 56, Bihari, Mandla Road, Jabalpur", type: "Dealer", manager: "Vikas Agrawal", phone: "9039091155" },
+
+  // { id: 30, city: "Seoni", name: "Retail Outlet", address: "Shop No. 03, Jyarat Naka, Akbar Ward, Jabalpur Road, Seoni", type: "Dealer", manager: "Pramod Shakya", phone: "8770751347" },
+
+  // { id: 31, city: "Dewas", name: "Retail Outlet", address: "Shop No. 06, Ground Floor, Jawahar Nagar, AB Road, Dewas", type: "Dealer", manager: "Dinesh Choudhary", phone: "9752291111" },
+  // { id: 32, city: "Dewas", name: "Retail Outlet", address: "Nagar Nigam Colony, Ujjain Road, Dewas", type: "Dealer", manager: "Raja Choudhary", phone: "9752291111" },
+
+  // { id: 33, city: "Singrauli", name: "Retail Outlet", address: "Shop No. 3, Bijouli Main Road, Waidan, Singrauli", type: "Dealer", manager: "Poonamchand Malvi", phone: "8827217610" },
+  // { id: 34, city: "Singrauli", name: "Retail Outlet", address: "Main Road, Navjeevan Vihar, Waidan, Singrauli", type: "Dealer", manager: "Poonamchand Malvi", phone: "8827217610" },
+
+  // { id: 35, city: "Rewa", name: "Retail Outlet", address: "Shop No 2, Near Gadariya Triangle, Rewa", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+  // { id: 36, city: "Rewa", name: "Retail Outlet", address: "Shop No 203, Aspire Building, Jhiriya, Rewa", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+
+  // { id: 37, city: "Barwani", name: "Retail Outlet", address: "Shop No 01, Sardar Patel Marg, Bus Stand, Barwani", type: "Dealer", manager: "Nilesh Patidar", phone: "9826055238" },
+  // { id: 38, city: "Barwani", name: "Retail Outlet", address: "Anjad Road, Rewa Circle, Barwani", type: "Dealer", manager: "Niklesh Choudhary", phone: "7987441469" },
+
+  // { id: 39, city: "Alirajpur", name: "Retail Outlet", address: "Ward No. 05, Near Reliance Petrol Pump, Alirajpur", type: "Dealer", manager: "Nilesh Patidar", phone: "9826055238" },
+
+  // { id: 40, city: "Jhabua", name: "Retail Outlet", address: "Shop No 01, Ward No 11, Mojipada, Jhabua", type: "Dealer", manager: "Sandeep Mehta", phone: "9589867891" },
+
+  // { id: 41, city: "Khargone", name: "Retail Outlet", address: "Shop No. 9, Yash Tower, Devi Ahilya Complex, Khargone", type: "Dealer", manager: "Prakash Patidar", phone: "8964071131" },
+
+  // { id: 42, city: "Khandwa", name: "Retail Outlet", address: "Shop No 03, Near Railway Station, Khandwa", type: "Dealer", manager: "Rakesh Pal", phone: "9826535091" },
+  // { id: 43, city: "Harda", name: "Retail Outlet", address: "Shop No. 01, Patel Agency, Near Rathi Petrol Pump, Harda", type: "Dealer", manager: "Rakesh Pal", phone: "9826535091" },
+
+  // { id: 44, city: "Betul", name: "Retail Outlet", address: "Shop No. 03, Opp Axis Bank, College Road, Betul", type: "Dealer", manager: "Vijay Malviya", phone: "9770198456" },
+
+  // { id: 45, city: "Chhindwara", name: "Retail Outlet", address: "Shop No 23, Stadium, Opp BSNL Office, Parasia Road, Chhindwara", type: "Dealer", manager: "Ashish Sharma", phone: "9826331351" },
+
+  // { id: 46, city: "Narmadapuram", name: "Retail Outlet", address: "Shop No 9, Ward No 29, Surajganj, Itarsi", type: "Dealer", manager: "Purvanshi Thakur", phone: "9691221540" },
+
+  // { id: 47, city: "Pandurna", name: "Retail Outlet", address: "Shop No 01, Ward No 14, Jay Stambh Chowk, Pandurna", type: "Dealer", manager: "Akash Malvi", phone: "9770198456" },
+
+  // { id: 48, city: "Satna", name: "Retail Outlet", address: "Shop No 01, Near Samdadiya Jewellers, Rewa Road, Satna", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+
+  // { id: 49, city: "Sidhi", name: "Retail Outlet", address: "Shop No 1, Samrat Chowk, Sidhi", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+
+  // { id: 50, city: "Vidisha", name: "Retail Outlet", address: "Shop No 01, Sanjay Shopping Center, Bus Stand, Vidisha", type: "Dealer", manager: "Harish Singh Rajput", phone: "8319910559" },
+
+  // { id: 51, city: "Sagar", name: "Retail Outlet", address: "Shop No 1, Atal Park, Medical College Road, Sagar", type: "Dealer", manager: "Sachin Singh Rawat", phone: "8319670949" },
+
+  // { id: 52, city: "Chhatarpur", name: "Retail Outlet", address: "Shop No 01, Jawahar Road, Panna Naka, Chhatarpur", type: "Dealer", manager: "Ajay Sisodiya", phone: "8643059945" },
+
+  // { id: 53, city: "Damoh", name: "Retail Outlet", address: "Shop No 2, Railway Station Square, Sagar Road, Damoh", type: "Dealer", manager: "Rakesh Pal", phone: "9826535091" },
+
+  // { id: 54, city: "Tikamgarh", name: "Retail Outlet", address: "Shop No 1, Near Hotel Balaji, Jhabsi Road, Tikamgarh", type: "Dealer", manager: "Vikas Patidar", phone: "9827570060" },
+
+  // { id: 55, city: "Balaghat", name: "Retail Outlet", address: "Shop No 01, Rishi Complex, Gondia Road, Balaghat", type: "Dealer", manager: "Aditya Rahangdale", phone: "9098152277" },
+
+  // { id: 56, city: "Shahdol", name: "Retail Outlet", address: "Shop No 01, Convent School Road, Pandav Nagar, Shahdol", type: "Dealer", manager: "Ajatshtru Dwivedi", phone: "7000086456" },
+
+  // { id: 57, city: "Narsinghpur", name: "Retail Outlet", address: "Shop No 71, Kamat Ward, Kandeli, Narsinghpur", type: "Dealer", manager: "Yashwant Patel", phone: "6261731221" },
+
+  // { id: 58, city: "Katni", name: "Retail Outlet", address: "Shop No 69, Samdadiya Colony, Katni", type: "Dealer", manager: "Shubham Jaiswal", phone: "8319050993" },
+
+  // { id: 59, city: "Ujjain", name: "Retail Outlet", address: "Shop No 01, Shri Ram Colony Chouraha, Nagda Junction, Ujjain", type: "Dealer", manager: "Ashok Barod", phone: "9009785050" },
+
+  // { id: 60, city: "Shajapur", name: "Retail Outlet", address: "Shop No 01, Near Janpad Panchayat, AB Road, Shajapur", type: "Dealer", manager: "Gourav Patel", phone: "9752259066" },
+
+  // { id: 61, city: "Agar Malwa", name: "Retail Outlet", address: "Ward No 02, Ujjain Kota Road, Agar Malwa", type: "Dealer", manager: "Vinay Jat", phone: "8120875158" },
+
+  // { id: 62, city: "Morena", name: "Retail Outlet", address: "Shop No 03, Old Chungi Naka, MS Road, Morena", type: "Dealer", manager: "Nidhi Sharma", phone: "9029122935" },
+  // { id: 63, city: "Ratlam", name: "Retail Outlet", address: "Shop No 01, Bodina Road, Sailana, Ratlam", type: "Dealer", manager: "Vishal Jat", phone: "9131636007" },
+
+  // { id: 64, city: "Ratlam", name: "Company Outlet", address: "Shop No 191/1, Datar Kripa, Near Sakshi Petrol Pump, Sailana Road, Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+
+  // { id: 65, city: "Ratlam", name: "Company Outlet", address: "Shop No 06, RIAN MFC Building, Near Domino’s Pizza, Station Road, Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+
+  // { id: 66, city: "Ratlam", name: "Company Outlet", address: "Winery Premises, Gate No 02, Village & Post Titari, Dist Ratlam", type: "Company Outlet", manager: "Company", phone: "9753677455" },
+
+  // { id: 67, city: "Morena", name: "Retail Outlet", address: "Shop No 03, Old Chungi Naka, MS Road, Morena", type: "Dealer", manager: "Nidhi Sharma", phone: "9029122935" }
