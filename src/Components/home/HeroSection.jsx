@@ -12,21 +12,21 @@ const ConstructionHero = () => {
   const narrativeMatrix = [
     {
       index: "01",
-      pillar: "Monumental Form",
+      pillar: "Structural Integrity",
       coordinates: "40.7128° N, 74.0060° W",
-      text: "Architecture is a dialogue between Earth and Sky. We carve permanent structures out of raw geometry, balancing monolithic presence with lightweight execution."
+      text: "Civil engineering is the backbone of modern civilization. We design and construct infrastructure that withstands the test of time, from bridges to skyscrapers."
     },
     {
       index: "02",
-      pillar: "Tactile Materiality",
+      pillar: "Sustainable Infrastructure",
       coordinates: "34.0522° N, 118.2437° W",
-      text: "Honoring raw mediums—brushed concrete, structural brass, and low-iron glass. We curate high-touch textures that weather flawlessly across centuries."
+      text: "Prioritizing eco-friendly materials and innovative construction methods. We build a greener future while maintaining the highest standards of safety and durability."
     },
     {
       index: "03",
-      pillar: "Void & Horizon",
+      pillar: "Precision Execution",
       coordinates: "51.5074° N, 0.1278° W",
-      text: "Designing not just the envelope, but the air within. Our spaces optimize volumetric light routing to foster natural flow, interior serenity, and raw luxury."
+      text: "Meticulous planning and expert craftsmanship ensure every project is delivered on time and within budget. We turn complex engineering challenges into reality."
     }
   ];
 
@@ -66,8 +66,8 @@ const ConstructionHero = () => {
           }`}>
           <div className="flex items-center gap-4">
             <span className="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold">
-              Aesthetics of Permanence
-            </span>
+                    Engineering of Permanence
+                  </span>
             <div className="w-8 h-[1px] bg-[#D4AF37]/50" />
             <span className="font-mono text-[9px] text-white/40 hidden sm:inline">
               SYS_ACTIVE // ENG_MATRICES
@@ -80,10 +80,10 @@ const ConstructionHero = () => {
 
         {/* MIDDLE SECTION: Typography & Copy (Asymmetric Shifted Left) */}
         <div className="max-w-3xl mt-12 md:mt-20">
-          <h1 className={`font-serif text-5xl sm:text-7xl xl:text-8xl tracking-tight leading-[0.9] mb-8 transition-all duration-[1200ms] delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+          <h1 className={`font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.9] mb-6 transition-all duration-[1200ms] delay-100 ease-[cubic-bezier(0.16,1,0.3,1)] ${isLoaded ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
             }`}>
-            Sculpting <span className="italic font-light text-white/90">Space</span> <br />
-            Defining <span className="text-[#D4AF37] font-serif">Time.</span>
+            Building <span className="italic font-light text-white/90">Tomorrow</span> <br />
+            Engineering <span className="text-[#D4AF37] font-serif">Excellence</span>.
           </h1>
 
           {/* Controlled Text Height Transition Box */}

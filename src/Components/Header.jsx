@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { ChevronDown, ArrowRight, Menu, X } from 'lucide-react';
+import { 
+  ChevronDown, 
+  ArrowRight, 
+  Menu, 
+  X, 
+  Layout, 
+  Home, 
+  Pencil, 
+  LayoutGrid, 
+  Users, 
+  BookOpen
+} from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = () => {
@@ -48,79 +59,30 @@ const Header = () => {
               <span className={`text-[7px] uppercase tracking-[0.8em] font-bold transition-all duration-700 -mt-0.5 ${
                 isScrolled ? 'text-[#0A192F]/50' : 'text-white/60'
               }`}>
-                Design & Construction
+Civil Engineering & Construction
               </span>
             </div>
           </Link>
 
           {/* --- DESKTOP NAVIGATION --- */}
-          <nav className="hidden lg:flex items-center gap-14">
-            <NavLink to="/" isScrolled={isScrolled}>Overview</NavLink>
-            <NavLink to="/projects" isScrolled={isScrolled}>Projects</NavLink>
-
-            {/* PORTFOLIO DROPDOWN */}
-            <div
-              className="relative group py-4"
-              onMouseEnter={() => setDropdownOpen(true)}
-              onMouseLeave={() => setDropdownOpen(false)}
-            >
-              <button
-                className={`flex items-center gap-2 text-[10px] uppercase tracking-[0.4em] font-black transition-all duration-300 relative ${
-                  isScrolled ? 'text-[#0A192F]/80 hover:text-[#0A192F]' : 'text-white/80 hover:text-white'
-                }`}
-              >
-                Portfolio
-                <ChevronDown
-                  size={12}
-                  className={`transition-transform duration-500 ${dropdownOpen ? 'rotate-180 text-[#D4AF37]' : ''}`}
-                />
-              </button>
-
-              <AnimatePresence>
-                {dropdownOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10, scale: 0.98 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    exit={{ opacity: 0, y: 10, scale: 0.98 }}
-                    transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                    className="absolute top-full -left-10 w-64 bg-white/98 backdrop-blur-3xl border border-black/[0.05] shadow-[0_30px_90px_rgba(0,0,0,0.1)] py-4 mt-1 overflow-hidden"
-                  >
-                    <div className="absolute top-0 left-0 w-full h-[2px] bg-[#D4AF37]" />
-                    <DropdownLink to="/exteriors">Exterior Architecture</DropdownLink>
-                    <DropdownLink to="/interiors">Interior Design</DropdownLink>
-                    <DropdownLink to="/floorplans">Structural Planning</DropdownLink>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <NavLink to="/blogs" isScrolled={isScrolled}>Insights</NavLink>
+          <nav className="hidden lg:flex items-center gap-8">
+            <NavLink to="/floorplans" isScrolled={isScrolled} Icon={Layout}>Floor Plans</NavLink>
+            <NavLink to="/exteriors" isScrolled={isScrolled} Icon={Home}>Exteriors</NavLink>
+            <NavLink to="/interiors" isScrolled={isScrolled} Icon={Pencil}>Interior Design</NavLink>
+            <NavLink to="/projects" isScrolled={isScrolled} Icon={LayoutGrid}>Projects</NavLink>
+            <NavLink to="/about" isScrolled={isScrolled} Icon={Users}>About Us</NavLink>
+            <NavLink to="/blogs" isScrolled={isScrolled} Icon={BookOpen}>Blog</NavLink>
           </nav>
 
           {/* --- RIGHT ACTION --- */}
-          <div className="flex items-center gap-10">
+          <div className="flex items-center gap-6">
             <Link
               to="/contact"
-              className={`hidden md:block text-[9px] uppercase tracking-[0.5em] font-black transition-colors duration-300 ${
+              className={`hidden md:block text-[14px] uppercase tracking-[0.2em] font-bold transition-colors duration-300 ${
                 isScrolled ? 'text-[#0A192F]/50 hover:text-[#0A192F]' : 'text-white/50 hover:text-[#D4AF37]'
               }`}
             >
               Contact
-            </Link>
-
-            <Link
-              to="/enquire"
-              className={`relative hidden sm:flex items-center justify-center px-10 py-3 overflow-hidden group transition-all duration-[800ms] rounded-sm ${
-                isScrolled 
-                  ? 'bg-[#0A192F] text-white shadow-lg shadow-[#0A192F]/10' 
-                  : 'bg-white text-[#0A192F] border border-white/20'
-              }`}
-            >
-              <div className="absolute inset-0 bg-[#D4AF37] translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.23,1,0.32,1]" />
-              <span className="relative z-10 text-[9px] uppercase tracking-[0.5em] font-black flex items-center gap-3 transition-colors duration-500 group-hover:text-white">
-                Enquire
-                <ArrowRight size={12} className="-rotate-45 group-hover:rotate-0 transition-transform duration-500" />
-              </span>
             </Link>
 
             {/* HAMBURGER */}
@@ -155,20 +117,27 @@ const Header = () => {
               <div>
                 <span className="text-[10px] uppercase tracking-[1em] text-[#D4AF37] font-bold block mb-12">Index</span>
                 <div className="flex flex-col gap-6">
-                  {['Overview', 'Projects', 'Exteriors', 'Interiors', 'Floor Plans', 'About'].map((label, i) => (
+                  {[
+                    { label: 'Floor Plans', to: '/floorplans' },
+                    { label: 'Exteriors', to: '/exteriors' },
+                    { label: 'Interior Design', to: '/interiors' },
+                    { label: 'Projects', to: '/projects' },
+                    { label: 'About Us', to: '/about' },
+                    { label: 'Blog', to: '/blogs' }
+                  ].map((item, i) => (
                     <motion.div
-                      key={label}
+                      key={item.label}
                       initial={{ opacity: 0, y: 40 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 + i * 0.05, duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
                     >
                       <Link
-                        to={label === 'Overview' ? '/' : `/${label.toLowerCase().replace(' ', '')}`}
+                        to={item.to}
                         className="group flex items-baseline gap-6"
                       >
                         <span className="text-[10px] font-mono text-neutral-300 group-hover:text-[#D4AF37] transition-colors">0{i+1}</span>
                         <h2 className="text-5xl md:text-7xl font-serif text-[#0A192F] tracking-tighter group-hover:text-[#D4AF37] transition-all duration-500">
-                          {label}
+                          {item.label}
                         </h2>
                       </Link>
                     </motion.div>
@@ -197,15 +166,16 @@ const Header = () => {
   );
 };
 
-const NavLink = ({ to, isScrolled, children }) => (
+const NavLink = ({ to, isScrolled, Icon, children }) => (
   <Link
     to={to}
-    className={`relative group text-[10px] uppercase tracking-[0.4em] font-black transition-all duration-300 ${
+    className={`flex items-center gap-2.5 text-[14px] font-medium transition-all duration-300 relative group ${
       isScrolled ? 'text-[#0A192F]/80 hover:text-[#0A192F]' : 'text-white/80 hover:text-white'
     }`}
   >
-    {children}
-    <span className="absolute -bottom-1.5 left-0 w-0 h-[1.5px] bg-[#D4AF37] transition-all duration-500 ease-[0.23,1,0.32,1] group-hover:w-full" />
+    {Icon && <Icon size={18} strokeWidth={1.5} className="text-[#D4AF37]" />}
+    <span className="tracking-wide">{children}</span>
+    <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#D4AF37] transition-all duration-300 group-hover:w-full" />
   </Link>
 );
 

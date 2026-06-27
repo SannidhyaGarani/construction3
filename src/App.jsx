@@ -67,13 +67,13 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        {/* <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
         <Route path="/gallery" element={<Gallery />} />
-        <Route path="/contact" element={<Contact />} /> */}
+        <Route path="/contact" element={<Contact />} />
         
         {/* New Portfolio Routes */}
-        {/* <Route path="/floorplans" element={<FloorPlansPage />} />
+        <Route path="/floorplans" element={<FloorPlansPage />} />
         <Route path="/floorplans/:id" element={<FloorPlanDetail />} />
         <Route path="/exteriors" element={<ExteriorsPage />} />
         <Route path="/exteriors/:id" element={<ExteriorDetail />} />
@@ -82,10 +82,10 @@ function App() {
         <Route path="/projects" element={<ProjectsPage />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
         <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/blogs/:id" element={<BlogDetail />} /> */}
+        <Route path="/blogs/:id" element={<BlogDetail />} />
 
         {/* Admin Auth Routes */}
-        {/* <Route path="/admin/login" element={<AdminLogin />} /> */}
+        <Route path="/admin/login" element={<AdminLogin />} />
         {/* <Route path="/admin/signup" element={<AdminSignup />} /> */}
 
         {/* Admin Routes */}
@@ -98,12 +98,12 @@ function App() {
           }
         >
           <Route index element={<Overview />} />
-          {/* <Route path="overview" element={<Overview />} />
+          <Route path="overview" element={<Overview />} />
           <Route path="floor-plans" element={<FloorPlans />} />
           <Route path="exteriors" element={<Exteriors />} />
           <Route path="interiors" element={<Interiors />} />
           <Route path="projects" element={<Projects />} />
-          <Route path="blogs" element={<Blogs />} /> */}
+          <Route path="blogs" element={<Blogs />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

@@ -1,102 +1,131 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Reveal from '../../Components/Reveal';
+import { Globe, Zap, Shield, Scale } from 'lucide-react';
 
 const BrandIntro = () => {
-  return (
-    <section className="relative py-16 lg:py-28 bg-[#FAFAFA] text-[#0A192F] overflow-hidden font-sans border-b border-neutral-100">
+  const features = [
+    { icon: Globe, label: 'Global Presence', val: 'London • Mumbai • Dubai' },
+    { icon: Zap, label: 'Core Expertise', val: 'Structural • Infrastructure' },
+    { icon: Shield, label: 'Safety Commitment', val: 'Zero Tolerance Policy' },
+    { icon: Scale, label: 'Project Scale', val: 'Up to 3.2M SQ.FT' }
+  ];
 
-      {/* --- BACKGROUND ELEMENTS --- */}
-      <div className="absolute top-0 right-12 w-full h-full flex items-center justify-end pointer-events-none opacity-[0.015]">
-        <span className="text-[24vw] font-serif font-black select-none tracking-tighter">EST.26</span>
+  return (
+    <section className="relative py-20 lg:py-32 bg-[#FAFAFA] text-[#0A192F] overflow-hidden font-sans border-b border-neutral-200">
+      {/* Background Decor */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-[#D4AF37]/[0.03] to-transparent" />
+        <div className="absolute bottom-0 left-0 w-[30%] h-1/2 bg-gradient-to-t from-[#0A192F]/[0.02] to-transparent" />
+        <div className="absolute top-1/3 left-1/4 w-64 h-64 border border-[#D4AF37]/10 rounded-full opacity-30" />
+        <div className="absolute top-1/2 right-1/4 w-48 h-48 border border-[#0A192F]/10 rounded-full opacity-20" />
       </div>
-      <div className="absolute top-1/3 left-1/4 w-[600px] h-[600px] bg-[#D4AF37] rounded-full blur-[160px] opacity-[0.03] pointer-events-none" />
 
       <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-
-          {/* Left Content: Narrative Layout */}
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          {/* Left Content */}
           <div className="lg:col-span-7 space-y-8">
-            <div>
-              <Reveal direction="left">
-                <div className="flex items-center gap-3 mb-5">
-                  <span className="uppercase tracking-[0.6em] text-[10px] font-semibold text-[#D4AF37]">
-                    The Manifesto
-                  </span>
-                  <div className="w-8 h-px bg-neutral-200" />
-                </div>
-              </Reveal>
-
-              <Reveal direction="up" delay={0.1}>
-                <h2 className="font-serif text-4xl md:text-6xl lg:text-7xl leading-[1.05] tracking-tight text-[#0A192F]">
-                  Architecture of <br />
-                  <span className="italic text-[#D4AF37] font-light">Infinite Intent.</span>
-                </h2>
-              </Reveal>
-            </div>
-
-            <div className="grid md:grid-cols-12 gap-6 pt-4 border-t border-neutral-100">
-              <div className="md:col-span-6">
-                <Reveal delay={0.2}>
-                  <p className="text-[15px] text-neutral-700 font-light leading-relaxed">
-                    Operating at the absolute convergence of tectonic structural discipline and artistic symmetry, <span className="text-black font-normal">Naksha Dynamic</span> forms spaces that remain relevant for generations.
-                  </p>
-                </Reveal>
-              </div>
-              <div className="md:col-span-6">
-                <Reveal delay={0.3}>
-                  <p className="text-[13px] text-neutral-400 font-light leading-relaxed">
-                    We process complex corporate environments and legacy residential states into absolute spatial clarity, protecting structural value with extreme design curation.
-                  </p>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Content: Refined Founder Profile Visual Frame */}
-          <div className="lg:col-span-5 lg:pl-8">
-            <div className="relative w-full aspect-[4/5] sm:aspect-[1.1] lg:aspect-[4/5] max-w-md mx-auto bg-[#0A192F] overflow-hidden rounded-sm group shadow-[0_30px_60px_-20px_rgba(10,25,47,0.08)]">
-              {/* Optional: <img src="..." className="w-full h-full object-cover grayscale opacity-90 mix-blend-luminosity group-hover:scale-105 group-hover:grayscale-0 transition-all duration-1000" /> */}
-              
-              {/* Layout Gradient Trims */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F] via-[#0A192F]/40 to-transparent z-10" />
-              <div className="absolute top-4 left-4 w-4 h-4 border-l border-t border-white/20" />
-              <div className="absolute bottom-4 right-4 w-4 h-4 border-r border-b border-white/20" />
-
-              {/* Founder Information Overlay Layout */}
-              <div className="absolute inset-x-6 bottom-6 z-20 flex justify-between items-end">
-                <div>
-                  <span className="block text-[9px] uppercase tracking-[0.4em] text-[#D4AF37] font-semibold mb-1">Principal / Founder</span>
-                  <h3 className="text-2xl font-serif text-white tracking-wide">Naksha Dynamic</h3>
-                  </div>
-
-                <div className="flex flex-col items-end text-right border-l border-white/10 pl-4">
-                  <span className="font-serif text-3xl text-[#D4AF37] leading-none mb-0.5">15+</span>
-                  <span className="text-[8px] uppercase tracking-[0.2em] text-white/50 leading-none">Global Awards</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-        {/* COMPACT METRIC MATRIX ACCORDION */}
-        <div className="mt-16 lg:mt-20 pt-8 border-t border-neutral-100 grid grid-cols-2 md:grid-cols-4 gap-y-8 gap-x-6">
-          {[
-            { label: 'Strategic Network', val: 'London • Mumbai • Dubai' },
-            { label: 'Curation Scale', val: '140+ Built Ecosystems' },
-            { label: 'Design Core', val: 'Minimalism // Brutalism' },
-            { label: 'Asset Parameters', val: 'Up to 3.2M SQ.FT' }
-          ].map((stat, i) => (
-            <Reveal key={i} delay={0.1 + i * 0.05} direction="up">
-              <div className="space-y-1">
-                <span className="block text-[9px] uppercase tracking-[0.3em] text-neutral-400 font-medium">{stat.label}</span>
-                <span className="block text-[13px] text-[#0A192F] font-medium tracking-tight">{stat.val}</span>
+            <Reveal direction="left">
+              <div className="flex items-center gap-4 mb-6">
+                <span className="uppercase tracking-[0.8em] text-[9px] font-bold text-[#D4AF37]">
+                  Our Philosophy
+                </span>
+                <div className="flex-1 h-px bg-gradient-to-r from-[#D4AF37]/40 to-transparent" />
               </div>
             </Reveal>
-          ))}
+
+            <Reveal direction="up" delay={0.1}>
+              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.1] tracking-tight text-[#0A192F]">
+                Engineering<span className="italic text-[#D4AF37] font-light"> Excellence</span> That
+                <br />
+                Stands the Test of<span className="italic text-[#D4AF37] font-light"> Time.</span>
+              </h2>
+            </Reveal>
+
+            <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-neutral-200">
+              <div>
+                <Reveal delay={0.2}>
+                  <p className="text-[15px] text-neutral-700 font-normal leading-relaxed">
+                    At <span className="text-[#0A192F] font-semibold">Naksha Dynamic</span>, we bridge innovation with tradition, delivering civil engineering solutions that define skylines and strengthen communities.
+                  </p>
+                </Reveal>
+              </div>
+              <div>
+                <Reveal delay={0.3}>
+                  <p className="text-[14px] text-neutral-600 font-normal leading-relaxed">
+                    Our expertise spans structural design, infrastructure development, and sustainable construction—all executed with unwavering precision and commitment to quality.
+                  </p>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+
+          {/* Right Content */}
+          <div className="lg:col-span-5 lg:pl-12">
+            <Reveal direction="right" delay={0.2}>
+              <div className="relative w-full aspect-[4/5] sm:aspect-[1.1] lg:aspect-[4/5] max-w-md mx-auto bg-[#0A192F] overflow-hidden rounded-sm group shadow-xl">
+                {/* Background Image */}
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center opacity-20" />
+                
+                {/* Gradient Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#0A192F]/80 to-[#0A192F]" />
+
+                {/* Content */}
+                <div className="relative z-10 h-full flex flex-col justify-between p-10">
+                  <div>
+                    <span className="block text-[9px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold mb-4">
+                      Since 2001
+                    </span>
+                    <div className="font-serif text-8xl md:text-9xl text-white/10">ND</div>
+                  </div>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-serif text-white tracking-wide mb-2">
+                        Naksha Dynamic
+                      </h3>
+                      <p className="text-white/70 text-[13px] font-normal leading-relaxed">
+                        Civil Engineering Excellence
+                      </p>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
+                      <div>
+                        <span className="font-serif text-4xl text-[#D4AF37] leading-none block">25+</span>
+                        <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">Years Experience</span>
+                      </div>
+                      <div>
+                        <span className="font-serif text-4xl text-[#D4AF37] leading-none block">140+</span>
+                        <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">Projects Done</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Decorative Corner Elements */}
+                <div className="absolute top-5 left-5 w-8 h-8 border-l-2 border-t-2 border-[#D4AF37]/30" />
+                <div className="absolute bottom-5 right-5 w-8 h-8 border-r-2 border-b-2 border-[#D4AF37]/30" />
+              </div>
+            </Reveal>
+          </div>
         </div>
 
+        {/* Features Grid */}
+        <div className="mt-20 lg:mt-28 pt-10 border-t border-neutral-200 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {features.map((feature, i) => {
+            const Icon = feature.icon;
+            return (
+              <Reveal key={i} delay={0.1 + i * 0.08} direction="up">
+                <div className="group bg-white p-6 lg:p-7 border border-neutral-300 hover:border-[#D4AF37]/50 transition-all duration-300 hover:shadow-lg">
+                  <div className="w-12 h-12 bg-[#D4AF37]/10 flex items-center justify-center mb-4 group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
+                    <Icon size={20} className="text-[#D4AF37]" />
+                  </div>
+                  <span className="block text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold mb-2">{feature.label}</span>
+                  <span className="block text-[14px] text-[#0A192F] font-semibold tracking-tight group-hover:text-[#D4AF37] transition-colors duration-300">{feature.val}</span>
+                </div>
+              </Reveal>
+            );
+          })}
+        </div>
       </div>
     </section>
   );

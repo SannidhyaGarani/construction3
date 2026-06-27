@@ -56,7 +56,7 @@ const Footer = () => {
                 </span>
               </Link>
               <p className="text-neutral-400 text-[13px] leading-relaxed font-light max-w-sm">
-                Defining architectural excellence through a synthesis of monumental form, tactile materiality, and historic resonance.
+                Delivering civil engineering excellence through structural precision, sustainable innovation, and unwavering commitment to quality.
               </p>
             </div>
             
@@ -98,7 +98,7 @@ const Footer = () => {
             <div>
               <h4 className="text-[10px] uppercase tracking-[0.4em] text-[#D4AF37] font-semibold mb-6">Expertise</h4>
               <ul className="space-y-3.5">
-                {['Residential', 'Commercial', 'Planning', 'Interiors', 'Landscape'].map(item => (
+                {['Structural', 'Infrastructure', 'Geotechnical', 'Sustainable', 'Construction'].map(item => (
                   <li key={item}>
                     <span className="group text-[13px] text-neutral-400 hover:text-white transition-colors duration-300 cursor-pointer relative inline-block">
                       {item}
@@ -133,7 +133,7 @@ const Footer = () => {
         {/* --- BOTTOM LEGAL & SCROLL SECTION --- */}
         <div className="pt-8 border-t border-white/[0.05] flex flex-col sm:flex-row justify-between items-center gap-6">
           <div className="text-[10px] uppercase tracking-[0.3em] text-neutral-500 font-light text-center sm:text-left">
-            © {currentYear} Naksha Dynamic Architectural Studio <span className="mx-2 text-neutral-700">•</span> All Rights Reserved
+            © {currentYear} Naksha Dynamic Civil Engineering Studio <span className="mx-2 text-neutral-700">•</span> All Rights Reserved
           </div>
           
           <button 

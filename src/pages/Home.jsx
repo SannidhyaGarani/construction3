@@ -12,8 +12,8 @@ const Home = () => {
   return (
     <main className="bg-[#F6F4EF] text-[#111827]">
       <HeroSection />
-      <BrandIntro />
       <ServicesSection />
+      <BrandIntro />
       <WhyChooseUs />
       <StatsSection />
       <ProjectsPreview />
