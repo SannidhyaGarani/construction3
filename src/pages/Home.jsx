@@ -1,27 +1,26 @@
 import React from 'react';
 import HeroSection from '../Components/home/HeroSection';
 import BrandIntro from '../Components/home/BrandIntro';
-import StatsSection from '../Components/home/StatsSection';
 import ServicesSection from '../Components/home/ServicesSection';
-import WhyChooseUs from '../Components/home/WhyChooseUs';
 import ProjectsPreview from '../Components/home/ProjectsPreview';
-import CTASection from '../Components/home/CTASection';
+import WhyChooseUs from '../Components/home/WhyChooseUs';
+import Reviews from '../Components/home/Reviews';
 import RecentBlogs from '../Components/home/Blogs';
+import CTASection from '../Components/home/CTASection';
 
 const Home = () => {
   return (
-    <main className="bg-[#F6F4EF] text-[#111827]">
+    <main className="bg-white text-[#111827]">
       <HeroSection />
-      <ServicesSection />
       <BrandIntro />
-      <WhyChooseUs />
-      <StatsSection />
+      <ServicesSection />
       <ProjectsPreview />
-      <RecentBlogs/>
+      <WhyChooseUs />
+      <RecentBlogs />
+      <Reviews />
       <CTASection />
     </main>
   );
 };
 
 export default Home;
-

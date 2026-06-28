@@ -1,132 +1,142 @@
-import React from 'react';
-import Reveal from '../../Components/Reveal';
-import { Globe, Zap, Shield, Scale } from 'lucide-react';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+
+// Custom SVG Icons matching the premium look in the design
+const BuildingIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 md:w-[48px] md:h-[48px] flex-shrink-0 select-none">
+    <path d="M6 40H42" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M12 40V24C12 22.8954 12.8954 22 14 22H20C21.1046 22 22 22.8954 22 24V40" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M22 40V14C22 12.8954 22.8954 12 24 12H32C33.1046 12 34 12.8954 34 14V40" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M34 40V28C34 26.8954 34.8954 26 36 26H40V40" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M17 28V34" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 3" />
+    <path d="M26 18V34" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 3" />
+    <path d="M30 18V34" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 3" />
+    <path d="M37 31V35" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" strokeDasharray="1 3" />
+  </svg>
+);
+
+const EngineerIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 md:w-[48px] md:h-[48px] flex-shrink-0 select-none">
+    <path d="M24 25C26.7614 25 29 22.7614 29 20C29 17.2386 26.7614 15 24 15C21.2386 15 19 17.2386 19 20C19 22.7614 21.2386 25 24 25Z" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M15 19.5C15 14.5 19 13 24 13C29 13 33 14.5 33 19.5H15Z" stroke="#C8842A" strokeWidth="1.5" strokeLinejoin="round" />
+    <path d="M13 20H35" stroke="#C8842A" strokeWidth="1.8" strokeLinecap="round" />
+    <path d="M24 12V14" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M13 38C13 32.5 17 31 24 31C31 31 35 32.5 35 38" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M19 31.5V38" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M29 31.5V38" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M12 38H36" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
+const BlueprintIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 md:w-[48px] md:h-[48px] flex-shrink-0 select-none">
+    <path d="M12 12V36C12 38.2091 10.2091 40 8 40V16C10.2091 16 12 14.2091 12 12Z" stroke="#C8842A" strokeWidth="1.5" />
+    <path d="M8 16C5.79086 16 4 14.2091 4 12C4 9.79086 5.79086 8 8 8C10.2091 8 12 9.79086 12 12" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M12 12H38V36H12" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M8 40C5.79086 40 4 38.2091 4 36C4 33.7909 5.79086 32 8 32C10.2091 32 12 33.7909 12 36" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M18 20V28H26" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M18 28L28 18" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M30 28H33" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" />
+    <path d="M30 24H33" stroke="#C8842A" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>
+);
+
+const ShieldCheckIcon = () => (
+  <svg width="44" height="44" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 md:w-[48px] md:h-[48px] flex-shrink-0 select-none">
+    <path d="M24 10C24 10 27.5 13 34 13C34 23 29.5 31.5 24 37C18.5 31.5 14 23 14 13C20.5 13 24 10 24 10Z" stroke="#C8842A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    <path d="M19 22.5L22.5 26L29 19.5" stroke="#C8842A" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+const stats = [
+  { id: "premium-card-1", icon: BuildingIcon, value: "50+", label: "Projects\nCompleted", borderClass: "border-r border-gray-100/70" },
+  { id: "premium-card-2", icon: EngineerIcon, value: "25+", label: "Expert\nEngineers", borderClass: "sm:border-r lg:border-r border-gray-100/70" },
+  { id: "premium-card-3", icon: BlueprintIcon, value: "100%", label: "On-Time\nDelivery", borderClass: "border-r border-gray-100/70" },
+  { id: "premium-card-4", icon: ShieldCheckIcon, value: "Safety", label: "Our Top\nPriority", borderClass: "" },
+];
 
 const BrandIntro = () => {
-  const features = [
-    { icon: Globe, label: 'Global Presence', val: 'London • Mumbai • Dubai' },
-    { icon: Zap, label: 'Core Expertise', val: 'Structural • Infrastructure' },
-    { icon: Shield, label: 'Safety Commitment', val: 'Zero Tolerance Policy' },
-    { icon: Scale, label: 'Project Scale', val: 'Up to 3.2M SQ.FT' }
-  ];
-
   return (
-    <section className="relative py-20 lg:py-32 bg-[#FAFAFA] text-[#0A192F] overflow-hidden font-sans border-b border-neutral-200">
-      {/* Background Decor */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 right-0 w-[50%] h-full bg-gradient-to-l from-[#D4AF37]/[0.03] to-transparent" />
-        <div className="absolute bottom-0 left-0 w-[30%] h-1/2 bg-gradient-to-t from-[#0A192F]/[0.02] to-transparent" />
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 border border-[#D4AF37]/10 rounded-full opacity-30" />
-        <div className="absolute top-1/2 right-1/4 w-48 h-48 border border-[#0A192F]/10 rounded-full opacity-20" />
-      </div>
+    <section className="bg-[#FAF9F6] py-12 md:py-16 font-sans overflow-hidden">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
+        <div className="grid lg:grid-cols-[35%_65%] gap-12 lg:gap-10 items-center">
+          
+          {/* Left Block: Premium Typography Heading */}
+          <div className="flex flex-col items-start px-2 md:px-0 pr-0 lg:pr-6">
+            <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
+              About Us
+            </p>
+            <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
+              Strong Foundations.<br />
+              Smarter Future.
+            </h2>
+            <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6 max-w-[420px]">
+              Naksha Dynamics is a civil engineering firm committed to quality, innovation
+              and timely delivery. From concept to construction, we turn ideas into landmarks.
+            </p>
+            <a
+              href="/about"
+              className="inline-flex items-center gap-2 text-[#C8842A] text-sm font-bold hover:text-[#B37424] transition-colors group relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C8842A] hover:after:w-full after:transition-all after:duration-300"
+            >
+              Know More About Us <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+            </a>
+          </div>
 
-      <div className="max-w-[1440px] mx-auto px-6 md:px-12 lg:px-16 relative z-10">
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-16 items-center">
-          {/* Left Content */}
-          <div className="lg:col-span-7 space-y-8">
-            <Reveal direction="left">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="uppercase tracking-[0.8em] text-[9px] font-bold text-[#D4AF37]">
-                  Our Philosophy
-                </span>
-                <div className="flex-1 h-px bg-gradient-to-r from-[#D4AF37]/40 to-transparent" />
-              </div>
-            </Reveal>
+          {/* Right Block: Premium Double-Slide Mobile Viewport */}
+          <div className="relative w-full">
+            {/* Scroll Container wrapper */}
+            <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] divide-x divide-gray-100/70 scroll-smooth snap-x snap-mandatory no-scrollbar">
+              {stats.map((stat, i) => {
+                const Icon = stat.icon;
+                return (
+                  <div 
+                    key={i} 
+                    id={stat.id}
+                    className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-6 py-10 md:p-10 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
+                  >
+                    {/* Premium Ambient Background Hover Effect */}
+                    <div className="absolute inset-0 bg-[#C8842A]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                    
+                    {/* Icon Container with Subtle Scale Up */}
+                    <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center mb-5 transition-transform duration-500 group-hover:scale-105">
+                      <Icon />
+                    </div>
+                    
+                    {/* Stat Value */}
+                    <span className="text-[#111827] font-black text-2xl md:text-[32px] tracking-tight leading-none mb-2.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
+                      {stat.value}
+                    </span>
+                    
+                    {/* Label Layout */}
+                    <span className="text-[#6B7280] text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
+                      {stat.label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
 
-            <Reveal direction="up" delay={0.1}>
-              <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl leading-[1.1] tracking-tight text-[#0A192F]">
-                Engineering<span className="italic text-[#D4AF37] font-light"> Excellence</span> That
-                <br />
-                Stands the Test of<span className="italic text-[#D4AF37] font-light"> Time.</span>
-              </h2>
-            </Reveal>
-
-            <div className="grid md:grid-cols-2 gap-6 pt-4 border-t border-neutral-200">
-              <div>
-                <Reveal delay={0.2}>
-                  <p className="text-[15px] text-neutral-700 font-normal leading-relaxed">
-                    At <span className="text-[#0A192F] font-semibold">Naksha Dynamic</span>, we bridge innovation with tradition, delivering civil engineering solutions that define skylines and strengthen communities.
-                  </p>
-                </Reveal>
-              </div>
-              <div>
-                <Reveal delay={0.3}>
-                  <p className="text-[14px] text-neutral-600 font-normal leading-relaxed">
-                    Our expertise spans structural design, infrastructure development, and sustainable construction—all executed with unwavering precision and commitment to quality.
-                  </p>
-                </Reveal>
-              </div>
+            {/* Premium Linear Progress Indicator Track for Mobile */}
+            <div className="flex justify-center items-center gap-1.5 mt-5 lg:hidden">
+              {stats.map((stat, i) => (
+                <a
+                  key={i}
+                  href={`#${stat.id}`}
+                  className="w-5 h-1 rounded-full bg-gray-200/80 hover:bg-[#C8842A] focus:bg-[#C8842A] active:bg-[#C8842A] transition-all duration-300"
+                  aria-label={`Go to metric ${i + 1}`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Right Content */}
-          <div className="lg:col-span-5 lg:pl-12">
-            <Reveal direction="right" delay={0.2}>
-              <div className="relative w-full aspect-[4/5] sm:aspect-[1.1] lg:aspect-[4/5] max-w-md mx-auto bg-[#0A192F] overflow-hidden rounded-sm group shadow-xl">
-                {/* Background Image */}
-                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=1000')] bg-cover bg-center opacity-20" />
-                
-                {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#0A192F] via-[#0A192F]/80 to-[#0A192F]" />
-
-                {/* Content */}
-                <div className="relative z-10 h-full flex flex-col justify-between p-10">
-                  <div>
-                    <span className="block text-[9px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold mb-4">
-                      Since 2001
-                    </span>
-                    <div className="font-serif text-8xl md:text-9xl text-white/10">ND</div>
-                  </div>
-                  
-                  <div className="space-y-6">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-serif text-white tracking-wide mb-2">
-                        Naksha Dynamic
-                      </h3>
-                      <p className="text-white/70 text-[13px] font-normal leading-relaxed">
-                        Civil Engineering Excellence
-                      </p>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-4 pt-6 border-t border-white/20">
-                      <div>
-                        <span className="font-serif text-4xl text-[#D4AF37] leading-none block">25+</span>
-                        <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">Years Experience</span>
-                      </div>
-                      <div>
-                        <span className="font-serif text-4xl text-[#D4AF37] leading-none block">140+</span>
-                        <span className="text-[10px] uppercase tracking-[0.3em] text-white/60 font-medium">Projects Done</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Decorative Corner Elements */}
-                <div className="absolute top-5 left-5 w-8 h-8 border-l-2 border-t-2 border-[#D4AF37]/30" />
-                <div className="absolute bottom-5 right-5 w-8 h-8 border-r-2 border-b-2 border-[#D4AF37]/30" />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Features Grid */}
-        <div className="mt-20 lg:mt-28 pt-10 border-t border-neutral-200 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
-          {features.map((feature, i) => {
-            const Icon = feature.icon;
-            return (
-              <Reveal key={i} delay={0.1 + i * 0.08} direction="up">
-                <div className="group bg-white p-6 lg:p-7 border border-neutral-300 hover:border-[#D4AF37]/50 transition-all duration-300 hover:shadow-lg">
-                  <div className="w-12 h-12 bg-[#D4AF37]/10 flex items-center justify-center mb-4 group-hover:bg-[#D4AF37]/20 transition-colors duration-300">
-                    <Icon size={20} className="text-[#D4AF37]" />
-                  </div>
-                  <span className="block text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold mb-2">{feature.label}</span>
-                  <span className="block text-[14px] text-[#0A192F] font-semibold tracking-tight group-hover:text-[#D4AF37] transition-colors duration-300">{feature.val}</span>
-                </div>
-              </Reveal>
-            );
-          })}
         </div>
       </div>
+
+      {/* Global Style overrides for hiding cross-browser scrollbars natively */}
+      <style>{`
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      `}</style>
     </section>
   );
 };

@@ -1,135 +1,127 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
-import Reveal from '../../Components/Reveal';
+import React from "react";
+import { Link } from "react-router-dom";
+import { ArrowRight, LayoutPanelLeft, Building, HardHat, Briefcase, Box, Wrench, ChevronLeft, ChevronRight } from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
 
 const services = [
   {
-    id: '01',
-    tag: 'STRUCT',
-    title: 'Structural Engineering',
-    desc: 'Designing safe, efficient, and durable structural systems for buildings and infrastructure.',
-    image: 'https://images.unsplash.com/photo-1486718448742-163732cd1544?auto=format&fit=crop&q=80&w=800',
-    link: '/projects',
+    icon: LayoutPanelLeft,
+    title: "Planning &\nConsultation",
+    desc: "Feasibility studies, site analysis and expert guidance.",
+    link: "/projects",
   },
   {
-    id: '02',
-    tag: 'INFRA',
-    title: 'Infrastructure Development',
-    desc: 'Planning and constructing roads, bridges, dams, and other critical infrastructure.',
-    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&q=80&w=800',
-    link: '/projects',
+    icon: Building,
+    title: "Structural\nDesign",
+    desc: "Safe, efficient and cost-effective structural calculates.",
+    link: "/projects",
   },
   {
-    id: '03',
-    tag: 'GEOTECH',
-    title: 'Geotechnical Engineering',
-    desc: 'Analyzing soil and rock mechanics to ensure stable foundations and earthworks.',
-    image: 'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&q=80&w=800',
-    link: '/projects',
+    icon: HardHat,
+    title: "Construction",
+    desc: "Quality construction with strict adherence to standards.",
+    link: "/projects",
   },
   {
-    id: '04',
-    tag: 'SUSTAIN',
-    title: 'Sustainable Construction',
-    desc: 'Implementing eco-friendly practices and materials for green building solutions.',
-    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=800',
-    link: '/projects',
+    icon: Briefcase,
+    title: "Project\nManagement",
+    desc: "Timely execution, resource planning and cost control.",
+    link: "/projects",
+  },
+  {
+    icon: Box,
+    title: "3D Modeling &\nEstimation",
+    desc: "Accurate 3D models and BOQ's for better planning.",
+    link: "/projects",
+  },
+  {
+    icon: Wrench,
+    title: "Renovation &\nRehabilitation",
+    desc: "Upgrading existing structures with modern solutions.",
+    link: "/projects",
   },
 ];
 
-const Services = () => {
+const ServicesSection = () => {
   return (
-    <section className="bg-white py-16 lg:py-24 px-6 md:px-12 lg:px-20 border-t border-neutral-200 overflow-hidden font-sans">
-      <div className="max-w-[1440px] mx-auto">
-        
-        {/* --- PREMIUM METADATA HEADER --- */}
-        <div className="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end justify-between gap-8 pb-8 border-b border-neutral-200">
-          <div className="max-w-xl">
-            <Reveal direction="left">
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-[10px] uppercase tracking-[0.8em] font-bold text-[#D4AF37]">Studio Focus</span>
-                <div className="h-px w-8 bg-neutral-300" />
-              </div>
-            </Reveal>
-            <Reveal direction="up" delay={0.1}>
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif text-[#0A192F] tracking-tight leading-[1.1]">
-                Expertise in Every <span className="text-[#D4AF37] italic font-light">Engineering Field.</span>
-              </h2>
-            </Reveal>
-          </div>
-          <Reveal direction="up" delay={0.2}>
-            <p className="text-[11px] uppercase tracking-[0.25em] text-neutral-600 leading-relaxed font-medium max-w-xs md:text-right">
-              From raw topography blueprints to complex interior curation frameworks.
+    <section className="bg-white py-14 md:py-16 font-sans">
+      <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
+
+        {/* Header */}
+        <div className="text-center mb-10">
+          <div className="flex items-center justify-center gap-3 mb-3">
+            <span className="w-8 h-[2px] bg-[#C8842A]" />
+            <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em]">
+              Our Services
             </p>
-          </Reveal>
+            <span className="w-8 h-[2px] bg-[#C8842A]" />
+          </div>
+          <h2 className="text-[#111827] font-extrabold text-3xl md:text-[36px] tracking-tight">
+            End-to-End Civil Engineering Solutions
+          </h2>
         </div>
 
-        {/* --- UNIQUE INTERLOCKING CONTAINER --- */}
-        {/* Mobile: Smooth Horizontal Micro-Deck Swipe | Desktop: Architectural Asymmetric Grid */}
-        <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 lg:pb-0 gap-6 lg:grid lg:grid-cols-4 lg:overflow-x-visible scrollbar-none">
-          {services.map((item, idx) => (
-            <div
-              key={item.id}
-              className={`
-                min-w-[85vw] sm:min-w-[45vw] lg:min-w-0 snap-center shrink-0 relative group
-                ${idx % 2 === 1 ? 'lg:mt-12' : ''} 
-              `}
-            >
-              <Link to={item.link} className="block h-full border border-neutral-300 bg-[#FBFBFA] p-4 lg:p-5 rounded-sm transition-all duration-500 hover:border-[#D4AF37]/50 hover:shadow-[0_20px_40px_-20px_rgba(10,25,47,0.15)]">
-                
-                {/* 1. VISIBLE ON ALL VIEWS: Premium Visual Viewport Frame */}
-                <div className="relative w-full aspect-[4/3] sm:aspect-video lg:aspect-[4/5] bg-neutral-100 overflow-hidden rounded-sm mb-6">
-                  <img 
-                    src={item.image} 
-                    alt={item.title} 
-                    className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
-                  />
-                  {/* Darker Overlay for better contrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A192F]/70 via-transparent to-transparent" />
-                  
-                  {/* Top Floating Mini-Tag */}
-                  <div className="absolute top-3 left-3 bg-[#0A192F] text-white font-mono text-[9px] tracking-widest px-3 py-1.5 backdrop-blur-md rounded-sm border border-white/10">
-                    {item.id} // {item.tag}
-                  </div>
-                </div>
+        {/* Swiper Slider */}
+        <div className="relative">
+          {/* Navigation buttons */}
+          <button className="swiper-prev-services absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-9 h-9 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] transition-all shadow-sm rounded-md">
+            <ChevronLeft size={16} />
+          </button>
+          <button className="swiper-next-services absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-9 h-9 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] transition-all shadow-sm rounded-md">
+            <ChevronRight size={16} />
+          </button>
 
-                {/* 2. TEXT CARD INFRASTRUCTURE */}
-                <div className="flex flex-col justify-between min-h-[140px] px-1">
-                  <div>
-                    <h3 className="font-serif text-xl md:text-2xl text-[#0A192F] mb-3 tracking-tight group-hover:text-[#D4AF37] transition-colors duration-300 font-semibold">
-                      {item.title}
-                    </h3>
-                    <p className="text-neutral-700 text-[14px] leading-relaxed font-normal line-clamp-2 group-hover:text-neutral-900 transition-colors">
-                      {item.desc}
-                    </p>
-                  </div>
+          <Swiper
+            modules={[Navigation, Autoplay]}
+            slidesPerView={1.2}
+            spaceBetween={16}
+            autoplay={{ delay: 4000, disableOnInteraction: false }}
+            navigation={{
+              prevEl: ".swiper-prev-services",
+              nextEl: ".swiper-next-services",
+            }}
+            breakpoints={{
+              480: { slidesPerView: 2, spaceBetween: 16 },
+              768: { slidesPerView: 3, spaceBetween: 16 },
+              1024: { slidesPerView: 5, spaceBetween: 20 },
+            }}
+          >
+            {services.map((service, i) => {
+              const Icon = service.icon;
+              return (
+                <SwiperSlide key={i} className="h-auto">
+                  <Link
+                    to={service.link}
+                    className="group relative flex flex-col items-center text-center p-5 bg-[#FAFAF8] border border-gray-100/80 hover:border-[#C8842A]/50 hover:shadow-lg hover:shadow-[#C8842A]/[0.04] transition-all duration-400 overflow-hidden h-full"
+                  >
+                    {/* Hover accent top bar */}
+                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
 
-                  {/* 3. TECHNICAL INTERACTIVE BASE */}
-                  <div className="pt-6 mt-4 border-t border-neutral-200 flex items-center justify-between">
-                    <span className="text-[10px] uppercase tracking-[0.3em] font-bold text-[#0A192F]/70 group-hover:text-[#D4AF37] transition-colors">
-                      View Portfolio
-                    </span>
-                    <div className="w-9 h-9 rounded-full border border-neutral-300 flex items-center justify-center bg-white group-hover:bg-[#0A192F] group-hover:border-[#0A192F] transition-all duration-500 group-hover:shadow-md">
-                      <ArrowUpRight size={15} className="text-neutral-600 group-hover:text-[#D4AF37] transition-colors duration-500" />
+                    <div className="w-11 h-11 flex items-center justify-center mb-3.5 bg-white border border-gray-100 rounded-lg group-hover:border-[#C8842A]/30 transition-colors duration-300">
+                      <Icon size={22} className="text-[#C8842A]" strokeWidth={1.5} />
                     </div>
-                  </div>
-                </div>
-
-              </Link>
-            </div>
-          ))}
+                    <h3 className="text-[#111827] font-bold text-sm leading-snug mb-2 whitespace-pre-line">
+                      {service.title}
+                    </h3>
+                    <p className="text-[#9CA3AF] text-sm leading-relaxed mb-4">
+                      {service.desc}
+                    </p>
+                    <div className="mt-auto w-7 h-7 flex items-center justify-center border border-gray-200 group-hover:border-[#C8842A] group-hover:bg-[#C8842A] transition-all duration-300 rounded-md">
+                      <ArrowRight size={12} className="text-gray-400 group-hover:text-white transition-colors" />
+                    </div>
+                  </Link>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
         </div>
 
       </div>
-      
-      {/* Target Tailwind custom utility to hide default mobile bars safely */}
-      <style>{`
-        .scrollbar-none::-webkit-scrollbar { display: none; }
-        .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
-      `}</style>
     </section>
   );
 };
 
-export default Services;
+export default ServicesSection;

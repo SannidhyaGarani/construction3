@@ -1,7 +1,6 @@
 import React from 'react';
 import PageHero from '../Components/PageHero';
 import Reveal from '../Components/Reveal';
-import StatsSection from '../Components/home/StatsSection';
 import CTASection from '../Components/home/CTASection';
 
 const About = () => {
@@ -42,7 +41,7 @@ const About = () => {
       {/* --- Stats Section --- */}
       {/* Assuming StatsSection has been/will be updated to a dark theme. If not, wrap it in a div with dark background/invert filters if needed, or update the component itself. */}
       <div className="border-y border-white/5 bg-[#050505]">
-        <StatsSection />
+      
       </div>
 
       {/* --- The Chronicle (Timeline Redesign) --- */}
