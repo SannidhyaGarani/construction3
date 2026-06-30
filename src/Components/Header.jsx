@@ -6,10 +6,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 const navLinks = [
   { label: 'About Us', to: '/about' },
   { label: 'Services', to: '/services' },
+  { label: 'Projects', to: '/projects' },
   { label: 'Floor Plans', to: '/floorplans' },
   { label: 'Exteriors', to: '/exteriors' },
   { label: 'Interior Design', to: '/interiors' },
-  { label: 'Projects', to: '/projects' },
   // { label: 'Blog', to: '/blogs' },
 ];
 

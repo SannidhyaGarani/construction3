@@ -85,30 +85,30 @@ const BrandIntro = () => {
           {/* Right Block: Premium Double-Slide Mobile Viewport */}
           <div className="relative w-full">
             {/* Scroll Container wrapper */}
-            <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] divide-x divide-gray-100/70 scroll-smooth snap-x snap-mandatory no-scrollbar">
+            <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] divide-x divide-gray-100/70 scroll-smooth snap-x snap-mandatory no-scrollbar justify-center lg:justify-start">
               {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
                   <div 
                     key={i} 
                     id={stat.id}
-                    className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-6 py-10 md:p-10 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
+                    className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-4 py-8 md:p-8 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
                   >
                     {/* Premium Ambient Background Hover Effect */}
                     <div className="absolute inset-0 bg-[#C8842A]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                     
                     {/* Icon Container with Subtle Scale Up */}
-                    <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center mb-5 transition-transform duration-500 group-hover:scale-105">
+                    <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-105">
                       <Icon />
                     </div>
                     
                     {/* Stat Value */}
-                    <span className="text-[#111827] font-black text-2xl md:text-[32px] tracking-tight leading-none mb-2.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
+                    <span className="text-[#111827] font-black text-xl md:text-[32px] tracking-tight leading-none mb-1.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
                       {stat.value}
                     </span>
                     
                     {/* Label Layout */}
-                    <span className="text-[#6B7280] text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
+                    <span className="text-[#6B7280] text-xs md:text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
                       {stat.label}
                     </span>
                   </div>
