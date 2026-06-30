@@ -47,7 +47,7 @@ const Services = () => {
     <main className="bg-white text-[#111827] overflow-hidden">
       <PageHero 
         title="Our Services" 
-        subtitle="Building Trust Since 1995"
+        subtitle="Building Trust Since 2026"
         backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
       />
 

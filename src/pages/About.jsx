@@ -75,8 +75,8 @@ const About = () => {
   return (
     <main className="bg-white text-[#111827] overflow-hidden">
       <PageHero
-        title="About Naksha Dynamics"
-        subtitle="Building Trust Since 1995"
+        title="About Us"
+        subtitle="Building Trust Since 2026"
         backgroundImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
       />
 
