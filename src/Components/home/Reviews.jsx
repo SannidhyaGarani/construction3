@@ -29,7 +29,7 @@ const testimonials = [
 
 const Reviews = () => {
   return (
-    <section className="bg-white py-14 md:py-16 font-sans">
+    <section className="bg-white py-8 md:py-16 font-sans">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Header */}

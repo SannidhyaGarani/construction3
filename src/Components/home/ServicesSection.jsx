@@ -47,7 +47,7 @@ const services = [
 
 const ServicesSection = () => {
   return (
-    <section className="bg-white py-14 md:py-16 font-sans">
+    <section className="bg-white py-8 md:py-16 font-sans">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Header */}
@@ -67,26 +67,26 @@ const ServicesSection = () => {
         {/* Swiper Slider */}
         <div className="relative">
           {/* Navigation buttons */}
-          <button className="swiper-prev-services absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-9 h-9 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] transition-all shadow-sm rounded-md">
-            <ChevronLeft size={16} />
+          <button className="swiper-prev-services absolute left-0 top-1/2 -translate-y-1/2 -translate-x-5 z-20 w-12 h-12 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] hover:shadow-lg transition-all duration-300 rounded-2xl">
+            <ChevronLeft size={20} />
           </button>
-          <button className="swiper-next-services absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-9 h-9 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] transition-all shadow-sm rounded-md">
-            <ChevronRight size={16} />
+          <button className="swiper-next-services absolute right-0 top-1/2 -translate-y-1/2 translate-x-5 z-20 w-12 h-12 bg-white border border-gray-200 flex items-center justify-center hover:border-[#C8842A] hover:text-[#C8842A] hover:shadow-lg transition-all duration-300 rounded-2xl">
+            <ChevronRight size={20} />
           </button>
 
           <Swiper
             modules={[Navigation, Autoplay]}
-            slidesPerView={1.2}
-            spaceBetween={16}
+            slidesPerView={1}
+            spaceBetween={20}
             autoplay={{ delay: 4000, disableOnInteraction: false }}
             navigation={{
               prevEl: ".swiper-prev-services",
               nextEl: ".swiper-next-services",
             }}
             breakpoints={{
-              480: { slidesPerView: 2, spaceBetween: 16 },
-              768: { slidesPerView: 3, spaceBetween: 16 },
-              1024: { slidesPerView: 5, spaceBetween: 20 },
+              640: { slidesPerView: 2, spaceBetween: 20 },
+              1024: { slidesPerView: 3, spaceBetween: 24 },
+              1280: { slidesPerView: 4, spaceBetween: 24 },
             }}
           >
             {services.map((service, i) => {
@@ -95,22 +95,25 @@ const ServicesSection = () => {
                 <SwiperSlide key={i} className="h-auto">
                   <Link
                     to={service.link}
-                    className="group relative flex flex-col items-center text-center p-5 bg-[#FAFAF8] border border-gray-100/80 hover:border-[#C8842A]/50 hover:shadow-lg hover:shadow-[#C8842A]/[0.04] transition-all duration-400 overflow-hidden h-full"
+                    className="group relative flex flex-col items-center text-center p-6 md:p-8 bg-[#FAF9F6] border border-gray-100/80 rounded-2xl hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden h-full"
                   >
                     {/* Hover accent top bar */}
-                    <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
+                    <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C8842A] to-amber-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                    
+                    {/* Premium background hover effect */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
 
-                    <div className="w-11 h-11 flex items-center justify-center mb-3.5 bg-white border border-gray-100 rounded-lg group-hover:border-[#C8842A]/30 transition-colors duration-300">
-                      <Icon size={22} className="text-[#C8842A]" strokeWidth={1.5} />
+                    <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 bg-white border border-gray-100 rounded-xl group-hover:border-[#C8842A]/30 group-hover:shadow-lg transition-all duration-300 relative z-10">
+                      <Icon size={32} className="text-[#C8842A]" strokeWidth={1.5} />
                     </div>
-                    <h3 className="text-[#111827] font-bold text-sm leading-snug mb-2 whitespace-pre-line">
+                    <h3 className="text-[#111827] font-bold text-lg md:text-xl leading-snug mb-3 whitespace-pre-line relative z-10">
                       {service.title}
                     </h3>
-                    <p className="text-[#9CA3AF] text-sm leading-relaxed mb-4">
+                    <p className="text-[#6B7280] text-sm md:text-base leading-relaxed mb-6 relative z-10">
                       {service.desc}
                     </p>
-                    <div className="mt-auto w-7 h-7 flex items-center justify-center border border-gray-200 group-hover:border-[#C8842A] group-hover:bg-[#C8842A] transition-all duration-300 rounded-md">
-                      <ArrowRight size={12} className="text-gray-400 group-hover:text-white transition-colors" />
+                    <div className="mt-auto w-10 h-10 flex items-center justify-center border border-gray-200 group-hover:border-[#C8842A] group-hover:bg-[#C8842A] transition-all duration-300 rounded-xl relative z-10">
+                      <ArrowRight size={18} className="text-gray-400 group-hover:text-white transition-colors" />
                     </div>
                   </Link>
                 </SwiperSlide>

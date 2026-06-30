@@ -38,8 +38,8 @@ const Contact = () => {
                   </span>
                 </div>
                 <p className="text-[#111827] font-medium text-lg">
-                  Sector 54, Golf Course Road,<br />
-                  Gurugram, HR 122009
+                  Indore, M.P.<br />
+                  India
                 </p>
               </div>
 
@@ -52,7 +52,7 @@ const Contact = () => {
                   </span>
                 </div>
                 <p className="text-[#111827] font-medium text-lg">
-                  Aryan Khan: +91 9111159900
+                  Naksha Dynamics: +91 9876543210
                 </p>
               </div>
 
@@ -65,10 +65,10 @@ const Contact = () => {
                   </span>
                 </div>
                 <a 
-                  href="mailto:aryankhan00741@gmail.com" 
+                  href="mailto:naksha.dynamics@gmail.com" 
                   className="text-[#111827] font-medium text-lg hover:text-[#C8842A] transition-colors"
                 >
-                  aryankhan00741@gmail.com
+                  naksha.dynamics@gmail.com
                 </a>
               </div>
             </div>

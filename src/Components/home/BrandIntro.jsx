@@ -57,7 +57,7 @@ const stats = [
 
 const BrandIntro = () => {
   return (
-    <section className="bg-[#FAF9F6] py-12 md:py-16 font-sans overflow-hidden">
+    <section className="bg-[#FAF9F6] py-8 md:py-16 font-sans overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
         <div className="grid lg:grid-cols-[35%_65%] gap-12 lg:gap-10 items-center">
           

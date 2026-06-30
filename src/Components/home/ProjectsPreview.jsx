@@ -37,7 +37,7 @@ const ProjectsPreview = () => {
   }, []);
 
   return (
-    <section className="bg-[#FAF9F6] py-14 md:py-16 font-sans overflow-hidden">
+    <section className="bg-[#FAF9F6] py-8 md:py-16 font-sans overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Header */}

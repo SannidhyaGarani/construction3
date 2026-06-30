@@ -81,7 +81,7 @@ const About = () => {
       />
 
       {/* Firm Overview Section */}
-      <section className="bg-[#FAF9F6] py-14 md:py-20 font-sans">
+      <section className="bg-[#FAF9F6] py-8 md:py-20 font-sans">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -127,50 +127,38 @@ const About = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="bg-white py-14 md:py-16 font-sans">
+      <section className="bg-white py-8 md:py-16 font-sans">
         <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
-          <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] divide-x divide-gray-100/70 scroll-smooth snap-x snap-mandatory no-scrollbar">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-white rounded-3xl border border-gray-100 shadow-[0_12px_40px_rgba(17,24,39,0.04)] p-6 md:p-8">
             {stats.map((stat, i) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={i}
                   id={stat.id}
-                  className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-6 py-10 md:p-10 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
+                  className="flex flex-col items-center justify-center p-6 md:p-8 text-center relative group rounded-2xl transition-all duration-500 hover:bg-[#FAF9F6] hover:shadow-lg"
                 >
-                  <div className="absolute inset-0 bg-[#C8842A]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  <div className="w-12 h-12 md:w-14 md:h-14 flex-shrink-0 flex items-center justify-center mb-5 transition-transform duration-500 group-hover:scale-105">
+                  {/* Premium background hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+                  
+                  <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 flex items-center justify-center mb-6 bg-white border border-gray-100 rounded-xl group-hover:border-[#C8842A]/30 group-hover:shadow-md transition-all duration-300 relative z-10">
                     <Icon />
                   </div>
-                  <span className="text-[#111827] font-black text-2xl md:text-[32px] tracking-tight leading-none mb-2.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
+                  <span className="text-[#111827] font-black text-3xl md:text-[40px] tracking-tight leading-none mb-3 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text relative z-10">
                     {stat.value}
                   </span>
-                  <span className="text-[#6B7280] text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
+                  <span className="text-[#6B7280] text-sm md:text-base font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors relative z-10">
                     {stat.label}
                   </span>
                 </div>
               );
             })}
           </div>
-          <div className="flex justify-center items-center gap-1.5 mt-5 lg:hidden">
-            {stats.map((stat, i) => (
-              <a
-                key={i}
-                href={`#${stat.id}`}
-                className="w-5 h-1 rounded-full bg-gray-200/80 hover:bg-[#C8842A] focus:bg-[#C8842A] active:bg-[#C8842A] transition-all duration-300"
-                aria-label={`Go to metric ${i + 1}`}
-              />
-            ))}
-          </div>
         </div>
-        <style>{`
-          .no-scrollbar::-webkit-scrollbar { display: none; }
-          .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-        `}</style>
       </section>
 
       {/* Vision, Mission, Values */}
-      <section className="bg-[#FAF9F6] py-14 md:py-20 font-sans">
+      <section className="bg-[#FAF9F6] py-8 md:py-20 font-sans">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-3">
@@ -184,20 +172,25 @@ const About = () => {
               Vision, Mission & Values
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-8">
             {values.map((item, i) => {
               const Icon = item.icon;
               return (
                 <div
                   key={i}
-                  className="group relative bg-white p-8 rounded-2xl border border-gray-200/50 hover:border-[#C8842A]/50 hover:shadow-lg hover:shadow-[#C8842A]/[0.04] transition-all duration-400 overflow-hidden"
+                  className="group relative bg-white p-8 md:p-10 rounded-3xl border border-gray-100 hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-                  <div className="w-12 h-12 bg-[#C8842A]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#C8842A]/20 transition-colors duration-300">
-                    <Icon size={24} className="text-[#C8842A]" strokeWidth={1.5} />
+                  {/* Hover accent top bar */}
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C8842A] to-amber-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  
+                  {/* Premium background hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  
+                  <div className="w-16 h-16 bg-[#C8842A]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#C8842A]/20 transition-all duration-300 relative z-10">
+                    <Icon size={32} className="text-[#C8842A]" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-[#111827] font-bold text-xl mb-3">{item.title}</h3>
-                  <p className="text-[#6B7280] text-sm leading-relaxed">{item.desc}</p>
+                  <h3 className="text-[#111827] font-bold text-2xl mb-4 relative z-10">{item.title}</h3>
+                  <p className="text-[#6B7280] text-sm md:text-base leading-relaxed relative z-10">{item.desc}</p>
                 </div>
               );
             })}
@@ -206,7 +199,7 @@ const About = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="bg-white py-14 md:py-16 font-sans">
+      <section className="bg-white py-8 md:py-16 font-sans">
         <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
           <div className="text-center mb-10">
             <div className="flex items-center justify-center gap-3 mb-3">
@@ -220,20 +213,25 @@ const About = () => {
               Engineering with Integrity
             </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
             {whyPoints.map((p, i) => {
               const Icon = p.icon;
               return (
                 <div
                   key={i}
-                  className="group relative flex flex-col items-center text-center p-5 bg-[#FAFAF8] border border-gray-100/80 hover:border-[#C8842A]/50 hover:shadow-lg hover:shadow-[#C8842A]/[0.04] transition-all duration-400 overflow-hidden"
+                  className="group relative flex flex-col items-center text-center p-6 md:p-8 bg-[#FAF9F6] border border-gray-100/80 rounded-2xl hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden"
                 >
-                  <div className="absolute top-0 left-0 right-0 h-[2px] bg-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left" />
-                  <div className="w-12 h-12 flex items-center justify-center mb-3.5 bg-white border border-gray-100 rounded-lg group-hover:border-[#C8842A]/30 transition-colors duration-300">
-                    <Icon size={24} className="text-[#C8842A]" strokeWidth={1.5} />
+                  {/* Hover accent top bar */}
+                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C8842A] to-amber-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+                  
+                  {/* Premium background hover effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                  
+                  <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 bg-white border border-gray-100 rounded-xl group-hover:border-[#C8842A]/30 group-hover:shadow-lg transition-all duration-300 relative z-10">
+                    <Icon size={32} className="text-[#C8842A]" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-[#111827] font-bold text-sm mb-1.5">{p.title}</h3>
-                  <p className="text-[#9CA3AF] text-sm leading-relaxed">{p.desc}</p>
+                  <h3 className="text-[#111827] font-bold text-lg md:text-xl mb-3 relative z-10">{p.title}</h3>
+                  <p className="text-[#6B7280] text-sm md:text-base leading-relaxed relative z-10">{p.desc}</p>
                 </div>
               );
             })}
