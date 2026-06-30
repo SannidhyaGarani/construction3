@@ -94,7 +94,7 @@ const ProjectsPreview = () => {
                     className="cursor-pointer group"
                   >
                     {/* Image */}
-                    <div className="relative aspect-[3/4] overflow-hidden bg-gray-100 mb-2.5 rounded-lg">
+                    <div className="relative aspect-[4/3]  overflow-hidden bg-gray-100 mb-2.5 rounded-sm">
                       <img
                         src={project.projectImage}
                         alt={project.name}

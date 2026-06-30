@@ -16,7 +16,7 @@ const Home = () => {
       <ServicesSection />
       <ProjectsPreview />
       <WhyChooseUs />
-      <RecentBlogs />
+      {/* <RecentBlogs /> */}
       <Reviews />
       <CTASection />
     </main>
