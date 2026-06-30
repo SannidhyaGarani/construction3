@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../Firebase/Firebase';
-import Reveal from '../Components/Reveal';
 import { Loader2, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import CTASection from '../Components/home/CTASection';
 
@@ -30,18 +29,21 @@ const FloorPlanDetail = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAFA] gap-4">
-        <Loader2 className="animate-spin text-[#D4AF37]" size={48} />
-        <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-neutral-600">Retrieving Layout</span>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-4">
+        <Loader2 className="animate-spin text-[#C8842A]" size={48} />
+        <span className="text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em]">Retrieving plan</span>
       </div>
     );
   }
 
   if (!plan) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAFA] gap-6 px-6">
-        <h2 className="text-3xl font-light uppercase tracking-tighter text-[#0A192F]">Layout Not Found</h2>
-        <Link to="/floorplans" className="border border-[#D4AF37] px-8 py-3 text-[10px] uppercase tracking-widest font-bold hover:bg-[#D4AF37] hover:text-[#0A192F] transition-all">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-6 px-6">
+        <h2 className="text-3xl font-bold text-[#111827]">Plan Not Found</h2>
+        <Link 
+          to="/floorplans" 
+          className="bg-[#111827] text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.3em] hover:bg-[#C8842A] transition-all"
+        >
           Return to Collection
         </Link>
       </div>
@@ -49,117 +51,104 @@ const FloorPlanDetail = () => {
   }
 
   return (
-    <main className="bg-[#FAFAFA] text-[#0A192F] overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative h-[80vh] w-full overflow-hidden bg-[#0A192F] text-white">
+    <main className="bg-white text-[#111827] overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: `url('${plan.exteriorImage}')` }}
+          <img
+            src={plan.exteriorImage}
+            alt={plan.title}
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/90 via-[#0A192F]/60 to-[#0A192F]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30" />
         </div>
-
-        <div className="relative z-20 max-w-[1440px] mx-auto w-full h-full px-6 md:px-12 lg:px-20 flex flex-col justify-center">
-          <Link to="/floorplans" className="inline-flex items-center gap-3 text-white/70 hover:text-[#D4AF37] transition-colors mb-12 group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Back to Collection</span>
+        
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-end h-full pb-16">
+          <Link 
+            to="/floorplans" 
+            className="inline-flex items-center gap-2 text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em] mb-8 hover:text-[#C8842A] transition-colors"
+          >
+            <ArrowLeft size={16} /> Back to Collection
           </Link>
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold">
-              Plan Specifications
-            </span>
-            <div className="w-8 h-[1px] bg-[#D4AF37]/50" />
-          </div>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.9] mb-6">
+          <div className="w-10 h-[3px] bg-[#C8842A] mb-6" />
+          <h1 className="text-[#111827] font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4">
             {plan.title}
           </h1>
           {plan.description && (
-            <p className="text-sm md:text-base text-white/70 font-light max-w-xl italic">
+            <p className="text-[#6B7280] text-lg max-w-2xl">
               {plan.description}
             </p>
           )}
         </div>
       </section>
 
-      {/* DETAILS SECTION */}
-      <section className="py-24 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Specs Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
-            <Reveal>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-neutral-200 pt-10">
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Category</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{plan.planType}</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Dimensions</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{plan.width} x {plan.length} ft</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Total Area</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{plan.width * plan.length} sq.ft</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Reference ID</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">#{plan.id.slice(0, 5)}</span>
-                </div>
+      {/* Content */}
+      <section className="py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Sidebar */}
+          <div className="lg:col-span-4">
+            <div className="bg-[#FAF9F6] rounded-2xl border border-gray-200/50 p-8">
+              <h3 className="text-[#111827] font-bold text-xl mb-6">Specifications</h3>
+              <div className="space-y-4">
+                {plan.planType && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Category</span>
+                    <span className="text-[#111827] font-medium">{plan.planType}</span>
+                  </div>
+                )}
+                {plan.width && plan.length && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Dimensions</span>
+                    <span className="text-[#111827] font-medium">{plan.width} × {plan.length} ft</span>
+                  </div>
+                )}
+                {plan.width && plan.length && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Total Area</span>
+                    <span className="text-[#111827] font-medium">{plan.width * plan.length} sqft</span>
+                  </div>
+                )}
+                {plan.style && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Style</span>
+                    <span className="text-[#111827] font-medium">{plan.style}</span>
+                  </div>
+                )}
               </div>
-
-              <button className="mt-10 w-full py-6 bg-[#D4AF37] text-[#0A192F] uppercase text-[10px] tracking-[0.4em] font-bold hover:bg-[#0A192F] hover:text-white transition-all flex items-center justify-center gap-3 group">
-                Enquire About This Plan
-                <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <button className="mt-8 w-full bg-[#C8842A] text-white px-6 py-4 rounded-lg text-sm font-bold uppercase tracking-[0.3em] hover:bg-[#111827] transition-all flex items-center justify-center gap-2">
+                Enquire About This Plan <ArrowUpRight size={16} />
               </button>
-            </Reveal>
+            </div>
           </div>
 
-          {/* Images Column */}
-          <div className="lg:col-span-7">
-            <div className="flex flex-col gap-10">
-              <Reveal delay={0.2}>
-                <div className="flex flex-col gap-3">
-                  <div className="relative group overflow-hidden bg-[#0A192F] border border-neutral-300">
-                    <img 
-                      src={plan.planImage} 
-                      alt="Floor Plan" 
-                      className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
-                    />
-                    <div className="absolute top-6 left-6 border-l border-t border-white/20 w-8 h-8 pointer-events-none" />
-                  </div>
-                  <span className="text-[9px] uppercase tracking-widest text-neutral-600 italic">2D Technical Layout</span>
+          {/* Images */}
+          <div className="lg:col-span-8">
+            <div className="space-y-8">
+              {plan.planImage && (
+                <div className="relative rounded-2xl overflow-hidden border border-gray-200/50">
+                  <img 
+                    src={plan.planImage} 
+                    alt="2D Floor Plan" 
+                    className="w-full h-auto" 
+                  />
                 </div>
-              </Reveal>
-
-              {plan.mapImage && (
-                <Reveal delay={0.4}>
-                  <div className="flex flex-col gap-3">
-                    <div className="relative group overflow-hidden bg-[#0A192F] border border-neutral-300">
-                      <img 
-                        src={plan.mapImage} 
-                        alt="Location Map" 
-                        className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
-                      />
-                      <div className="absolute top-6 left-6 border-l border-t border-white/20 w-8 h-8 pointer-events-none" />
-                    </div>
-                    <span className="text-[9px] uppercase tracking-widest text-neutral-600 italic">Contextual Site Map</span>
-                  </div>
-                </Reveal>
               )}
-
-              <Reveal delay={0.6}>
-                <div className="flex flex-col gap-3">
-                  <div className="relative group overflow-hidden bg-[#0A192F] border border-neutral-300">
-                    <img 
-                      src={plan.exteriorImage} 
-                      alt="Visualization" 
-                      className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
-                    />
-                    <div className="absolute top-6 left-6 border-l border-t border-white/20 w-8 h-8 pointer-events-none" />
-                  </div>
-                  <span className="text-[9px] uppercase tracking-widest text-neutral-600 italic">Architectural Visualization</span>
+              {plan.mapImage && (
+                <div className="relative rounded-2xl overflow-hidden border border-gray-200/50">
+                  <img 
+                    src={plan.mapImage} 
+                    alt="Site Map" 
+                    className="w-full h-auto" 
+                  />
                 </div>
-              </Reveal>
+              )}
+              <div className="relative rounded-2xl overflow-hidden border border-gray-200/50">
+                <img 
+                  src={plan.exteriorImage} 
+                  alt="Exterior View" 
+                  className="w-full h-auto" 
+                />
+              </div>
             </div>
           </div>
         </div>

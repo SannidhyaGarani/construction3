@@ -1,7 +1,7 @@
-import React from 'react';
-import PageHero from '../Components/PageHero';
-import Reveal from '../Components/Reveal';
-import CTASection from '../Components/home/CTASection';
+import React from "react";
+import PageHero from "../Components/PageHero";
+import CTASection from "../Components/home/CTASection";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
@@ -44,90 +44,56 @@ const services = [
 
 const Services = () => {
   return (
-    <main className="bg-[#050505] text-white overflow-hidden">
+    <main className="bg-white text-[#111827] overflow-hidden">
       <PageHero 
-        title="Our Capabilities." 
-        subtitle="Disciplines in Architecture & Execution"
+        title="Our Services" 
+        subtitle="Building Trust Since 1995"
         backgroundImage="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
       />
 
       {/* --- Intro Text --- */}
-      <section className="py-24 md:py-32 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto border-b border-white/5">
-        <div className="max-w-5xl">
-          <Reveal>
-             <div className="flex items-center gap-4 mb-8">
-                <span className="text-[10px] uppercase tracking-[0.5em] text-[#C5A880] font-bold">
-                  Practice Areas
-                </span>
-                <div className="h-[1px] w-12 bg-neutral-800" />
-              </div>
-            <h2 className="font-serif text-5xl md:text-6xl lg:text-7xl leading-[0.9] text-white tracking-tighter">
-              Accountable, detailed, and <span className="italic text-neutral-600 font-light">design-led</span> execution.
-            </h2>
-          </Reveal>
+      <section className="py-12 md:py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto bg-[#FAF9F6]">
+        <div className="max-w-3xl">
+          <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
+            Practice Areas
+          </p>
+          <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
+            Accountable, detailed, and design-led execution.
+          </h2>
         </div>
       </section>
 
-      {/* --- Services Deck --- */}
-      <section className="pb-32 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto space-y-32 mt-32">
-        {services.map((s, i) => (
-          <div key={s.code} className={`grid lg:grid-cols-12 gap-12 lg:gap-24 items-center ${i % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-            
-            {/* Image Side */}
-            <div className={`relative lg:col-span-7 ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
-              <Reveal direction={i % 2 === 1 ? 'left' : 'right'}>
-                <div className="aspect-[4/3] overflow-hidden relative group border border-white/10 bg-neutral-900">
-                   
-                   {/* Technical Image Overlay */}
-                   <div className="absolute top-4 left-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                     <span className="bg-[#050505]/80 backdrop-blur-md px-3 py-1 text-[9px] font-mono text-[#C5A880] border border-white/10">
-                       SEC_V // {s.code}
-                     </span>
-                   </div>
-
-                   <img 
-                    src={s.img} 
-                    alt={s.title} 
-                    className="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-[2s] group-hover:scale-105" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/60 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-700" />
+      {/* --- Services Grid --- */}
+      <section className="py-12 md:py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <div key={s.code} className="group relative bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] overflow-hidden">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img 
+                  src={s.img} 
+                  alt={s.title} 
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
+              </div>
+              <div className="p-6">
+                <div className="flex items-center justify-between mb-3">
+                  <span className="text-[#C8842A] text-[10px] font-bold uppercase tracking-[0.3em]">
+                    {s.code}
+                  </span>
                 </div>
-              </Reveal>
-              
-              {/* Massive Ghost Number Overlay */}
-              <div className={`absolute -top-16 ${i % 2 === 1 ? '-right-4 lg:-right-16' : '-left-4 lg:-left-16'} hidden md:block z-0 pointer-events-none`}>
-                <span className="font-serif text-[14rem] text-white/[0.03] leading-none select-none">
-                  0{i + 1}
-                </span>
+                <h3 className="text-[#111827] font-bold text-xl mb-3">{s.title}</h3>
+                <p className="text-[#6B7280] text-sm leading-relaxed mb-4">{s.desc}</p>
+                <a
+                  href="/contact"
+                  className="inline-flex items-center gap-2 text-[#C8842A] text-sm font-bold hover:text-[#B37424] transition-colors group"
+                >
+                  Learn More <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                </a>
               </div>
             </div>
-
-            {/* Content Side */}
-            <div className={`lg:col-span-5 relative z-10 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
-              <Reveal direction={i % 2 === 1 ? 'right' : 'left'}>
-                <div className="flex justify-between items-end mb-8 border-b border-white/10 pb-4">
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-[#C5A880] font-bold block">
-                      Discipline 0{i + 1}
-                  </span>
-                  <span className="text-[10px] font-mono text-neutral-600 tracking-widest">{s.code}</span>
-                </div>
-                
-                <h3 className="text-4xl md:text-5xl font-serif text-white mb-8 tracking-tight">{s.title}</h3>
-                
-                <p className="text-neutral-400 text-lg leading-relaxed font-light">
-                  {s.desc}
-                </p>
-                
-                {/* Structural Detail Line */}
-                <div className="mt-12 flex items-center gap-4">
-                   <div className="w-2 h-2 rounded-full bg-[#C5A880]" />
-                   <div className="h-[1px] flex-grow bg-gradient-to-r from-white/10 to-transparent" />
-                </div>
-              </Reveal>
-            </div>
-
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <CTASection />

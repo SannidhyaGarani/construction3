@@ -4,12 +4,13 @@ import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const navLinks = [
+  { label: 'About Us', to: '/about' },
+  { label: 'Services', to: '/services' },
   { label: 'Floor Plans', to: '/floorplans' },
   { label: 'Exteriors', to: '/exteriors' },
   { label: 'Interior Design', to: '/interiors' },
   { label: 'Projects', to: '/projects' },
-  { label: 'About Us', to: '/about' },
-  { label: 'Blog', to: '/blogs' },
+  // { label: 'Blog', to: '/blogs' },
 ];
 
 const Header = () => {

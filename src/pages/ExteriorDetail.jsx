@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../Firebase/Firebase';
-import Reveal from '../Components/Reveal';
 import { Loader2, ArrowLeft, ArrowUpRight } from 'lucide-react';
 import CTASection from '../Components/home/CTASection';
 
@@ -30,18 +29,21 @@ const ExteriorDetail = () => {
 
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAFA] gap-4">
-        <Loader2 className="animate-spin text-[#D4AF37]" size={48} />
-        <span className="text-[10px] uppercase tracking-[0.4em] font-bold text-neutral-600">Retrieving Blueprint</span>
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-4">
+        <Loader2 className="animate-spin text-[#C8842A]" size={48} />
+        <span className="text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em]">Retrieving design</span>
       </div>
     );
   }
 
   if (!exterior) {
     return (
-      <div className="flex flex-col items-center justify-center min-h-screen bg-[#FAFAFA] gap-6 px-6">
-        <h2 className="text-3xl font-light uppercase tracking-tighter text-[#0A192F]">Project Not Found</h2>
-        <Link to="/exteriors" className="border border-[#D4AF37] px-8 py-3 text-[10px] uppercase tracking-widest font-bold hover:bg-[#D4AF37] hover:text-[#0A192F] transition-all">
+      <div className="flex flex-col items-center justify-center min-h-screen bg-white gap-6 px-6">
+        <h2 className="text-3xl font-bold text-[#111827]">Design Not Found</h2>
+        <Link 
+          to="/exteriors" 
+          className="bg-[#111827] text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-[0.3em] hover:bg-[#C8842A] transition-all"
+        >
           Return to Collection
         </Link>
       </div>
@@ -49,99 +51,100 @@ const ExteriorDetail = () => {
   }
 
   return (
-    <main className="bg-[#FAFAFA] text-[#0A192F] overflow-hidden">
-      {/* HERO SECTION */}
-      <section className="relative h-[80vh] w-full overflow-hidden bg-[#0A192F] text-white">
+    <main className="bg-white text-[#111827] overflow-hidden">
+      {/* Hero */}
+      <section className="relative h-[60vh] w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
-            style={{ backgroundImage: `url('${exterior.exteriorImage}')` }}
+          <img
+            src={exterior.exteriorImage}
+            alt={exterior.title}
+            className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A192F]/90 via-[#0A192F]/60 to-[#0A192F]/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/90 to-white/30" />
         </div>
-
-        <div className="relative z-20 max-w-[1440px] mx-auto w-full h-full px-6 md:px-12 lg:px-20 flex flex-col justify-center">
-          <Link to="/exteriors" className="inline-flex items-center gap-3 text-white/70 hover:text-[#D4AF37] transition-colors mb-12 group">
-            <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
-            <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Back to Collection</span>
+        
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-end h-full pb-16">
+          <Link 
+            to="/exteriors" 
+            className="inline-flex items-center gap-2 text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em] mb-8 hover:text-[#C8842A] transition-colors"
+          >
+            <ArrowLeft size={16} /> Back to Collection
           </Link>
-          <div className="flex items-center gap-4 mb-6">
-            <span className="text-[10px] uppercase tracking-[0.5em] text-[#D4AF37] font-bold">
-              Project Details
-            </span>
-            <div className="w-8 h-[1px] bg-[#D4AF37]/50" />
-          </div>
-          <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.9] mb-6">
+          <div className="w-10 h-[3px] bg-[#C8842A] mb-6" />
+          <h1 className="text-[#111827] font-extrabold text-4xl md:text-5xl lg:text-6xl tracking-tight mb-4">
             {exterior.title}
           </h1>
           {exterior.description && (
-            <p className="text-sm md:text-base text-white/70 font-light max-w-xl italic">
+            <p className="text-[#6B7280] text-lg max-w-2xl">
               {exterior.description}
             </p>
-          )}
-          {exterior.keywords && (
-            <div className="flex flex-wrap gap-3 mt-8">
-              {exterior.keywords.split(',').map((kw, i) => (
-                <span key={i} className="px-4 py-2 bg-white/10 border border-white/20 text-[9px] uppercase tracking-widest text-white font-bold">
-                  {kw.trim()}
-                </span>
-              ))}
-            </div>
           )}
         </div>
       </section>
 
-      {/* DETAILS SECTION */}
-      <section className="py-24 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        <div className="grid lg:grid-cols-12 gap-16 items-start">
-          {/* Specs Column */}
-          <div className="lg:col-span-5 lg:sticky lg:top-24">
-            <Reveal>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-neutral-200 pt-10">
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Architectural Style</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{exterior.style}</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Total Area</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{exterior.area ? `${exterior.area} sq.ft` : 'TBD'}</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Dimensions</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{exterior.width && exterior.length ? `${exterior.width} x ${exterior.length} ft` : exterior.facing}</span>
-                </div>
-                <div className="bg-white border border-neutral-300 p-8 hover:border-[#D4AF37]/50 transition-all duration-300">
-                  <span className="text-[9px] uppercase tracking-[0.3em] text-neutral-600 font-bold block mb-2">Location</span>
-                  <span className="text-xl font-semibold text-[#0A192F] tracking-wide">{exterior.location}</span>
-                </div>
+      {/* Content */}
+      <section className="py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
+        <div className="grid lg:grid-cols-12 gap-12">
+          {/* Sidebar */}
+          <div className="lg:col-span-4">
+            <div className="bg-[#FAF9F6] rounded-2xl border border-gray-200/50 p-8">
+              <h3 className="text-[#111827] font-bold text-xl mb-6">Details</h3>
+              <div className="space-y-4">
+                {exterior.style && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Architectural Style</span>
+                    <span className="text-[#111827] font-medium">{exterior.style}</span>
+                  </div>
+                )}
+                {exterior.area && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Total Area</span>
+                    <span className="text-[#111827] font-medium">{exterior.area} sqft</span>
+                  </div>
+                )}
+                {exterior.location && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Location</span>
+                    <span className="text-[#111827] font-medium">{exterior.location}</span>
+                  </div>
+                )}
+                {exterior.facing && (
+                  <div className="flex flex-col gap-1">
+                    <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Facing</span>
+                    <span className="text-[#111827] font-medium">{exterior.facing}</span>
+                  </div>
+                )}
               </div>
-
-              <button className="mt-10 w-full py-6 bg-[#D4AF37] text-[#0A192F] uppercase text-[10px] tracking-[0.4em] font-bold hover:bg-[#0A192F] hover:text-white transition-all flex items-center justify-center gap-3 group">
-                Request Full Specification
-                <ArrowUpRight size={18} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+              <button className="mt-8 w-full bg-[#C8842A] text-white px-6 py-4 rounded-lg text-sm font-bold uppercase tracking-[0.3em] hover:bg-[#111827] transition-all flex items-center justify-center gap-2">
+                Request Full Specification <ArrowUpRight size={16} />
               </button>
-            </Reveal>
+            </div>
           </div>
 
-          {/* Image Column */}
-          <div className="lg:col-span-7">
-            <Reveal delay={0.2}>
-              <div className="flex flex-col gap-10">
-                <div className="relative group overflow-hidden bg-[#0A192F] border border-neutral-300">
-                  <img 
-                    src={exterior.exteriorImage} 
-                    alt={exterior.title} 
-                    className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-105" 
-                  />
-                  <div className="absolute top-6 left-6 border-l border-t border-white/20 w-8 h-8 pointer-events-none" />
-                  <div className="absolute bottom-6 right-6 border-r border-b border-white/20 w-8 h-8 pointer-events-none" />
-                </div>
-                <div className="flex justify-between items-center text-neutral-600">
-                  <span className="text-[9px] uppercase tracking-widest italic">High-Resolution Exterior Render</span>
-                  <span className="text-[9px] uppercase tracking-widest font-bold">© Naksha Dynamic 2024</span>
-                </div>
+          {/* Images */}
+          <div className="lg:col-span-8">
+            <div className="space-y-8">
+              <div className="relative rounded-2xl overflow-hidden border border-gray-200/50">
+                <img 
+                  src={exterior.exteriorImage} 
+                  alt={exterior.title} 
+                  className="w-full h-auto" 
+                />
               </div>
-            </Reveal>
+              {/* Keywords if available */}
+              {exterior.keywords && (
+                <div className="flex flex-wrap gap-2">
+                  {exterior.keywords.split(',').map((kw, i) => (
+                    <span 
+                      key={i} 
+                      className="px-4 py-2 bg-[#FAF9F6] border border-gray-200/50 rounded-full text-xs font-bold uppercase tracking-[0.3em] text-[#6B7280]"
+                    >
+                      {kw.trim()}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </section>

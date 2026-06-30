@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PageHero from '../Components/PageHero';
-import Reveal from '../Components/Reveal';
 import CTASection from '../Components/home/CTASection';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -18,30 +17,34 @@ const categories = ['All', 'Residential', 'Commercial', 'Interior', 'Sustainable
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('All');
 
+  const filteredProjects = activeFilter === 'All' 
+    ? projects 
+    : projects.filter(project => project.category === activeFilter);
+
   return (
-    <main className="bg-[#050505] text-white">
+    <main className="bg-white text-[#111827]">
       <PageHero 
-        title="The Archive." 
+        title="Our Gallery" 
         subtitle="A Portfolio of Architectural Integrity"
         backgroundImage="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop"
       />
 
-      <section className="py-24 px-6 md:px-12 lg:px-20 max-w-[1440px] mx-auto">
-        {/* --- Technical Filter Bar --- */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-20 gap-8 border-b border-white/5 pb-10">
-          <Reveal>
-            <p className="text-neutral-500 text-sm font-mono tracking-widest uppercase">
-              Filter_By_Discipline:
-            </p>
-          </Reveal>
+      <section className="py-12 md:py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
+        {/* --- Filter Bar --- */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+          <p className="text-[#6B7280] text-sm font-medium">
+            Filter by category:
+          </p>
           
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`text-[10px] uppercase tracking-[0.4em] font-bold transition-all duration-300 ${
-                  activeFilter === cat ? 'text-[#C5A880]' : 'text-neutral-600 hover:text-white'
+                className={`px-5 py-2 text-sm font-bold uppercase tracking-[0.3em] transition-all duration-300 rounded-lg ${
+                  activeFilter === cat 
+                    ? 'bg-[#C8842A] text-white' 
+                    : 'text-[#6B7280] hover:text-[#C8842A] bg-[#FAFAF8] hover:bg-[#FAF9F6]'
                 }`}
               >
                 {cat}
@@ -51,36 +54,31 @@ const Gallery = () => {
         </div>
 
         {/* --- The Grid --- */}
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-10 space-y-10">
-          {projects.map((project, i) => (
-            <div key={i} className={`break-inside-avoid ${activeFilter !== 'All' && project.category !== activeFilter ? 'hidden' : 'block'}`}>
-              <Reveal delay={i * 0.05}>
-                <div className="group relative bg-neutral-900 border border-white/5 overflow-hidden">
-                  
-                  {/* Grayscale to Color Image */}
-                  <img 
-                    src={project.src} 
-                    alt={project.title} 
-                    className="w-full h-auto object-cover grayscale group-hover:grayscale-0 transition-all duration-[1.5s] ease-out group-hover:scale-105" 
-                  />
-                  
-                  {/* Architectural Overlay */}
-                  <div className="absolute inset-0 bg-[#050505]/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-between p-8">
-                    <div className="flex justify-between items-start">
-                      <span className="text-[9px] font-mono text-[#C5A880] tracking-[0.3em]">{project.code}</span>
-                      <div className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-white">
-                        <ArrowUpRight size={14} />
-                      </div>
-                    </div>
-
-                    <div>
-                      <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 mb-2 block">{project.category}</span>
-                      <h3 className="font-serif text-2xl text-white tracking-tight">{project.title}</h3>
-                      <div className="mt-6 h-[1px] w-0 group-hover:w-full bg-[#C5A880] transition-all duration-700" />
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {filteredProjects.map((project, i) => (
+            <div key={i} className="group relative bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] overflow-hidden">
+              <div className="aspect-[4/3] relative overflow-hidden">
+                <img 
+                  src={project.src} 
+                  alt={project.title} 
+                  className="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" 
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
+                  <span className="text-[#C8842A] text-[10px] font-bold uppercase tracking-[0.3em] mb-2 block">{project.category}</span>
+                  <h3 className="text-white font-bold text-xl tracking-tight">{project.title}</h3>
+                </div>
+              </div>
+              <div className="p-5">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <span className="text-[#C8842A] text-[10px] font-bold uppercase tracking-[0.3em]">{project.code}</span>
+                    <h4 className="text-[#111827] font-bold text-lg">{project.title}</h4>
+                  </div>
+                  <div className="w-10 h-10 bg-[#FAFAF8] rounded-lg flex items-center justify-center group-hover:bg-[#C8842A] transition-all duration-300">
+                    <ArrowUpRight size={18} className="text-[#C8842A] group-hover:text-white transition-colors duration-300" />
                   </div>
                 </div>
-              </Reveal>
+              </div>
             </div>
           ))}
         </div>

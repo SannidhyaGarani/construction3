@@ -21,11 +21,7 @@ import ProjectsPage from "./pages/ProjectsPage";
 import BlogsPage from "./pages/BlogsPage";
 
 // New Detail Pages
-import FloorPlanDetail from "./pages/FloorPlanDetail";
-import ExteriorDetail from "./pages/ExteriorDetail";
-import InteriorDetail from "./pages/InteriorDetail";
-import ProjectDetail from "./pages/ProjectDetail";
-import BlogDetail from "./pages/BlogDetail";
+import UniversalDetail from "./pages/UniversalDetail";
 
 // Admin Panel
 import AdminLayout from "./admin/AdminLayout";
@@ -74,15 +70,15 @@ function App() {
         
         {/* New Portfolio Routes */}
         <Route path="/floorplans" element={<FloorPlansPage />} />
-        <Route path="/floorplans/:id" element={<FloorPlanDetail />} />
+        <Route path="/floorplans/:id" element={<UniversalDetail />} />
         <Route path="/exteriors" element={<ExteriorsPage />} />
-        <Route path="/exteriors/:id" element={<ExteriorDetail />} />
+        <Route path="/exteriors/:id" element={<UniversalDetail />} />
         <Route path="/interiors" element={<InteriorsPage />} />
-        <Route path="/interiors/:id" element={<InteriorDetail />} />
+        <Route path="/interiors/:id" element={<UniversalDetail />} />
         <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/projects/:id" element={<ProjectDetail />} />
+        <Route path="/projects/:id" element={<UniversalDetail />} />
         <Route path="/blogs" element={<BlogsPage />} />
-        <Route path="/blogs/:id" element={<BlogDetail />} />
+        <Route path="/blogs/:id" element={<UniversalDetail />} />
 
         {/* Admin Auth Routes */}
         <Route path="/admin/login" element={<AdminLogin />} />

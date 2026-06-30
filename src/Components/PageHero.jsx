@@ -1,114 +1,37 @@
-import React, { useEffect, useState } from 'react';
-import Reveal from './Reveal';
+import React from "react";
 
 const PageHero = ({ title, subtitle, backgroundImage }) => {
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setIsLoaded(true));
-    return () => cancelAnimationFrame(id);
-  }, []);
-
   return (
-    <section className="relative h-[90vh] w-full overflow-hidden bg-neutral-100">
-
-      {/* === BACKGROUND IMAGE (CINEMATIC) === */}
+    <section className="relative w-full min-h-[80vh] bg-white overflow-hidden font-sans">
+      {/* Background image */}
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 overflow-hidden">
-          <div
-            className={`absolute inset-0 bg-cover bg-center transition-all duration-[6000ms] ease-out ${isLoaded ? 'scale-100 opacity-100' : 'scale-110 opacity-0'
-              }`}
-            style={{ backgroundImage: `url('${backgroundImage}')` }}
-          />
-
-          {/* DARK DEPTH OVERLAY */}
-          <div className="absolute inset-0 bg-black/20" />
-
-          {/* SOFT LIGHT GRADIENT */}
-          {/* DARK TO LIGHT SOFT GRADIENT (UPDATED) */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-neutral-100/10 to-white" />
-
-          {/* LUXURY GRAIN */}
-          <div className="absolute inset-0 opacity-[0.04] bg-[url('/noise.png')]" />
-        </div>
+        <img
+          src={backgroundImage}
+          alt={title}
+          className="w-full h-full object-cover object-center"
+        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-white/30" />
       </div>
 
-      {/* === GRID / ARCHITECTURAL OVERLAY === */}
-      <div
-        className="absolute inset-0 z-10 pointer-events-none opacity-[0.06]"
-        style={{
-          backgroundImage:
-            'radial-gradient(circle, #000 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }}
-      />
+      {/* Content */}
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-center min-h-[80vh] pt-28 pb-16">
+        {/* Decorative accent line */}
+        <div className="w-10 h-[3px] bg-[#C8842A] mb-6" />
 
-      {/* === MAIN CONTENT === */}
-      <div className="relative z-20 h-full max-w-[1600px] mx-auto px-6 md:px-16 flex flex-col justify-end pb-24">
+        {/* Tag */}
+        <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-5">
+          {subtitle}
+        </p>
 
-        {/* SUBTITLE */}
-        <div className="flex items-center gap-6 mb-6">
-          <div className="flex items-center gap-2">
-            <div className="w-1 h-1 bg-black rounded-full" />
-            <div className="h-[1px] w-16 bg-black/60" />
-            <div className="w-1 h-1 bg-black rounded-full" />
-          </div>
-
-          <span className="text-[11px] uppercase tracking-[0.6em] font-semibold text-neutral-500">
-            {subtitle || "Signature Project"}
-          </span>
-        </div>
-
-        {/* TITLE */}
-        <div className="max-w-5xl">
-          <h1 className="font-serif text-[15vw] md:text-[8vw] leading-[0.75] tracking-tight text-neutral-900">
-            <Reveal delay={0.3}>
-              {title}
-              <span className="text-[#C5A880]">.</span>
-            </Reveal>
-          </h1>
-        </div>
-
-        {/* PREMIUM GLASS INFO BAR */}
-        <div className="mt-12 backdrop-blur-xl bg-white/40 border border-white/30 rounded-2xl px-6 md:px-10 py-6 flex flex-col md:flex-row justify-between items-start md:items-center shadow-[0_10px_40px_rgba(0,0,0,0.08)]">
-
-          {/* LEFT INFO */}
-          <div className="flex gap-12">
-            <div>
-              <p className="text-[9px] font-mono uppercase text-neutral-400 mb-1">
-                Project Status
-              </p>
-              <p className="text-[11px] font-semibold tracking-widest uppercase">
-                Completed / 2024
-              </p>
-            </div>
-
-            <div>
-              <p className="text-[9px] font-mono uppercase text-neutral-400 mb-1">
-                Location
-              </p>
-              <p className="text-[11px] font-semibold tracking-widest uppercase text-[#C5A880]">
-                International Archive
-              </p>
-            </div>
-          </div>
-
-          {/* RIGHT SIDE */}
-          <div className="mt-4 md:mt-0">
-            <span className="text-[10px] tracking-[0.5em] text-neutral-400 uppercase">
-              SC_REF // 001 - 012
-            </span>
-          </div>
-        </div>
+        {/* Headline */}
+        <h1 className="text-[#111827] font-extrabold leading-[1.02] text-[44px] md:text-[56px] lg:text-[68px] max-w-2xl mb-5 tracking-tight">
+          {title}
+        </h1>
       </div>
 
-      {/* === CORNER ACCENTS (UPGRADED) === */}
-      <div className="absolute top-28 left-8 w-6 h-6 border-t border-l border-black/20 z-30" />
-      <div className="absolute top-28 right-8 w-6 h-6 border-t border-r border-black/20 z-30" />
-
-      {/* BOTTOM FADE LINE */}
-      <div className="absolute bottom-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-black/20 to-transparent z-30" />
-
+      {/* Bottom fade into next section */}
+      <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[#FAF9F6] to-transparent z-10" />
     </section>
   );
 };
