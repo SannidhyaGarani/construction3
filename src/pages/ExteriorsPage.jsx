@@ -30,8 +30,8 @@ const ExteriorsPage = () => {
 
   return (
     <main className="bg-white text-[#111827] overflow-hidden">
-      <PageHero 
-        title="Exterior Designs" 
+      <PageHero
+        title="Exterior Designs"
         subtitle="That Define Architecture"
         backgroundImage="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2000&auto=format&fit=crop"
       />
@@ -52,33 +52,52 @@ const ExteriorsPage = () => {
             <span className="text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em]">Loading designs...</span>
           </div>
         ) : exteriors.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {exteriors.map((ext, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {exteriors.map((ext) => (
               <Link
                 key={ext.id}
                 to={`/exteriors/${ext.id}`}
-                className="group relative block"
+                className="group block relative"
               >
-                <div className="relative bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] overflow-hidden">
-                  <div className="aspect-[4/3] relative overflow-hidden">
+                {/* Premium Container */}
+                <div className="bg-[#FAF9F6] rounded-3xl p-4 border border-gray-100/80 shadow-sm hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden">
+
+                  {/* Accent Gradient Background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                  {/* Premium Image Frame */}
+                  <div className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-gray-100 group-hover:shadow-inner transition-all duration-500">
                     <img
                       src={ext.exteriorImage}
                       alt={ext.title}
-                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
-                      <span className="text-[#C8842A] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">{ext.style}</span>
+                    {/* Premium Badge */}
+                    <div className="absolute top-4 left-4">
+                      <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-xl text-xs font-bold uppercase tracking-wider text-[#111827] border border-gray-100 shadow-sm">
+                        {ext.style}
+                      </span>
+                    </div>
+                    {/* Premium Hover Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
+                      <span className="text-white text-sm font-bold flex items-center gap-2">
+                        View Details <ArrowUpRight size={16} />
+                      </span>
                     </div>
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex flex-col gap-2 mb-4">
-                      <h3 className="text-[#111827] font-bold text-xl">{ext.title}</h3>
-                      <p className="text-[#6B7280] text-sm">{ext.location}</p>
-                    </div>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                      <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">View Details</span>
-                      <ArrowUpRight size={18} className="text-[#C8842A] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Premium Content */}
+                  <div className="pt-5 pb-3 relative z-10">
+                    <h3 className="text-[#111827] font-bold text-md mb-2 group-hover:text-[#C8842A] transition-colors duration-300">
+                      {ext.title}
+                    </h3>
+                    {/* <p className="text-[#6B7280] text-base uppercase tracking-wider text-md mb-4">
+                      {ext.location}
+                    </p> */}
+                    
+                    {/* Premium CTA Arrow */}
+                    <div className="w-10 h-10 rounded-full bg-[#C8842A]/10 flex items-center justify-center text-[#C8842A] group-hover:bg-[#C8842A] group-hover:text-white transition-all duration-300">
+                      <ArrowUpRight size={18} />
                     </div>
                   </div>
                 </div>
@@ -86,10 +105,10 @@ const ExteriorsPage = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-center bg-[#FAF9F6] rounded-2xl border border-dashed border-gray-300">
-            <Home className="text-[#9CA3AF] mb-4" size={64} />
-            <h3 className="text-xl font-bold text-[#111827] mb-2">No exterior designs found</h3>
-            <p className="text-[#6B7280] text-sm">Check back soon for updates</p>
+          <div className="flex flex-col items-center justify-center py-24 text-center bg-[#FAF9F6] rounded-3xl border border-dashed border-gray-200">
+            <Home className="text-[#C8842A] mb-5" size={72} />
+            <h3 className="text-2xl font-bold text-[#111827] mb-3">No exterior designs found</h3>
+            <p className="text-[#6B7280] text-base">Check back soon for updates</p>
           </div>
         )}
       </section>
