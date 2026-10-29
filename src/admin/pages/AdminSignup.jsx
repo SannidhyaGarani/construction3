@@ -25,14 +25,7 @@ const AdminSignup = () => {
 
     if (password !== confirmPassword) {
       setError('Passwords do not match');
-      toast.error('Passwords do not match', {
-        style: {
-          background: '#1D1A1A',
-          color: '#fff',
-          borderRadius: '16px',
-          border: '1px solid #ef4444',
-        },
-      });
+      toast.error('Passwords do not match');
       return;
     }
 
@@ -40,24 +33,10 @@ const AdminSignup = () => {
       setError('');
       setLoading(true);
       await signup(email, password);
-      toast.success('Admin account created!', {
-        style: {
-          background: '#1A1D23',
-          color: '#fff',
-          borderRadius: '16px',
-          border: '1px solid #C5A880',
-        },
-      });
+      toast.success('Admin account created successfully');
     } catch (err) {
       setError('Failed to create an account. Please try again.');
-      toast.error('Signup failed. Ensure email is unique and password is strong.', {
-        style: {
-          background: '#1D1A1A',
-          color: '#fff',
-          borderRadius: '16px',
-          border: '1px solid #ef4444',
-        },
-      });
+      toast.error('Signup failed. Ensure email is unique and password is strong.');
       console.error(err);
     } finally {
       setLoading(false);
@@ -65,85 +44,87 @@ const AdminSignup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#050505] flex items-center justify-center p-6 relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute top-[-10%] left-[-10%] w-[500px] h-[500px] bg-[#C5A880]/10 rounded-full blur-[120px]"></div>
-      <div className="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] bg-[#C5A880]/5 rounded-full blur-[120px]"></div>
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-4 relative overflow-hidden">
+      {/* Background accents */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#C8842A]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-slate-800/40 rounded-full blur-3xl pointer-events-none"></div>
 
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="w-full max-w-md"
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
+        className="w-full max-w-md relative z-10"
       >
-        <div className="bg-[#0B0F14]/80 backdrop-blur-xl border border-white/5 rounded-[40px] p-10 md:p-12 shadow-2xl relative z-10">
+        <div className="bg-slate-900/90 backdrop-blur-xl border border-slate-800 rounded-2xl p-8 shadow-2xl relative">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#C8842A] to-transparent rounded-t-2xl"></div>
+
           {/* Header */}
-          <div className="flex flex-col items-center mb-10 text-center">
-            <div className="w-16 h-16 bg-[#C5A880] rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-[#C5A880]/20">
-              <UserPlus className="text-[#050505]" size={32} />
+          <div className="text-center mb-8">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-[#C8842A]/15 border border-[#C8842A]/30 text-[#C8842A] mb-4 shadow-inner">
+              <UserPlus size={26} />
             </div>
-            <h1 className="font-serif text-3xl text-white uppercase tracking-tight mb-2">Archelon</h1>
-            <span className="text-[10px] uppercase tracking-[0.5em] text-[#C5A880] font-bold italic">Admin Sign Up</span>
+            <h1 className="text-2xl font-bold text-white tracking-tight">Naksha Dynamics</h1>
+            <p className="text-xs uppercase tracking-wider text-slate-400 mt-1 font-medium">Create Admin Account</p>
           </div>
 
           {error && (
             <motion.div 
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-red-500/10 border border-red-500/20 rounded-2xl p-4 flex items-center gap-3 mb-8"
+              className="bg-red-500/10 border border-red-500/30 rounded-xl p-3 flex items-center gap-2.5 mb-6 text-red-400 text-xs"
             >
-              <AlertCircle className="text-red-500 shrink-0" size={20} />
-              <p className="text-red-500 text-xs font-medium uppercase tracking-wider">{error}</p>
+              <AlertCircle size={16} className="shrink-0" />
+              <span>{error}</span>
             </motion.div>
           )}
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 ml-2">Email Address</label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                  <Mail className="h-5 w-5 text-neutral-600 group-focus-within:text-[#C5A880] transition-colors" />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1.5">Email Address</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <Mail size={16} />
                 </div>
                 <input
                   type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="block w-full pl-14 pr-6 py-5 bg-white/5 border border-white/5 rounded-2xl text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-[#C5A880]/50 focus:bg-white/[0.08] transition-all duration-300"
-                  placeholder="admin@archelon.com"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#C8842A] focus:ring-1 focus:ring-[#C8842A] transition-all"
+                  placeholder="admin@nakshadynamics.com"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 ml-2">Secure Password</label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-neutral-600 group-focus-within:text-[#C5A880] transition-colors" />
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1.5">Password</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <Lock size={16} />
                 </div>
                 <input
                   type="password"
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="block w-full pl-14 pr-6 py-5 bg-white/5 border border-white/5 rounded-2xl text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-[#C5A880]/50 focus:bg-white/[0.08] transition-all duration-300"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#C8842A] focus:ring-1 focus:ring-[#C8842A] transition-all"
                   placeholder="••••••••"
                 />
               </div>
             </div>
 
-            <div className="space-y-2">
-              <label className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-500 ml-2">Confirm Password</label>
-              <div className="relative group">
-                <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none">
-                  <ShieldCheck className="h-5 w-5 text-neutral-600 group-focus-within:text-[#C5A880] transition-colors" />
+            <div>
+              <label className="block text-xs font-medium text-slate-300 mb-1.5">Confirm Password</label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-500">
+                  <ShieldCheck size={16} />
                 </div>
                 <input
                   type="password"
                   required
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
-                  className="block w-full pl-14 pr-6 py-5 bg-white/5 border border-white/5 rounded-2xl text-white text-sm placeholder:text-neutral-700 focus:outline-none focus:border-[#C5A880]/50 focus:bg-white/[0.08] transition-all duration-300"
+                  className="w-full pl-10 pr-4 py-2.5 bg-slate-950/60 border border-slate-800 rounded-xl text-white text-sm placeholder:text-slate-600 focus:outline-none focus:border-[#C8842A] focus:ring-1 focus:ring-[#C8842A] transition-all"
                   placeholder="••••••••"
                 />
               </div>
@@ -152,26 +133,29 @@ const AdminSignup = () => {
             <button
               disabled={loading}
               type="submit"
-              className={`w-full bg-[#C5A880] text-[#050505] font-bold text-[10px] uppercase tracking-[0.3em] py-5 rounded-2xl shadow-lg shadow-[#C5A880]/20 hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
+              className={`w-full mt-2 bg-[#C8842A] hover:bg-[#B37424] text-white font-semibold text-xs uppercase tracking-wider py-3 rounded-xl shadow-md transition-all duration-200 cursor-pointer ${loading ? 'opacity-70 cursor-not-allowed' : ''}`}
             >
               {loading ? (
                 <div className="flex items-center justify-center gap-2">
-                  <div className="w-3 h-3 border-2 border-[#050505] border-t-transparent rounded-full animate-spin"></div>
+                  <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                   <span>Creating Account...</span>
                 </div>
-              ) : 'Register Admin'}
+              ) : 'Register Admin Account'}
             </button>
           </form>
 
-          <div className="mt-10 text-center">
-            <p className="text-[10px] uppercase tracking-[0.2em] text-neutral-500 font-bold">
-              Already have an account? <Link to="/admin/login" className="text-[#C5A880] hover:underline hover:underline-offset-4 ml-1 transition-all">Log In here</Link>
+          <div className="mt-6 pt-4 border-t border-slate-800 text-center">
+            <p className="text-xs text-slate-400">
+              Already have an account?{' '}
+              <Link to="/admin/login" className="text-[#C8842A] hover:underline font-medium ml-1">
+                Log In
+              </Link>
             </p>
           </div>
         </div>
-        
-        <p className="mt-10 text-center text-neutral-600 text-[10px] uppercase tracking-[0.3em] font-bold">
-          © 2026 ARCHELON INTERIORS & CONSTRUCTION
+
+        <p className="mt-6 text-center text-slate-500 text-[11px] uppercase tracking-wider">
+          © {new Date().getFullYear()} Naksha Dynamics • All Rights Reserved
         </p>
       </motion.div>
     </div>

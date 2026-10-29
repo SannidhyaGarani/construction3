@@ -2,9 +2,9 @@ import React from 'react';
 
 const Select = ({ label, value, onChange, options, required = false, className = '' }) => {
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col gap-1.5 w-full ${className}`}>
       {label && (
-        <label className="text-sm font-semibold text-neutral-600 tracking-wide uppercase">
+        <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -12,7 +12,7 @@ const Select = ({ label, value, onChange, options, required = false, className =
         value={value}
         onChange={onChange}
         required={required}
-        className="px-4 py-3 rounded-2xl bg-neutral-100 border-transparent focus:bg-white focus:ring-2 focus:ring-neutral-800 focus:border-transparent transition-all duration-300 text-neutral-800 outline-none shadow-sm cursor-pointer appearance-none"
+        className="px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200 text-slate-900 text-sm focus:outline-none focus:border-[#C8842A] focus:bg-white focus:ring-2 focus:ring-[#C8842A]/10 transition-all shadow-2xs cursor-pointer"
       >
         <option value="" disabled>Select an option</option>
         {options.map((opt) => (

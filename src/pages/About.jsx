@@ -73,7 +73,7 @@ const values = [
 
 const About = () => {
   return (
-    <main className="bg-white text-[#111827] overflow-hidden">
+    <main className="bg-white text-slate-900 overflow-x-hidden font-sans">
       <PageHero
         title="About Us"
         subtitle="Building Trust Since 2026"
@@ -81,73 +81,87 @@ const About = () => {
       />
 
       {/* Firm Overview Section */}
-      <section className="bg-[#FAF9F6] py-8 md:py-20 font-sans">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="bg-slate-50/70 py-10 md:py-12 lg:py-14 font-sans relative overflow-hidden">
+        <div className="absolute inset-0 bg-subtle-grid opacity-60 pointer-events-none" />
+
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-14 items-center">
             <div>
-              <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
-                About Us
-              </p>
-              <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
+              <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+                <span className="w-6 h-[2px] bg-[#C8842A]" />
+                <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+                  About Our Practice
+                </p>
+              </div>
+              <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2] mb-5">
                 Strong Foundations.<br />
                 Smarter Future.
               </h2>
-              <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6">
-                Naksha Dynamics is a civil engineering firm committed to quality, innovation
-                and timely delivery. From concept to construction, we turn ideas into landmarks.
+              <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed mb-4">
+                Naksha Dynamics is a premier civil engineering firm committed to uncompromising structural quality, innovative methodologies, and punctual delivery. From initial concept drawings to turnkey infrastructure, we turn bold ideas into generational landmarks.
               </p>
-              <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6">
-                Established in 1995, we operate across major cities, delivering projects defined
-                by technical precision, material integrity, and transparent delivery. Our practice
-                safeguards long-term value through accountable supervision and clear milestones.
+              <p className="text-slate-600 text-sm sm:text-[15px] leading-relaxed mb-6">
+                Established with engineering discipline at its core, we operate across high-growth regions delivering projects defined by mathematical precision, material integrity, and complete transparency.
               </p>
               <a
                 href="/projects"
-                className="inline-flex items-center gap-2 text-[#C8842A] text-sm font-bold hover:text-[#B37424] transition-colors group relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C8842A] hover:after:w-full after:transition-all after:duration-300"
+                className="inline-flex items-center gap-2 text-[#C8842A] text-xs sm:text-sm font-bold uppercase tracking-wider hover:text-[#B37424] transition-colors group"
               >
-                View Our Projects <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
+                <span>View Complete Portfolio</span>
+                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </a>
             </div>
-            <div className="relative">
-              <img
-                src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
-                alt="Modern Architecture"
-                className="w-full h-[400px] md:h-[480px] object-cover rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)]"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl border border-gray-200/50 shadow-lg">
-                <div className="w-12 h-12 bg-[#C8842A]/10 rounded-lg flex items-center justify-center mb-3">
-                  <CheckCircle size={24} className="text-[#C8842A]" />
+
+            <div className="relative mt-4 lg:mt-0">
+              <div className="relative rounded-2xl overflow-hidden border border-slate-200/90 shadow-[0_12px_36px_rgba(0,0,0,0.06)] aspect-[4/3] sm:aspect-[16/11]">
+                <img
+                  src="https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
+                  alt="Modern Architecture"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+              </div>
+              
+              {/* Floating Architectural Badge */}
+              <div className="absolute -bottom-4 -left-2 sm:-bottom-6 sm:-left-6 bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-[0_12px_30px_rgba(200,132,42,0.15)] flex items-center gap-3.5">
+                <div className="w-11 h-11 bg-amber-500/10 rounded-xl flex items-center justify-center text-[#C8842A] shrink-0 border border-[#C8842A]/20">
+                  <CheckCircle size={22} />
                 </div>
-                <p className="text-[#6B7280] text-sm font-semibold">28+ Years</p>
-                <p className="text-[#111827] font-bold text-lg">of Excellence</p>
+                <div>
+                  <p className="text-slate-500 text-xs font-semibold uppercase tracking-wider">28+ Years</p>
+                  <p className="text-slate-900 font-bold text-base sm:text-lg">Engineering Excellence</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="bg-white py-8 md:py-16 font-sans">
-        <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 bg-white rounded-3xl border border-gray-100 shadow-[0_12px_40px_rgba(17,24,39,0.04)] p-6 md:p-8">
+      {/* Stats Section: 4 in a row on Desktop, 2 on Tablet/Mobile */}
+      <section className="bg-white py-10 md:py-12 lg:py-14 font-sans">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6">
             {stats.map((stat, i) => {
               const Icon = stat.icon;
               return (
                 <div
                   key={i}
                   id={stat.id}
-                  className="flex flex-col items-center justify-center p-6 md:p-8 text-center relative group rounded-2xl transition-all duration-500 hover:bg-[#FAF9F6] hover:shadow-lg"
+                  className="flex flex-col items-center justify-center p-5 sm:p-7 text-center relative group rounded-2xl bg-white border border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#C8842A]/40 hover:shadow-[0_16px_36px_rgba(200,132,42,0.12)] transition-all duration-400 overflow-hidden"
                 >
-                  {/* Premium background hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-2xl" />
+                  {/* Top Architectural Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
                   
-                  <div className="w-16 h-16 md:w-20 md:h-20 flex-shrink-0 flex items-center justify-center mb-6 bg-white border border-gray-100 rounded-xl group-hover:border-[#C8842A]/30 group-hover:shadow-md transition-all duration-300 relative z-10">
+                  {/* Subtle Background Hover Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/[0.03] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 pointer-events-none" />
+                  
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 shrink-0 flex items-center justify-center mb-4 bg-slate-50 border border-slate-200/80 rounded-xl group-hover:bg-[#C8842A] group-hover:text-white group-hover:border-[#C8842A] transition-all duration-300 shadow-xs group-hover:scale-105 relative z-10">
                     <Icon />
                   </div>
-                  <span className="text-[#111827] font-black text-3xl md:text-[40px] tracking-tight leading-none mb-3 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text relative z-10">
+                  <span className="text-slate-900 font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight leading-none mb-2 relative z-10">
                     {stat.value}
                   </span>
-                  <span className="text-[#6B7280] text-sm md:text-base font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors relative z-10">
+                  <span className="text-slate-500 text-xs sm:text-sm font-semibold tracking-wide uppercase leading-snug whitespace-pre-line group-hover:text-slate-700 transition-colors relative z-10">
                     {stat.label}
                   </span>
                 </div>
@@ -157,40 +171,42 @@ const About = () => {
         </div>
       </section>
 
-      {/* Vision, Mission, Values */}
-      <section className="bg-[#FAF9F6] py-8 md:py-20 font-sans">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-8 h-[2px] bg-[#C8842A]" />
-              <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em]">
-                Our Core
+      {/* Vision, Mission, Values: 3 cards in a row */}
+      <section className="bg-slate-50/70 py-10 md:py-12 lg:py-14 font-sans relative overflow-hidden">
+        <div className="absolute inset-0 bg-subtle-grid opacity-60 pointer-events-none" />
+
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-2 mb-2.5 sm:mb-3">
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
+              <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+                Foundational Principles
               </p>
-              <span className="w-8 h-[2px] bg-[#C8842A]" />
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
             </div>
-            <h2 className="text-[#111827] font-extrabold text-3xl md:text-[36px] tracking-tight">
-              Vision, Mission & Values
+            <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2]">
+              Vision, Mission & Guiding Values
             </h2>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
             {values.map((item, i) => {
               const Icon = item.icon;
               return (
                 <div
                   key={i}
-                  className="group relative bg-white p-8 md:p-10 rounded-3xl border border-gray-100 hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden"
+                  className="group relative bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#C8842A]/40 hover:shadow-[0_16px_36px_rgba(200,132,42,0.12)] transition-all duration-400 overflow-hidden flex flex-col justify-between"
                 >
-                  {/* Hover accent top bar */}
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C8842A] to-amber-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  
-                  {/* Premium background hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  <div className="w-16 h-16 bg-[#C8842A]/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-[#C8842A]/20 transition-all duration-300 relative z-10">
-                    <Icon size={32} className="text-[#C8842A]" strokeWidth={1.5} />
+                  {/* Top Architectural Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                  <div className="relative z-10">
+                    <div className="w-12 h-12 bg-amber-500/10 border border-[#C8842A]/20 rounded-xl flex items-center justify-center text-[#C8842A] mb-4 sm:mb-5 group-hover:bg-[#C8842A] group-hover:text-white transition-all duration-300">
+                      <Icon size={24} strokeWidth={1.75} />
+                    </div>
+                    <h3 className="text-slate-900 font-semibold text-lg sm:text-xl mb-2.5 group-hover:text-[#C8842A] transition-colors">{item.title}</h3>
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">{item.desc}</p>
                   </div>
-                  <h3 className="text-[#111827] font-bold text-2xl mb-4 relative z-10">{item.title}</h3>
-                  <p className="text-[#6B7280] text-sm md:text-base leading-relaxed relative z-10">{item.desc}</p>
                 </div>
               );
             })}
@@ -198,40 +214,38 @@ const About = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="bg-white py-8 md:py-16 font-sans">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
-          <div className="text-center mb-10">
-            <div className="flex items-center justify-center gap-3 mb-3">
-              <span className="w-8 h-[2px] bg-[#C8842A]" />
-              <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em]">
-                Why Choose Us
+      {/* Why Choose Us: 5 cards with responsive layout */}
+      <section className="bg-white py-10 md:py-12 lg:py-14 font-sans">
+        <div className="max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
+            <div className="flex items-center justify-center gap-2 mb-2.5 sm:mb-3">
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
+              <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+                Why Naksha Dynamics
               </p>
-              <span className="w-8 h-[2px] bg-[#C8842A]" />
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
             </div>
-            <h2 className="text-[#111827] font-extrabold text-3xl md:text-[36px] tracking-tight">
-              Engineering with Integrity
+            <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2]">
+              Engineering with Uncompromising Integrity
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 md:gap-8">
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5">
             {whyPoints.map((p, i) => {
               const Icon = p.icon;
               return (
                 <div
                   key={i}
-                  className="group relative flex flex-col items-center text-center p-6 md:p-8 bg-[#FAF9F6] border border-gray-100/80 rounded-2xl hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden"
+                  className="group relative flex flex-col items-center text-center p-5 sm:p-6 bg-slate-50/70 border border-slate-200/80 rounded-2xl hover:bg-white hover:border-[#C8842A]/40 hover:shadow-[0_12px_28px_rgba(200,132,42,0.1)] transition-all duration-400 overflow-hidden"
                 >
-                  {/* Hover accent top bar */}
-                  <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-[#C8842A] to-amber-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-                  
-                  {/* Premium background hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                  
-                  <div className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-6 bg-white border border-gray-100 rounded-xl group-hover:border-[#C8842A]/30 group-hover:shadow-lg transition-all duration-300 relative z-10">
-                    <Icon size={32} className="text-[#C8842A]" strokeWidth={1.5} />
+                  {/* Top Architectural Accent Line */}
+                  <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+                  <div className="w-12 h-12 flex items-center justify-center mb-4 bg-white border border-slate-200/80 rounded-xl text-[#C8842A] group-hover:bg-[#C8842A] group-hover:text-white transition-all duration-300 shadow-2xs group-hover:scale-105 relative z-10">
+                    <Icon size={22} strokeWidth={1.75} />
                   </div>
-                  <h3 className="text-[#111827] font-bold text-lg md:text-xl mb-3 relative z-10">{p.title}</h3>
-                  <p className="text-[#6B7280] text-sm md:text-base leading-relaxed relative z-10">{p.desc}</p>
+                  <h3 className="text-slate-900 font-semibold text-base mb-2 relative z-10">{p.title}</h3>
+                  <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed relative z-10">{p.desc}</p>
                 </div>
               );
             })}

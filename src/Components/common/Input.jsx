@@ -2,9 +2,9 @@ import React from 'react';
 
 const Input = ({ label, type = 'text', value, onChange, placeholder, required = false, className = '' }) => {
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col gap-1.5 w-full ${className}`}>
       {label && (
-        <label className="text-sm font-semibold text-neutral-600 tracking-wide uppercase">
+        <label className="text-xs font-semibold text-slate-700 uppercase tracking-wider">
           {label} {required && <span className="text-red-500">*</span>}
         </label>
       )}
@@ -14,7 +14,7 @@ const Input = ({ label, type = 'text', value, onChange, placeholder, required = 
         onChange={onChange}
         placeholder={placeholder}
         required={required}
-        className="px-4 py-3 rounded-2xl bg-neutral-100 border-transparent focus:bg-white focus:ring-2 focus:ring-neutral-800 focus:border-transparent transition-all duration-300 text-neutral-800 placeholder-neutral-400 outline-none shadow-sm"
+        className="px-3.5 py-2.5 rounded-xl bg-slate-50/70 border border-slate-200 text-slate-900 placeholder:text-slate-400 text-sm focus:outline-none focus:border-[#C8842A] focus:bg-white focus:ring-2 focus:ring-[#C8842A]/10 transition-all shadow-2xs"
       />
     </div>
   );

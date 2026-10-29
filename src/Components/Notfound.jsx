@@ -63,7 +63,7 @@ const NotFound = () => {
                 <Link 
                     key={item}
                     to={`/${item.toLowerCase().replace(' ', '')}`}
-                    className="text-[10px] uppercase tracking-[0.3em] text-slate-500 hover:text-[#C5A880] transition-colors"
+                    className="text-[10px] uppercase tracking-[0.3em] text-slate-500 hover:text-[#C8842A] transition-colors"
                 >
                     {item}
                 </Link>
@@ -73,8 +73,8 @@ const NotFound = () => {
 
       {/* Bottom Branding */}
       <div className="absolute bottom-10 left-10 hidden md:block">
-        <p className="text-[9px] tracking-[0.5em] text-white/10 uppercase vertical-text">
-            Archelon Developments
+        <p className="text-[9px] tracking-[0.5em] text-white/20 uppercase vertical-text">
+            Naksha Dynamics
         </p>
       </div>
     </div>

@@ -37,21 +37,21 @@ const points = [
 const FeatureCard = ({ p }) => {
   const Icon = p.icon;
   return (
-    <div className="group relative flex flex-col items-center text-center p-6 md:p-5 lg:p-6 bg-[#FAF9F6] rounded-2xl border border-transparent hover:bg-white hover:border-[#C8842A]/20 hover:shadow-[0_12px_40px_-16px_rgba(200,132,42,0.15)] transition-all duration-500 overflow-hidden h-full">
+    <div className="group relative flex flex-col items-center text-center p-5 sm:p-6 bg-[#FAF9F6] rounded-2xl border border-transparent hover:bg-white hover:border-[#C8842A]/20 hover:shadow-[0_12px_40px_-16px_rgba(200,132,42,0.15)] transition-all duration-500 overflow-hidden h-full">
       {/* Subtle blurred accent in the top right corner */}
       <div className="absolute -right-8 -top-8 w-32 h-32 bg-[#C8842A]/5 rounded-full blur-2xl group-hover:bg-[#C8842A]/15 transition-colors duration-700 pointer-events-none" />
 
       {/* Centered Compact Icon Box */}
-      <div className="w-14 h-14 flex items-center justify-center bg-white rounded-[14px] shadow-sm border border-gray-100 group-hover:border-[#C8842A]/30 group-hover:scale-110 transition-all duration-500 mb-5 relative z-10">
-        <Icon size={24} className="text-[#C8842A]" strokeWidth={1.75} />
+      <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center bg-white rounded-xl sm:rounded-[14px] shadow-sm border border-gray-100 group-hover:border-[#C8842A]/30 group-hover:scale-110 transition-all duration-500 mb-4 sm:mb-5 relative z-10">
+        <Icon size={22} className="text-[#C8842A]" strokeWidth={1.75} />
       </div>
 
       {/* Centered Typography */}
-      <h3 className="text-[#111827] font-bold text-base mb-2 relative z-10 group-hover:text-[#C8842A] transition-colors duration-300">
+      <h3 className="text-[#111827] font-semibold text-base mb-1.5 sm:mb-2 relative z-10 group-hover:text-[#C8842A] transition-colors duration-300">
         {p.title}
       </h3>
-      
-      <p className="text-[#6B7280] text-[13px] sm:text-sm leading-relaxed relative z-10">
+
+      <p className="text-[#6B7280] text-xs sm:text-sm leading-relaxed relative z-10">
         {p.desc}
       </p>
     </div>
@@ -60,25 +60,25 @@ const FeatureCard = ({ p }) => {
 
 const WhyChooseUs = () => {
   return (
-    <section className="bg-white py-8 md:py-16 font-sans overflow-hidden">
+    <section className="bg-white py-8 md:py-10 lg:py-12 font-sans overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
 
         {/* Header */}
-        <div className="text-center mb-10 md:mb-12">
-          <div className="flex items-center justify-center gap-3 mb-3">
-            <span className="w-8 h-[2px] bg-[#C8842A]" />
-            <p className="text-[#C8842A] text-xs md:text-sm font-bold uppercase tracking-[0.3em]">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10">
+          <div className="inline-flex items-center justify-center gap-2 mb-2.5 sm:mb-3">
+            <span className="w-6 h-[2px] bg-[#C8842A]" />
+            <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
               Why Choose Us
             </p>
-            <span className="w-8 h-[2px] bg-[#C8842A]" />
+            <span className="w-6 h-[2px] bg-[#C8842A]" />
           </div>
-          <h2 className="text-[#111827] font-extrabold text-3xl md:text-[36px] tracking-tight">
+          <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2] sm:leading-[1.18]">
             Engineering with Integrity
           </h2>
         </div>
 
         {/* --- MOBILE VIEW: Swiper Slider --- */}
-        <div className="block md:hidden pb-10">
+        <div className="block md:hidden">
           <Swiper
             modules={[Pagination]}
             spaceBetween={16}
@@ -88,9 +88,9 @@ const WhyChooseUs = () => {
             pagination={{
               clickable: true,
               bulletActiveClass: '!bg-[#C8842A] !w-6 !rounded-full',
-              bulletClass: '!bg-gray-200 !w-2 !h-2 !rounded-full transition-all duration-300 inline-block mx-1 mt-4',
+              bulletClass: '!bg-gray-200 !w-2 !h-2 !rounded-full transition-all duration-300 inline-block mx-1 mt-3',
             }}
-            className="w-full !pb-12"
+            className="w-full !pb-8"
           >
             {points.map((p, i) => (
               <SwiperSlide key={i} className="h-auto">

@@ -14,7 +14,6 @@ const FileUpload = ({ label, onUploadComplete, initialValue = null, required = f
     setPreview(URL.createObjectURL(selectedFile));
     setUploaded(false);
 
-    // Auto-upload for simplicity, but we can also trigger it manually
     setLoading(true);
     try {
       const url = await uploadToCloudinary(selectedFile);
@@ -27,53 +26,58 @@ const FileUpload = ({ label, onUploadComplete, initialValue = null, required = f
     }
   };
 
-  const removeFile = () => {
+  const removeFile = (e) => {
+    e.stopPropagation();
     setPreview(null);
     setUploaded(false);
     onUploadComplete('');
   };
 
   return (
-    <div className={`flex flex-col gap-2 w-full ${className}`}>
+    <div className={`flex flex-col gap-1.5 w-full ${className}`}>
       {label && (
-        <label className="text-sm font-semibold text-neutral-600 tracking-wide uppercase">
-          {label} {required && <span className="text-red-500">*</span>}
+        <label className="text-xs font-semibold text-slate-700">
+          {label} {required && <span className="text-rose-500">*</span>}
         </label>
       )}
       
-      <div className="relative group border-2 border-dashed border-neutral-200 rounded-2xl overflow-hidden hover:border-neutral-400 transition-all duration-300 min-h-[200px] flex items-center justify-center bg-neutral-50/50">
+      <div className="relative group border-2 border-dashed border-slate-200 hover:border-[#C8842A]/60 rounded-xl overflow-hidden transition-all duration-200 min-h-[160px] flex items-center justify-center bg-slate-50/60">
         {preview ? (
           <div className="w-full h-full relative group">
-            <img src={preview} alt="Preview" className="w-full h-48 object-cover rounded-2xl" />
+            <img src={preview} alt="Upload preview" className="w-full h-44 object-cover" />
             
-            <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+            <div className="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition-opacity duration-200 flex items-center justify-center gap-3">
               <button 
                 type="button"
                 onClick={removeFile}
-                className="p-3 bg-red-500/80 hover:bg-red-500 rounded-full text-white backdrop-blur-sm transition-colors shadow-lg"
+                className="px-3 py-1.5 bg-rose-600 hover:bg-rose-700 rounded-lg text-white text-xs font-semibold shadow-md transition-all flex items-center gap-1.5 cursor-pointer"
               >
-                <X size={20} />
+                <X size={14} />
+                <span>Remove</span>
               </button>
             </div>
 
             {loading && (
-              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm flex flex-col items-center justify-center text-white gap-2 rounded-2xl">
-                <Loader2 className="animate-spin" size={32} />
-                <span className="text-xs font-bold tracking-widest uppercase">Uploading...</span>
+              <div className="absolute inset-0 bg-slate-950/70 backdrop-blur-sm flex flex-col items-center justify-center text-white gap-2">
+                <Loader2 className="animate-spin text-[#C8842A]" size={28} />
+                <span className="text-xs font-medium uppercase tracking-wider text-slate-200">Uploading to cloud...</span>
               </div>
             )}
 
             {uploaded && !loading && (
-              <div className="absolute top-4 right-4 bg-green-500 text-white p-2 rounded-full shadow-lg">
-                <CheckCircle size={16} />
+              <div className="absolute top-3 right-3 bg-emerald-600 text-white px-2 py-1 rounded-md text-[10px] font-semibold flex items-center gap-1 shadow-sm">
+                <CheckCircle size={12} />
+                <span>Ready</span>
               </div>
             )}
           </div>
         ) : (
-          <label className="flex flex-col items-center justify-center w-full h-48 cursor-pointer hover:bg-neutral-100/80 transition-colors">
-            <Upload size={32} className="text-neutral-400 mb-2 group-hover:text-neutral-800 transition-colors" />
-            <span className="text-sm font-medium text-neutral-500 group-hover:text-neutral-800">Click to upload image</span>
-            <span className="text-[10px] text-neutral-400 mt-1 uppercase tracking-tighter">PNG, JPG or WEBP</span>
+          <label className="flex flex-col items-center justify-center w-full h-40 cursor-pointer hover:bg-slate-100/70 transition-colors p-4 text-center">
+            <div className="w-10 h-10 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-500 group-hover:text-[#C8842A] group-hover:border-[#C8842A]/40 mb-2 transition-colors">
+              <Upload size={18} />
+            </div>
+            <span className="text-xs font-semibold text-slate-700 group-hover:text-slate-900">Choose an image to upload</span>
+            <span className="text-[11px] text-slate-400 mt-0.5">JPG, PNG, WebP up to 10MB</span>
             <input 
               type="file" 
               className="hidden" 

@@ -1,40 +1,53 @@
 import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../Firebase/Firebase';
+import { Link } from 'react-router-dom';
 import { 
   Map, 
   Home, 
   Square, 
   Briefcase, 
   BookOpen, 
-  TrendingUp, 
-  Clock, 
-  ArrowUpRight,
-  Loader2
+  ArrowRight,
+  Loader2,
+  PlusCircle,
+  ExternalLink,
+  ShieldCheck,
+  CheckCircle2
 } from 'lucide-react';
-import { motion as Motion } from 'framer-motion';
 
-const StatCard = ({ title, value, icon: Icon, color, delay }) => { // eslint-disable-line no-unused-vars
+const StatCard = ({ title, value, icon: Icon, link, tag }) => {
   return (
-  <Motion.div
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5, delay }}
-    className="bg-white p-8 rounded-[32px] shadow-2xl shadow-neutral-100/50 border border-neutral-100 flex items-start justify-between group hover:border-[#C5A880]/30 transition-all duration-500"
-  >
-    <div className="flex flex-col gap-4">
-      <div className={`p-4 rounded-2xl ${color} bg-opacity-10 w-fit group-hover:scale-110 transition-transform duration-500`}>
-        <Icon className={color.replace('bg-', 'text-')} size={24} />
+    <Link
+      to={link}
+      className="bg-white p-5 sm:p-6 rounded-2xl border border-slate-200/90 shadow-[0_2px_12px_rgba(0,0,0,0.03)] hover:border-[#C8842A]/40 hover:shadow-[0_12px_32px_rgba(200,132,42,0.12)] transition-all duration-300 flex flex-col justify-between group relative overflow-hidden"
+    >
+      {/* Top Architectural Accent Line */}
+      <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-200/90 flex items-center justify-center text-slate-700 group-hover:bg-[#C8842A] group-hover:text-white group-hover:border-[#C8842A] transition-all duration-300 shadow-2xs">
+            <Icon size={20} />
+          </div>
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#C8842A] bg-amber-500/10 px-2 py-0.5 rounded-md border border-[#C8842A]/20">
+            {tag}
+          </span>
+        </div>
+
+        <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">
+          {title}
+        </p>
+        <p className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+          {value}
+        </p>
       </div>
-      <div className="flex flex-col gap-1">
-        <span className="text-[10px] uppercase tracking-[0.3em] text-neutral-400 font-bold">{title}</span>
-        <span className="text-4xl font-serif text-neutral-800">{value}</span>
+
+      <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-600 group-hover:text-[#C8842A] transition-colors">
+        <span>Manage Records</span>
+        <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
       </div>
-    </div>
-    <div className="text-neutral-200 group-hover:text-[#C5A880] transition-colors">
-      <ArrowUpRight size={24} />
-    </div>
-  </Motion.div>
+    </Link>
   );
 };
 
@@ -73,119 +86,207 @@ const Overview = () => {
     fetchStats();
   }, []);
 
+  const totalCatalogItems = stats.floorPlans + stats.exteriors + stats.interiors + stats.projects + stats.blogs;
+
   if (loading) {
     return (
-      <div className="flex flex-col items-center justify-center py-48 gap-4 text-neutral-400">
-        <Loader2 className="animate-spin" size={48} />
-        <span className="text-xs font-bold uppercase tracking-[0.3em]">Analyzing architecture...</span>
+      <div className="flex flex-col items-center justify-center py-32 gap-3 text-slate-500">
+        <Loader2 className="animate-spin text-[#C8842A]" size={36} strokeWidth={1.75} />
+        <span className="text-xs font-semibold uppercase tracking-[0.2em]">Loading Dashboard...</span>
       </div>
     );
   }
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-6 sm:space-y-8 font-sans">
       
       {/* Welcome Header */}
-      <div className="flex flex-col gap-2">
-        <span className="text-[10px] uppercase tracking-[0.5em] text-[#C5A880] font-bold">Dashboard</span>
-        <h1 className="font-serif text-5xl text-neutral-800">Welcome back, Admin</h1>
-        <p className="text-neutral-400 text-sm font-light mt-2 max-w-md italic tracking-wide leading-relaxed">
-          Here is an overview of your architectural portfolio and content status.
-        </p>
+      <div className="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200/90 shadow-2xs relative overflow-hidden flex flex-col md:flex-row md:items-center justify-between gap-4">
+        {/* Top Architectural Accent Line */}
+        <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A]" />
+
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="w-5 h-[2px] bg-[#C8842A]" />
+            <span className="text-[11px] uppercase tracking-[0.25em] text-[#C8842A] font-semibold">Naksha Dynamics Admin</span>
+          </div>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-slate-900 tracking-tight">
+            Portfolio & Asset Management
+          </h1>
+          <p className="text-slate-500 text-xs sm:text-sm mt-1 max-w-xl">
+            Live overview of all published architectural plans, elevations, project records, and articles.
+          </p>
+        </div>
+
+        <div className="flex items-center gap-2.5 shrink-0">
+          <Link
+            to="/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-xl text-xs font-semibold hover:bg-[#C8842A] transition-all duration-300 shadow-xs"
+          >
+            <span>Live Website</span>
+            <ExternalLink size={13} />
+          </Link>
+        </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {/* Live Stats Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 sm:gap-5">
         <StatCard 
           title="Floor Plans" 
           value={stats.floorPlans} 
           icon={Map} 
-          color="bg-blue-500" 
-          delay={0.1}
+          link="/admin/floor-plans"
+          tag="Blueprints"
         />
         <StatCard 
-          title="Exteriors" 
+          title="Exterior Designs" 
           value={stats.exteriors} 
           icon={Home} 
-          color="bg-amber-500" 
-          delay={0.2}
+          link="/admin/exteriors"
+          tag="Elevations"
         />
         <StatCard 
-          title="Interiors" 
+          title="Interior Concepts" 
           value={stats.interiors} 
           icon={Square} 
-          color="bg-purple-500" 
-          delay={0.3}
+          link="/admin/interiors"
+          tag="Spatial"
         />
         <StatCard 
-          title="Projects" 
+          title="Projects Archive" 
           value={stats.projects} 
           icon={Briefcase} 
-          color="bg-emerald-500" 
-          delay={0.4}
+          link="/admin/projects"
+          tag="Civil Builds"
         />
         <StatCard 
-          title="Blogs" 
+          title="Articles & Insights" 
           value={stats.blogs} 
           icon={BookOpen} 
-          color="bg-rose-500" 
-          delay={0.5}
+          link="/admin/blogs"
+          tag="Editorial"
         />
       </div>
 
-      {/* Recent Activity / System Status Placeholder */}
-      <div className="grid lg:grid-cols-3 gap-8">
-        <div className="lg:col-span-2 bg-white p-12 rounded-[40px] shadow-2xl shadow-neutral-100/50 border border-neutral-100">
-          <div className="flex items-center justify-between mb-12">
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A880] font-bold">Performance</span>
-              <h3 className="text-2xl font-serif text-neutral-800">Portfolio Growth</h3>
-            </div>
-            <div className="flex items-center gap-2 text-emerald-500 bg-emerald-50 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-tighter">
-              <TrendingUp size={14} />
-              <span>+12% this month</span>
-            </div>
-          </div>
-          <div className="h-64 flex items-end gap-4">
-            {[40, 70, 45, 90, 65, 80, 55].map((h, i) => (
-              <div key={i} className="flex-1 bg-neutral-100 rounded-t-xl relative group overflow-hidden">
-                <Motion.div 
-                  initial={{ height: 0 }}
-                  animate={{ height: `${h}%` }}
-                  transition={{ duration: 1, delay: i * 0.1 }}
-                  className="absolute bottom-0 w-full bg-[#C5A880] opacity-20 group-hover:opacity-100 transition-all duration-500"
-                />
+      {/* Quick Actions & Catalog Summary */}
+      <div className="grid lg:grid-cols-12 gap-5 sm:gap-6">
+        
+        {/* Left: Quick Actions Hub */}
+        <div className="lg:col-span-7 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-2xs">
+          <h2 className="text-base font-semibold text-slate-900 mb-1">
+            Quick Action Hub
+          </h2>
+          <p className="text-xs text-slate-500 mb-5">
+            Create or edit catalog items across your active practice areas:
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <Link
+              to="/admin/floor-plans"
+              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#C8842A]/50 hover:bg-white transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-[#C8842A] flex items-center justify-center shrink-0">
+                  <PlusCircle size={16} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-slate-900 group-hover:text-[#C8842A] transition-colors">Add Floor Plan</p>
+                  <p className="text-[11px] text-slate-500">Dimensions & blueprints</p>
+                </div>
               </div>
-            ))}
+              <ArrowRight size={13} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              to="/admin/projects"
+              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#C8842A]/50 hover:bg-white transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-[#C8842A] flex items-center justify-center shrink-0">
+                  <PlusCircle size={16} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-slate-900 group-hover:text-[#C8842A] transition-colors">Add New Project</p>
+                  <p className="text-[11px] text-slate-500">Civil build showcase</p>
+                </div>
+              </div>
+              <ArrowRight size={13} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              to="/admin/exteriors"
+              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#C8842A]/50 hover:bg-white transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-[#C8842A] flex items-center justify-center shrink-0">
+                  <PlusCircle size={16} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-slate-900 group-hover:text-[#C8842A] transition-colors">Add Exterior Elevation</p>
+                  <p className="text-[11px] text-slate-500">Facade styling & views</p>
+                </div>
+              </div>
+              <ArrowRight size={13} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              to="/admin/blogs"
+              className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 hover:border-[#C8842A]/50 hover:bg-white transition-all flex items-center justify-between group"
+            >
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-[#C8842A] flex items-center justify-center shrink-0">
+                  <PlusCircle size={16} />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold text-slate-900 group-hover:text-[#C8842A] transition-colors">Publish Article</p>
+                  <p className="text-[11px] text-slate-500">Engineering discourse</p>
+                </div>
+              </div>
+              <ArrowRight size={13} className="text-slate-400 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </div>
         </div>
 
-        <div className="bg-[#0B0F14] p-12 rounded-[40px] text-white flex flex-col justify-between">
-          <div className="flex flex-col gap-8">
-            <div className="flex flex-col gap-1">
-              <span className="text-[10px] uppercase tracking-[0.3em] text-[#C5A880] font-bold">System</span>
-              <h3 className="text-2xl font-serif">Cloud Status</h3>
+        {/* Right: System Status & Catalog Distribution */}
+        <div className="lg:col-span-5 bg-white p-6 sm:p-7 rounded-2xl border border-slate-200/90 shadow-2xs flex flex-col justify-between">
+          <div>
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-base font-semibold text-slate-900">
+                System & Cloud Status
+              </h2>
+              <span className="flex items-center gap-1.5 text-[11px] font-semibold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200">
+                <CheckCircle2 size={12} />
+                <span>All Services Operational</span>
+              </span>
             </div>
-            <div className="space-y-6">
-              <div className="flex items-center justify-between py-4 border-b border-white/5">
-                <span className="text-xs text-neutral-400 font-medium">Firestore DB</span>
-                <span className="text-[10px] bg-emerald-500/20 text-emerald-500 px-3 py-1 rounded-full font-bold uppercase tracking-tighter">Connected</span>
+
+            <div className="space-y-3 pt-2">
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 border border-slate-100">
+                <span className="text-xs text-slate-600 font-medium">Total Published Assets</span>
+                <span className="text-xs font-bold text-slate-900">{totalCatalogItems} Records</span>
               </div>
-              <div className="flex items-center justify-between py-4 border-b border-white/5">
-                <span className="text-xs text-neutral-400 font-medium">Cloudinary CDN</span>
-                <span className="text-[10px] bg-emerald-500/20 text-emerald-500 px-3 py-1 rounded-full font-bold uppercase tracking-tighter">Online</span>
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 border border-slate-100">
+                <span className="text-xs text-slate-600 font-medium">Database Backend</span>
+                <span className="text-xs font-semibold text-emerald-600">Firebase Firestore (Active)</span>
               </div>
-              <div className="flex items-center justify-between py-4">
-                <span className="text-xs text-neutral-400 font-medium">Analytics Engine</span>
-                <span className="text-[10px] bg-emerald-500/20 text-emerald-500 px-3 py-1 rounded-full font-bold uppercase tracking-tighter">Active</span>
+              <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/70 border border-slate-100">
+                <span className="text-xs text-slate-600 font-medium">Media CDN</span>
+                <span className="text-xs font-semibold text-emerald-600">Cloudinary Media (Ready)</span>
               </div>
             </div>
           </div>
-          <div className="flex items-center gap-3 text-neutral-500 text-[10px] uppercase tracking-[0.2em] font-bold">
-            <Clock size={14} />
-            <span>Last Sync: Just now</span>
+
+          <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck size={14} className="text-[#C8842A]" />
+              <span>Admin Access Protected</span>
+            </span>
+            <span>Version 2.4</span>
           </div>
         </div>
+
       </div>
 
     </div>

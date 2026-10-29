@@ -17,17 +17,17 @@ const HeroSection = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col justify-center min-h-[92vh] pt-28 pb-16">
-        {/* Decorative accent line */}
-        <div className="w-10 h-[3px] bg-[#C8842A] mb-6" />
+      <div className="relative z-10 max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex flex-col justify-center min-h-[92vh] pt-28 pb-16">
+        {/* Eyebrow Accent (Same design as other sections) */}
+        <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+          <span className="w-6 h-[2px] bg-[#C8842A]" />
+          <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+            Welcome to Naksha Dynamics
+          </p>
+        </div>
 
-        {/* Tag */}
-        <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-5">
-          Welcome to Naksha Dynamics
-        </p>
-
-        {/* Headline */}
-        <h1 className="text-[#111827] font-extrabold leading-[1.02] text-[44px] md:text-[56px] lg:text-[68px] max-w-2xl mb-5 tracking-tight">
+        {/* Headline (Same weight, tracking, and styling as other sections) */}
+        <h1 className="text-slate-900 font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-[54px] xl:text-[58px] tracking-tight leading-[1.14] sm:leading-[1.12] max-w-2xl mb-5">
           Engineering Today.<br />
           Building Tomorrow.
         </h1>

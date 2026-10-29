@@ -32,16 +32,19 @@ const RecentBlogs = () => {
   if (!loading && blogs.length === 0) return null;
 
   return (
-    <section className="bg-[#FAF9F6] py-14 md:py-16 font-sans overflow-hidden">
+    <section className="bg-[#FAF9F6] py-8 md:py-10 lg:py-12 font-sans overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
           <div>
-            <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-2.5">
-              Latest Blogs
-            </p>
-            <h2 className="text-[#111827] font-extrabold text-3xl md:text-[36px] tracking-tight">
+            <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
+              <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+                Latest Blogs
+              </p>
+            </div>
+            <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2] sm:leading-[1.18]">
               Insights & Updates
             </h2>
           </div>

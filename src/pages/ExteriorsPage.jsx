@@ -29,75 +29,84 @@ const ExteriorsPage = () => {
   }, []);
 
   return (
-    <main className="bg-white text-[#111827] overflow-hidden">
+    <main className="bg-white text-slate-900 overflow-x-hidden font-sans">
       <PageHero
         title="Exterior Designs"
         subtitle="That Define Architecture"
         backgroundImage="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=2000&auto=format&fit=crop"
       />
 
-      <section className="py-12 md:py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
-        <div className="mb-10">
-          <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
-            Our Portfolio
-          </p>
-          <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
+      <section className="py-10 md:py-12 lg:py-14 max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+        <div className="mb-8 md:mb-10">
+          <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+            <span className="w-6 h-[2px] bg-[#C8842A]" />
+            <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+              Facade Architecture
+            </p>
+          </div>
+          <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2]">
             Explore our curated exterior designs
           </h2>
         </div>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-4">
-            <Loader2 className="animate-spin text-[#C8842A]" size={48} />
-            <span className="text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em]">Loading designs...</span>
+          <div className="flex flex-col items-center justify-center py-20 gap-3">
+            <Loader2 className="animate-spin text-[#C8842A]" size={38} strokeWidth={1.75} />
+            <span className="text-slate-500 text-xs font-semibold uppercase tracking-[0.2em]">Loading designs...</span>
           </div>
         ) : exteriors.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
             {exteriors.map((ext) => (
               <Link
                 key={ext.id}
                 to={`/exteriors/${ext.id}`}
-                className="group block relative"
+                className="group bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#C8842A]/50 hover:shadow-[0_16px_36px_rgba(200,132,42,0.12)] transition-all duration-500 cursor-pointer flex flex-col h-full relative"
               >
-                {/* Premium Container */}
-                <div className="bg-[#FAF9F6] rounded-3xl p-4 border border-gray-100/80 shadow-sm hover:border-[#C8842A]/30 hover:shadow-xl hover:shadow-[#C8842A]/10 transition-all duration-500 overflow-hidden">
+                {/* Top Architectural Accent Line */}
+                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
 
-                  {/* Accent Gradient Background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#C8842A]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                {/* Exterior Image Frame */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-slate-900">
+                  <img
+                    src={ext.exteriorImage || "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=800"}
+                    alt={ext.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                  />
+                  
+                  {/* Gradient Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-75 group-hover:opacity-85 transition-opacity" />
 
-                  {/* Premium Image Frame */}
-                  <div className="aspect-[4/3] relative rounded-2xl overflow-hidden bg-gray-100 group-hover:shadow-inner transition-all duration-500">
-                    <img
-                      src={ext.exteriorImage}
-                      alt={ext.title}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                    {/* Premium Badge */}
-                    <div className="absolute top-4 left-4">
-                      <span className="px-4 py-1.5 bg-white/90 backdrop-blur-md rounded-xl text-xs font-bold uppercase tracking-wider text-[#111827] border border-gray-100 shadow-sm">
-                        {ext.style}
+                  {/* Top Badges */}
+                  <div className="absolute top-3 left-3 right-3 flex items-center justify-between gap-1.5 z-10">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 shadow-xs truncate max-w-[130px]">
+                      {ext.style || "Modern Facade"}
+                    </span>
+                    {ext.area && (
+                      <span className="text-[10px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-md backdrop-blur-md shadow-xs bg-slate-900/80 text-amber-300 border border-white/20 shrink-0">
+                        {ext.area} SQFT
                       </span>
-                    </div>
-                    {/* Premium Hover Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-5">
-                      <span className="text-white text-sm font-bold flex items-center gap-2">
-                        View Details <ArrowUpRight size={16} />
-                      </span>
-                    </div>
+                    )}
                   </div>
+                </div>
 
-                  {/* Premium Content */}
-                  <div className="pt-5 pb-3 relative z-10">
-                    <h3 className="text-[#111827] font-bold text-md mb-2 group-hover:text-[#C8842A] transition-colors duration-300">
+                {/* Card Body */}
+                <div className="p-4 sm:p-5 flex flex-col justify-between flex-grow">
+                  <div>
+                    <h3 className="text-slate-900 font-semibold text-base sm:text-[17px] mb-1.5 group-hover:text-[#C8842A] transition-colors line-clamp-1 leading-snug">
                       {ext.title}
                     </h3>
-                    {/* <p className="text-[#6B7280] text-base uppercase tracking-wider text-md mb-4">
-                      {ext.location}
-                    </p> */}
-                    
-                    {/* Premium CTA Arrow */}
-                    <div className="w-10 h-10 rounded-full bg-[#C8842A]/10 flex items-center justify-center text-[#C8842A] group-hover:bg-[#C8842A] group-hover:text-white transition-all duration-300">
-                      <ArrowUpRight size={18} />
+                    <p className="text-slate-500 text-xs sm:text-[13px] leading-relaxed mb-3">
+                      {ext.location ? `Location: ${ext.location}` : "Architectural facade rendering with high-spec thermal envelope"}
+                    </p>
+                  </div>
+
+                  {/* Bottom Action Row */}
+                  <div className="pt-3 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span className="text-xs font-semibold text-slate-700 group-hover:text-[#C8842A] transition-colors">
+                      View Elevation
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200/80 flex items-center justify-center text-slate-600 group-hover:bg-[#C8842A] group-hover:text-white group-hover:border-[#C8842A] transition-all duration-300 shadow-2xs">
+                      <ArrowUpRight size={14} />
                     </div>
                   </div>
                 </div>
@@ -105,10 +114,10 @@ const ExteriorsPage = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-center bg-[#FAF9F6] rounded-3xl border border-dashed border-gray-200">
-            <Home className="text-[#C8842A] mb-5" size={72} />
-            <h3 className="text-2xl font-bold text-[#111827] mb-3">No exterior designs found</h3>
-            <p className="text-[#6B7280] text-base">Check back soon for updates</p>
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-slate-50/70 rounded-2xl border border-dashed border-slate-200">
+            <Home className="text-[#C8842A] mb-3" size={48} strokeWidth={1.5} />
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">No exterior designs found</h3>
+            <p className="text-slate-500 text-xs">Check back soon for updates to our elevation archive.</p>
           </div>
         )}
       </section>

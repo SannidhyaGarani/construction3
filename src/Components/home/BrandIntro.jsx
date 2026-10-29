@@ -57,26 +57,29 @@ const stats = [
 
 const BrandIntro = () => {
   return (
-    <section className="bg-[#FAF9F6] py-8 md:py-16 font-sans overflow-hidden">
+    <section className="bg-[#FAF9F6] py-8 md:py-10 lg:py-12 font-sans overflow-hidden">
       <div className="max-w-[1280px] mx-auto px-4 md:px-12 lg:px-16">
-        <div className="grid lg:grid-cols-[35%_65%] gap-12 lg:gap-10 items-center">
-          
+        <div className="grid lg:grid-cols-[35%_65%] gap-8 lg:gap-10 items-center">
+
           {/* Left Block: Premium Typography Heading */}
-          <div className="flex flex-col items-start px-2 md:px-0 pr-0 lg:pr-6">
-            <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
-              About Us
-            </p>
-            <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
+          <div className="flex flex-col items-start px-0 pr-0 lg:pr-6">
+            <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+              <span className="w-6 h-[2px] bg-[#C8842A]" />
+              <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+                About Us
+              </p>
+            </div>
+            <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2] sm:leading-[1.18] mb-4 sm:mb-5">
               Strong Foundations.<br />
               Smarter Future.
             </h2>
-            <p className="text-[#6B7280] text-[15px] leading-relaxed mb-6 max-w-[420px]">
+            <p className="text-[#6B7280] text-sm sm:text-[15px] leading-relaxed mb-5 sm:mb-6 max-w-[420px]">
               Naksha Dynamics is a civil engineering firm committed to quality, innovation
               and timely delivery. From concept to construction, we turn ideas into landmarks.
             </p>
             <a
               href="/about"
-              className="inline-flex items-center gap-2 text-[#C8842A] text-sm font-bold hover:text-[#B37424] transition-colors group relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C8842A] hover:after:w-full after:transition-all after:duration-300"
+              className="inline-flex items-center gap-2 text-[#C8842A] text-xs sm:text-sm font-bold hover:text-[#B37424] transition-colors group relative after:absolute after:bottom-[-2px] after:left-0 after:w-0 after:h-[1.5px] after:bg-[#C8842A] hover:after:w-full after:transition-all after:duration-300"
             >
               Know More About Us <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
             </a>
@@ -89,26 +92,26 @@ const BrandIntro = () => {
               {stats.map((stat, i) => {
                 const Icon = stat.icon;
                 return (
-                  <div 
-                    key={i} 
+                  <div
+                    key={i}
                     id={stat.id}
-                    className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-4 py-8 md:p-8 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
+                    className="min-w-[50%] sm:min-w-[50%] lg:min-w-full snap-start flex flex-col items-center justify-center p-3 py-6 sm:py-8 md:p-8 text-center relative group overflow-hidden transition-all duration-300 hover:bg-gradient-to-b hover:from-white hover:to-[#FAF9F6]"
                   >
                     {/* Premium Ambient Background Hover Effect */}
                     <div className="absolute inset-0 bg-[#C8842A]/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                    
+
                     {/* Icon Container with Subtle Scale Up */}
-                    <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center mb-3 transition-transform duration-500 group-hover:scale-105">
+                    <div className="w-10 h-10 md:w-12 md:h-12 flex-shrink-0 flex items-center justify-center mb-2.5 sm:mb-3 transition-transform duration-500 group-hover:scale-105">
                       <Icon />
                     </div>
-                    
+
                     {/* Stat Value */}
-                    <span className="text-[#111827] font-black text-xl md:text-[32px] tracking-tight leading-none mb-1.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
+                    <span className="text-[#111827] font-bold text-lg sm:text-xl md:text-[28px] tracking-tight leading-none mb-1.5 bg-gradient-to-r from-[#111827] to-[#374151] bg-clip-text">
                       {stat.value}
                     </span>
-                    
+
                     {/* Label Layout */}
-                    <span className="text-[#6B7280] text-xs md:text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
+                    <span className="text-[#6B7280] text-[11px] sm:text-xs md:text-sm font-semibold tracking-wide uppercase leading-relaxed whitespace-pre-line group-hover:text-[#4B5563] transition-colors">
                       {stat.label}
                     </span>
                   </div>
@@ -117,12 +120,19 @@ const BrandIntro = () => {
             </div>
 
             {/* Premium Linear Progress Indicator Track for Mobile */}
-            <div className="flex justify-center items-center gap-1.5 mt-5 lg:hidden">
+            <div className="flex justify-center items-center gap-2 mt-4 lg:hidden">
               {stats.map((stat, i) => (
-                <a
+                <button
                   key={i}
-                  href={`#${stat.id}`}
-                  className="w-5 h-1 rounded-full bg-gray-200/80 hover:bg-[#C8842A] focus:bg-[#C8842A] active:bg-[#C8842A] transition-all duration-300"
+                  type="button"
+                  onClick={() => {
+                    document.getElementById(stat.id)?.scrollIntoView({
+                      behavior: "smooth",
+                      block: "nearest",
+                      inline: "center",
+                    });
+                  }}
+                  className="w-5 h-1.5 rounded-full bg-gray-200/90 hover:bg-[#C8842A] focus:bg-[#C8842A] active:bg-[#C8842A] transition-all duration-300 cursor-pointer"
                   aria-label={`Go to metric ${i + 1}`}
                 />
               ))}

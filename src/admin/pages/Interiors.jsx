@@ -11,7 +11,7 @@ import {
   serverTimestamp 
 } from 'firebase/firestore';
 import { db } from '../../Firebase/Firebase';
-import { Plus, Search, Loader2, X, Square, Tag, CheckCircle, Circle } from 'lucide-react';
+import { Plus, Search, Loader2, X, Sparkles, RefreshCw, CheckCircle, EyeOff } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Input from '../../Components/common/Input';
 import Select from '../../Components/common/Select';
@@ -34,8 +34,9 @@ const Interiors = () => {
     child3: ''
   });
   const [searchQuery, setSearchQuery] = useState('');
-  const [categories, setCategories] = useState(['Living Room', 'Kitchen', 'Bedroom', 'Bathroom', 'Office']);
+  const [categories, setCategories] = useState(['Living Room', 'Modular Kitchen', 'Master Bedroom', 'Luxury Bathroom', 'Executive Office', 'Dining Hall']);
   const [newCategory, setNewCategory] = useState('');
+  const [filterType, setFilterType] = useState('');
 
   const fetchInteriors = async () => {
     setLoading(true);
@@ -45,8 +46,7 @@ const Interiors = () => {
       const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
       setInteriors(data);
       
-      // Extract dynamic categories from data
-      const dynamicCats = [...new Set(data.map(item => item.interiorType))];
+      const dynamicCats = [...new Set(data.map(item => item.interiorType).filter(Boolean))];
       setCategories(prev => [...new Set([...prev, ...dynamicCats])]);
     } catch (error) {
       console.error("Error fetching interiors", error);
@@ -62,8 +62,16 @@ const Interiors = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!formData.interiorType) {
+      toast.error("Please select or add an interior category");
+      return;
+    }
+    if (!formData.mainImage) {
+      toast.error("Please upload the main interior image");
+      return;
+    }
+
     setLoading(true);
-    
     try {
       const dataToSave = {
         ...formData,
@@ -72,13 +80,13 @@ const Interiors = () => {
 
       if (editingId) {
         await updateDoc(doc(db, 'interiors', editingId), dataToSave);
-        toast.success("Interior updated successfully");
+        toast.success("Interior concept updated");
       } else {
         await addDoc(collection(db, 'interiors'), {
           ...dataToSave,
           createdAt: serverTimestamp()
         });
-        toast.success("Interior added successfully");
+        toast.success("Interior concept published");
       }
       
       setIsModalOpen(false);
@@ -100,7 +108,7 @@ const Interiors = () => {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Are you sure you want to delete this interior?")) return;
+    if (!window.confirm("Are you sure you want to delete this interior concept?")) return;
     try {
       await deleteDoc(doc(db, 'interiors', id));
       toast.success("Interior deleted successfully");
@@ -118,53 +126,84 @@ const Interiors = () => {
   };
 
   const handleAddCategory = () => {
-    if (newCategory && !categories.includes(newCategory)) {
-      setCategories([...categories, newCategory]);
-      setFormData({ ...formData, interiorType: newCategory });
+    if (newCategory.trim() && !categories.includes(newCategory.trim())) {
+      const trimmed = newCategory.trim();
+      setCategories([...categories, trimmed]);
+      setFormData({ ...formData, interiorType: trimmed });
       setNewCategory('');
-      toast.success("Category added");
+      toast.success(`Category "${trimmed}" added`);
     }
   };
 
   const filteredInteriors = interiors.filter(int => 
-    int.interiorType.toLowerCase().includes(searchQuery.toLowerCase())
+    (int.interiorType?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+     int.keywords?.toLowerCase().includes(searchQuery.toLowerCase())) &&
+    (filterType === '' || int.interiorType === filterType)
   );
 
   return (
-    <div className="space-y-12">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div className="flex flex-col gap-2">
-          <span className="text-[10px] uppercase tracking-[0.5em] text-[#C5A880] font-bold">Content Management</span>
-          <h1 className="font-serif text-5xl text-neutral-800">Interior Designs</h1>
-          <p className="text-neutral-400 text-sm font-light mt-2 max-w-md italic tracking-wide leading-relaxed">
-            Manage bespoke interior concepts, from residential living spaces to commercial workspaces.
+    <div className="space-y-6">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-200">
+        <div>
+          <span className="inline-block text-[11px] font-semibold uppercase tracking-wider text-[#C8842A] bg-[#C8842A]/10 px-2.5 py-0.5 rounded-full mb-1">
+            Interior Architecture Catalog
+          </span>
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Interiors</h1>
+          <p className="text-xs sm:text-sm text-slate-500 mt-0.5">
+            Manage bespoke interior concepts, room perspectives, and decor portfolios.
           </p>
         </div>
-        <Button onClick={() => setIsModalOpen(true)} icon={Plus} variant="secondary">
-          Add Interior
-        </Button>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={fetchInteriors}
+            className="p-2.5 rounded-xl border border-slate-200 bg-white text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all cursor-pointer"
+            title="Refresh list"
+          >
+            <RefreshCw size={16} className={loading ? 'animate-spin' : ''} />
+          </button>
+          <Button onClick={() => { resetForm(); setIsModalOpen(true); }} icon={Plus}>
+            New Interior
+          </Button>
+        </div>
       </div>
 
-      <div className="flex flex-col md:flex-row gap-6 p-8 bg-white rounded-3xl shadow-2xl shadow-neutral-100/50 border border-neutral-100">
-        <div className="flex-1 relative group">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400 group-hover:text-neutral-800 transition-colors" size={18} />
+      {/* Toolbar */}
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 bg-white p-3 sm:p-4 rounded-xl border border-slate-200/80 shadow-sm">
+        <div className="relative flex-1">
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
           <input 
             type="text" 
-            placeholder="Search by category..." 
+            placeholder="Search interiors by category or keywords..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-12 pr-6 py-4 bg-neutral-100 rounded-2xl border-none focus:ring-2 focus:ring-neutral-800 transition-all outline-none text-sm font-medium"
+            className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:bg-white focus:border-[#C8842A] focus:ring-1 focus:ring-[#C8842A] transition-all"
           />
+        </div>
+        <div className="flex items-center gap-3">
+          <Select 
+            value={filterType}
+            onChange={(e) => setFilterType(e.target.value)}
+            options={[
+              { value: '', label: 'All Interior Types' },
+              ...categories.map(cat => ({ value: cat, label: cat }))
+            ]}
+            className="min-w-[180px]"
+          />
+          <div className="text-xs font-medium text-slate-500 whitespace-nowrap hidden lg:block">
+            Showing <span className="font-semibold text-slate-800">{filteredInteriors.length}</span> of {interiors.length}
+          </div>
         </div>
       </div>
 
+      {/* Grid */}
       {loading ? (
-        <div className="flex flex-col items-center justify-center py-48 gap-4 text-neutral-400">
-          <Loader2 className="animate-spin" size={48} />
-          <span className="text-xs font-bold uppercase tracking-[0.3em]">Loading interiors...</span>
+        <div className="flex flex-col items-center justify-center py-24 gap-3 text-slate-400">
+          <Loader2 className="animate-spin text-[#C8842A]" size={32} />
+          <span className="text-xs font-semibold tracking-wider uppercase text-slate-500">Loading interiors...</span>
         </div>
       ) : filteredInteriors.length > 0 ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {filteredInteriors.map((int) => (
             <Card 
               key={int.id}
@@ -172,8 +211,8 @@ const Interiors = () => {
               title={int.interiorType}
               subtitle="Interior Concept"
               details={[
-                { label: 'Status', value: int.isActive ? 'Active' : 'Hidden' },
-                { label: 'Assets', value: `${[int.child1, int.child2, int.child3].filter(Boolean).length + 1} Images` }
+                { label: 'Status', value: int.isActive !== false ? 'Active' : 'Hidden' },
+                { label: 'Images', value: `${[int.mainImage, int.child1, int.child2, int.child3].filter(Boolean).length} Photos` }
               ]}
               isAdmin={true}
               onEdit={() => handleEdit(int)}
@@ -182,79 +221,140 @@ const Interiors = () => {
           ))}
         </div>
       ) : (
-        <div className="flex flex-col items-center justify-center py-48 text-center bg-white rounded-3xl border border-dashed border-neutral-200">
-          <Square className="text-neutral-200 mb-6" size={64} />
-          <h3 className="text-2xl font-serif text-neutral-400">No interior designs found</h3>
+        <div className="flex flex-col items-center justify-center py-20 text-center bg-white rounded-2xl border border-dashed border-slate-300 p-8">
+          <div className="w-14 h-14 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-400 mb-3">
+            <Sparkles size={26} />
+          </div>
+          <h3 className="text-base font-semibold text-slate-800">No interior concepts found</h3>
+          <p className="text-xs text-slate-500 mt-1 max-w-sm">
+            {searchQuery || filterType ? 'No items match the current filters. Adjust your search to view all.' : 'Publish your first high-end interior concept to inspire clients.'}
+          </p>
+          {!searchQuery && !filterType && (
+            <div className="mt-4">
+              <Button onClick={() => { resetForm(); setIsModalOpen(true); }} icon={Plus}>
+                Add Interior Concept
+              </Button>
+            </div>
+          )}
         </div>
       )}
 
+      {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center p-6 md:p-12 overflow-y-auto bg-black/40 backdrop-blur-sm transition-all duration-700">
-          <div className="bg-white w-full max-w-5xl rounded-[40px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-500">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-slate-950/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white w-full max-w-3xl rounded-2xl shadow-2xl border border-slate-200 overflow-hidden my-8 animate-in fade-in zoom-in duration-200 relative">
+            <div className="h-1 bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A]"></div>
+
             <form onSubmit={handleSubmit}>
-              <div className="flex items-center justify-between p-10 md:p-12 border-b border-neutral-50">
-                <div className="flex flex-col gap-1">
-                  <span className="text-[10px] uppercase tracking-[0.4em] text-[#C5A880] font-bold">Editor</span>
-                  <h2 className="font-serif text-3xl text-neutral-800">
-                    {editingId ? 'Edit Interior Design' : 'New Interior Design'}
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-100">
+                <div>
+                  <h2 className="text-lg font-bold text-slate-900">
+                    {editingId ? 'Edit Interior Concept' : 'New Interior Concept'}
                   </h2>
+                  <p className="text-xs text-slate-500">Provide category, details, and high-definition photography.</p>
                 </div>
-                <button type="button" onClick={() => { setIsModalOpen(false); resetForm(); }} className="p-4 bg-neutral-100 rounded-2xl text-neutral-800 hover:bg-neutral-200 transition-colors">
-                  <X size={20} />
+                <button 
+                  type="button" 
+                  onClick={() => { setIsModalOpen(false); resetForm(); }} 
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors cursor-pointer"
+                >
+                  <X size={18} />
                 </button>
               </div>
 
-              <div className="p-10 md:p-12 space-y-12 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                
-                <div className="grid md:grid-cols-2 gap-10">
-                  <div className="space-y-4">
+              <div className="p-6 space-y-5 max-h-[72vh] overflow-y-auto">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="space-y-2">
                     <Select 
-                      label="Interior Type" 
+                      label="Interior Category" 
                       value={formData.interiorType} 
                       onChange={(e) => setFormData({...formData, interiorType: e.target.value})}
                       options={categories.map(cat => ({ value: cat, label: cat }))}
                       required
                     />
-                    <div className="flex gap-4">
+                    <div className="flex gap-2">
                       <input 
                         type="text" 
                         value={newCategory} 
                         onChange={(e) => setNewCategory(e.target.value)} 
-                        placeholder="Add new category..." 
-                        className="flex-1 px-6 py-4 rounded-2xl bg-neutral-100 border-none focus:ring-2 focus:ring-neutral-800 transition-all outline-none text-xs font-bold"
+                        placeholder="Add custom category..." 
+                        className="flex-1 px-3 py-1.5 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#C8842A]"
                       />
                       <button 
                         type="button" 
                         onClick={handleAddCategory}
-                        className="p-4 bg-neutral-800 text-white rounded-2xl hover:bg-black transition-colors"
+                        className="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-lg text-xs font-semibold transition-colors cursor-pointer"
                       >
-                        <Plus size={20} />
+                        Add
                       </button>
                     </div>
                   </div>
-                  <Input label="Keywords" value={formData.keywords} onChange={(e) => setFormData({...formData, keywords: e.target.value})} placeholder="e.g. minimalist, oak, brass" />
-                </div>
 
-                <div className="flex items-center gap-4 px-6 py-4 bg-neutral-100 rounded-2xl cursor-pointer w-fit" onClick={() => setFormData({...formData, isActive: !formData.isActive})}>
-                  {formData.isActive ? <CheckCircle className="text-green-500" size={20} /> : <Circle className="text-neutral-400" size={20} />}
-                  <span className="text-xs font-bold uppercase tracking-widest text-neutral-600">Active Listing</span>
-                </div>
-
-                <div className="space-y-6">
-                  <FileUpload label="Main Interior Image" initialValue={formData.mainImage} onUploadComplete={(url) => setFormData({...formData, mainImage: url})} required />
-                  <div className="grid md:grid-cols-3 gap-10">
-                    <FileUpload label="Detail View 1" initialValue={formData.child1} onUploadComplete={(url) => setFormData({...formData, child1: url})} />
-                    <FileUpload label="Detail View 2" initialValue={formData.child2} onUploadComplete={(url) => setFormData({...formData, child2: url})} />
-                    <FileUpload label="Detail View 3" initialValue={formData.child3} onUploadComplete={(url) => setFormData({...formData, child3: url})} />
+                  <div className="space-y-3">
+                    <Input 
+                      label="Keywords (comma-separated)" 
+                      value={formData.keywords} 
+                      onChange={(e) => setFormData({...formData, keywords: e.target.value})} 
+                      placeholder="e.g. minimalist, walnut wood, brass lighting" 
+                    />
+                    
+                    <div 
+                      className="flex items-center gap-3 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer hover:bg-slate-100 transition-colors"
+                      onClick={() => setFormData({...formData, isActive: !formData.isActive})}
+                    >
+                      {formData.isActive ? (
+                        <CheckCircle className="text-emerald-600 shrink-0" size={18} />
+                      ) : (
+                        <EyeOff className="text-slate-400 shrink-0" size={18} />
+                      )}
+                      <div className="text-xs">
+                        <span className="font-semibold text-slate-800">
+                          {formData.isActive ? 'Active on Public Website' : 'Hidden from Public'}
+                        </span>
+                        <p className="text-[11px] text-slate-500">Click to toggle visibility</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
+                <div className="space-y-4 pt-2">
+                  <FileUpload 
+                    label="Hero / Main Interior Photo" 
+                    initialValue={formData.mainImage} 
+                    onUploadComplete={(url) => setFormData({...formData, mainImage: url})} 
+                    required 
+                  />
+
+                  <div className="grid sm:grid-cols-3 gap-3">
+                    <FileUpload 
+                      label="Angle 1 (Optional)" 
+                      initialValue={formData.child1} 
+                      onUploadComplete={(url) => setFormData({...formData, child1: url})} 
+                    />
+                    <FileUpload 
+                      label="Angle 2 (Optional)" 
+                      initialValue={formData.child2} 
+                      onUploadComplete={(url) => setFormData({...formData, child2: url})} 
+                    />
+                    <FileUpload 
+                      label="Angle 3 (Optional)" 
+                      initialValue={formData.child3} 
+                      onUploadComplete={(url) => setFormData({...formData, child3: url})} 
+                    />
+                  </div>
+                </div>
               </div>
 
-              <div className="p-10 md:p-12 bg-neutral-50 flex items-center justify-end gap-6">
-                <button type="button" onClick={() => { setIsModalOpen(false); resetForm(); }} className="px-8 py-4 uppercase text-[10px] tracking-widest font-bold text-neutral-400 hover:text-neutral-800 transition-colors">Discard</button>
-                <Button type="submit" loading={loading} variant="secondary">
-                  {editingId ? 'Update Design' : 'Publish Design'}
+              <div className="px-6 py-3.5 bg-slate-50 border-t border-slate-100 flex items-center justify-end gap-2.5">
+                <button 
+                  type="button" 
+                  onClick={() => { setIsModalOpen(false); resetForm(); }} 
+                  className="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <Button type="submit" loading={loading}>
+                  {editingId ? 'Save Changes' : 'Publish Interior'}
                 </Button>
               </div>
             </form>

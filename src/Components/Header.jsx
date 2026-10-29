@@ -37,7 +37,7 @@ const Header = () => {
             : 'bg-white/95 py-4'
         }`}
       >
-        <div className="max-w-[1280px] mx-auto px-6 md:px-12 lg:px-16 flex items-center justify-between">
+        <div className="max-w-[1280px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16 flex items-center justify-between">
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">

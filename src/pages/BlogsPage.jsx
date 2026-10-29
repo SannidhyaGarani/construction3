@@ -27,58 +27,77 @@ const BlogsPage = () => {
   }, []);
 
   return (
-    <main className="bg-white text-[#111827] overflow-hidden">
+    <main className="bg-white text-slate-900 overflow-x-hidden font-sans">
       <PageHero 
         title="Our Blog" 
         subtitle="Expert Insights for the Modern Age"
         backgroundImage="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2000&auto=format&fit=crop"
       />
 
-      <section className="py-12 md:py-16 px-6 md:px-12 lg:px-16 max-w-[1280px] mx-auto">
-        <div className="mb-10">
-          <p className="text-[#C8842A] text-sm font-bold uppercase tracking-[0.3em] mb-3.5">
-            Our Insights
-          </p>
-          <h2 className="text-[#111827] font-extrabold text-3xl md:text-[40px] leading-[1.15] mb-5 tracking-tight">
-            Explore our latest articles
+      <section className="py-10 md:py-12 lg:py-14 max-w-[1320px] mx-auto px-4 sm:px-6 md:px-12 lg:px-16">
+        <div className="mb-8 md:mb-10">
+          <div className="flex items-center gap-2 mb-2.5 sm:mb-3">
+            <span className="w-6 h-[2px] bg-[#C8842A]" />
+            <p className="text-[#C8842A] text-xs md:text-sm font-semibold uppercase tracking-[0.25em]">
+              Engineering Discourse
+            </p>
+          </div>
+          <h2 className="text-slate-900 font-semibold text-2xl sm:text-3xl lg:text-[38px] tracking-tight leading-[1.2]">
+            Explore our latest articles & industry whitepapers
           </h2>
         </div>
 
         {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 gap-4">
-            <Loader2 className="animate-spin text-[#C8842A]" size={48} />
-            <span className="text-[#6B7280] text-sm font-bold uppercase tracking-[0.3em]">Loading articles...</span>
+          <div className="flex flex-col items-center justify-center py-20 gap-3">
+            <Loader2 className="animate-spin text-[#C8842A]" size={38} strokeWidth={1.75} />
+            <span className="text-slate-500 text-xs font-semibold uppercase tracking-[0.2em]">Loading articles...</span>
           </div>
         ) : blogs.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogs.map((blog, i) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-3 gap-5 sm:gap-6">
+            {blogs.map((blog) => (
               <Link
                 key={blog.id}
                 to={`/blogs/${blog.id}`}
-                className="group relative block"
+                className="group bg-white border border-slate-200/90 rounded-2xl overflow-hidden shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:border-[#C8842A]/50 hover:shadow-[0_16px_36px_rgba(200,132,42,0.12)] transition-all duration-500 cursor-pointer flex flex-col h-full relative"
               >
-                <div className="relative bg-white rounded-2xl border border-gray-200/50 shadow-[0_12px_40px_rgba(17,24,39,0.02)] overflow-hidden">
-                  <div className="aspect-[4/3] relative overflow-hidden">
-                    <img
-                      src={blog.blogImage}
-                      alt={blog.title}
-                      className="h-full w-full object-cover transition-all duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#111827]/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-6">
-                      <span className="text-[#C8842A] text-[10px] font-bold uppercase tracking-[0.3em] mb-2">Article</span>
-                    </div>
+                {/* Top Architectural Accent Line */}
+                <div className="absolute top-0 left-0 right-0 h-[2.5px] bg-gradient-to-r from-[#C8842A] via-amber-400 to-[#C8842A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-20" />
+
+                {/* Blog Image Frame */}
+                <div className="relative aspect-[16/10] overflow-hidden bg-slate-900">
+                  <img
+                    src={blog.blogImage || "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800"}
+                    alt={blog.title}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-108"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent opacity-70 group-hover:opacity-85 transition-opacity" />
+
+                  {/* Top Badge */}
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="text-[10px] font-semibold uppercase tracking-wider text-white bg-slate-900/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-white/20 shadow-xs">
+                      Article
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Body */}
+                <div className="p-5 sm:p-6 flex flex-col justify-between flex-grow">
+                  <div>
+                    <span className="text-slate-400 text-xs font-semibold uppercase tracking-wider block mb-2">
+                      {blog.createdAt?.toDate ? blog.createdAt.toDate().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent'}
+                    </span>
+                    <h3 className="text-slate-900 font-semibold text-base sm:text-[18px] mb-2.5 group-hover:text-[#C8842A] transition-colors line-clamp-2 leading-snug">
+                      {blog.title}
+                    </h3>
                   </div>
 
-                  <div className="p-6">
-                    <div className="flex flex-col gap-2 mb-4">
-                      <h3 className="text-[#111827] font-bold text-xl">{blog.title}</h3>
-                      <p className="text-[#6B7280] text-sm">
-                        {blog.createdAt?.toDate().toLocaleDateString() || 'Recently'}
-                      </p>
-                    </div>
-                    <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-                      <span className="text-[#6B7280] text-xs font-bold uppercase tracking-[0.3em]">Read Article</span>
-                      <ArrowUpRight size={18} className="text-[#C8842A] transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  {/* Bottom Action Row */}
+                  <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                    <span className="text-xs font-semibold text-slate-700 group-hover:text-[#C8842A] transition-colors">
+                      Read Full Article
+                    </span>
+                    <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200/80 flex items-center justify-center text-slate-600 group-hover:bg-[#C8842A] group-hover:text-white group-hover:border-[#C8842A] transition-all duration-300 shadow-2xs">
+                      <ArrowUpRight size={14} />
                     </div>
                   </div>
                 </div>
@@ -86,10 +105,10 @@ const BlogsPage = () => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-col items-center justify-center py-24 text-center bg-[#FAF9F6] rounded-2xl border border-dashed border-gray-300">
-            <BookOpen className="text-[#9CA3AF] mb-4" size={64} />
-            <h3 className="text-xl font-bold text-[#111827] mb-2">No articles published yet</h3>
-            <p className="text-[#6B7280] text-sm">Check back soon for updates</p>
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-slate-50/70 rounded-2xl border border-dashed border-slate-200">
+            <BookOpen className="text-[#C8842A] mb-3" size={48} strokeWidth={1.5} />
+            <h3 className="text-lg font-semibold text-slate-900 mb-1">No articles published yet</h3>
+            <p className="text-slate-500 text-xs">Check back soon for upcoming civil engineering publications.</p>
           </div>
         )}
       </section>
